@@ -51,8 +51,6 @@ public class ItemService<T> : IBaseService<T> where T : IBaseEntity
 		throw new NotImplementedException();
 	}
 
-	public void nothing() { }
-
 	public void Add(T entity, Connection connection)
 	{
 		throw new NotImplementedException();
@@ -65,12 +63,21 @@ public class ItemService<T> : IBaseService<T> where T : IBaseEntity
 
 	public void Update(T entity, Connection connection)
 	{
-		throw new NotImplementedException();
+		ItemRevision itemRevision = connection.WebServiceManager.ItemService.GetItemsByFileIds(entity.Id);
+		itemRevision[0].Name = entity.Name;
+
+		
+		// only can change name, detail, comment, itemTypeID, and units
+		connection.WebServiceManager.ItemService.UpdateAndCommitItems(new VaultItem[] {  });
 	}
 
 	public T GetById(long id, Connection connection)
 	{
-		throw new NotImplementedException();
+		var item = connection.WebServiceManager.ItemService.GetItemsByFileIds(id);
+		MyItem result = default(MyItem);
+		result.Id = item[0].Id;
+		result.Name = item[0].Name;
+		return result as T;
 	}
 
 	public IEnumerable<T> GetAll(Connection connection)

@@ -69,7 +69,7 @@ namespace ConsoleApp2.Services
 				Guid guid = Guid.NewGuid();
 				PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
 					guid.ToString(), entity.Name, DataType.String,
-					true, true, string.Empty, new string[] { entity.EntityName },
+					true, true, string.Empty, entity.AssociatedEntityName,
 					null, null, null);
 			} catch (Exception e)
 			{
@@ -98,10 +98,16 @@ namespace ConsoleApp2.Services
                 ret.ForEach(bhv => bhv.BhvArray.ForEach( elem => Console.WriteLine(elem.Id)));
 				
 				var id = ret.Select(bhv => bhv.BhvArray.Select(elem => elem.Id == entity.Id));
-				//TODO : update mapped entity class with array for better use case
-				EntClassAssoc entClassAssoc = new EntClassAssoc();
-				entClassAssoc.EntClassId = entity.EntityName;
-				entClassAssoc.MapDirection= AllowedMappingDirection.Write;
+				entity.AssociatedEntityName.));
+	
+	            //TODO :  Test the code
+				List<EntClassAssoc> entClassAssocList = new List<EntClassAssoc>();
+				entity.AssociatedEntityName.ForEach(name => { 
+					EntClassAssoc entClassAssoc = new EntClassAssoc(); 
+					entClassAssoc.EntClassId = name;
+					entClassAssoc.MapDirection= AllowedMappingDirection.Write;
+					entClassAssocList.Add(entClassAssoc); 
+						});
 
 				PropDef prop = new PropDef();
 				prop.Id = entity.Id;
@@ -141,7 +147,8 @@ namespace ConsoleApp2.Services
                 {
 					T elem = (T)Activator.CreateInstance(typeof(T));
 					elem.Id = property.Value.Id;
-					elem.EntityName = entity.Id;
+					// TODO : Test it
+					elem.AssociatedEntityName = property.Value.AssociatedEntityName;
 					elem.Name = property.Value.DisplayName;
 					entities.Add(elem);
                 }
@@ -151,14 +158,13 @@ namespace ConsoleApp2.Services
 
 		public T GetById(long id, Connection connection)
 		{
-			//TODO : Return associated EntityName
 			try
 			{
 				var entity = connection.PropertyManager.GetPropertyDefinitionById(id);
 				T result = (T)Activator.CreateInstance(typeof(T));
 				result.Id = entity.Id;
 				result.Name = entity.DisplayName;
-				//result.EntityName = entity.EntityClassId;
+				entity.AssociatedEntityName.ForEach(name => result.EntityName.Add(name));
 				return result;
 			}
 			catch (Exception e)

@@ -16,7 +16,10 @@ namespace ConsoleApp2.Model
 
 		public long Id { get; set; }
 		public string Name { get; set; }
-		public string EntityName { get; set; }
+		// Associated Entity
+		// TODO : can have multiple associated entities, modify to array
+		
+		public string [] AssociatedEntityName { get; set; }
 		public Property()
 		{
 		}
