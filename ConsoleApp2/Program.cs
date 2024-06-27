@@ -14,11 +14,6 @@ namespace ConsoleApp2
 	{
 		static void Main(string[] args)
 		{
-			VDF.Vault.Results.LogInResult result = VDF.Vault.Library.ConnectionManager.LogIn("192.168.10.250", "DTcenter", "DTcenter", "1234", VDF.Vault.Currency.Connections.AuthenticationFlags.Standard, null);
-
-			VDF.Vault.Currency.Connections.Connection connection = result.Connection;
-			VDF.Vault.Library.ConnectionManager.LogOut(connection);
-
 			var config = new HttpSelfHostConfiguration("http://localhost:8080");
 
 			config.Routes.MapHttpRoute(

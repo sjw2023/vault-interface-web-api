@@ -177,15 +177,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\IBaseController.cs" />
+    <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="Controllers\EntityController.cs" />
+    <Compile Include="Model\Bom.cs" />
+    <Compile Include="Model\Property.cs" />
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ItemController.cs" />
-    <Compile Include="Results\ItemsResult.cs" />
-    <Compile Include="Results\ItemResult.cs" />
+    <Compile Include="Services\LoggerDecoratorService.cs" />
+    <Compile Include="Services\Service.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\PropertyService.cs" />
+    <Compile Include="Services\LogInDecoratorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -206,6 +212,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\" />
+    <Folder Include="Util\" />
+    <Folder Include="VaultModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

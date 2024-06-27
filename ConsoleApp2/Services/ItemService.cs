@@ -8,6 +8,7 @@ using VaultItem = Autodesk.Connectivity.WebServices.Item;
 
 using VDF = Autodesk.DataManagement.Client.Framework;
 using Autodesk.Connectivity.WebServices;
+using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 
 public class ItemService<T> : IBaseService<T> where T : IBaseEntity
 {
@@ -47,35 +48,40 @@ public class ItemService<T> : IBaseService<T> where T : IBaseEntity
 
 	public IEnumerable<T> GetAll()
 	{
-		VDF.Vault.Results.LogInResult result = VDF.Vault.Library.ConnectionManager.LogIn("192.168.10.250", "DTcenter", "DTcenter", "1234"
-						//"192.168.10.250", "DTcenter", "joowon.suh@woosungautocon.com", "R-6qEbT#*nrJLZp"
-						, VDF.Vault.Currency.Connections.AuthenticationFlags.Standard, null);
-		VDF.Vault.Currency.Connections.Connection connection = result.Connection;
+		throw new NotImplementedException();
+	}
 
-		if (!result.Success)
-		{
-			foreach (var key in result.ErrorMessages.Keys)
-			{
-				Console.WriteLine(result.ErrorMessages[key]);
-			}
-		}
+	public void nothing() { }
 
+	public void Add(T entity, Connection connection)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Delete(T entity, Connection connection)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Update(T entity, Connection connection)
+	{
+		throw new NotImplementedException();
+	}
+
+	public T GetById(long id, Connection connection)
+	{
+		throw new NotImplementedException();
+	}
+
+	public IEnumerable<T> GetAll(Connection connection)
+	{
 		_items = new List<VaultItem>();
-
 		string bookmark = null;
 		SrchStatus status = null;
 		while (status == null || status.TotalHits > _items.Count)
 		{
 			_items.AddRange(connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions(null, null, true, ref bookmark, out status));
 		}
-		int index = 1;
-		foreach ( VaultItem item in _items)
-		{
-			Console.WriteLine($"{index++} | {item.ItemNum} | {item.MasterId} | {item.RevNum} | {item.Id} ");
-		}
-		VDF.Vault.Library.ConnectionManager.LogOut(connection);
 		return _items.Cast<T>();
 	}
-
-	public void nothing() { }
 }

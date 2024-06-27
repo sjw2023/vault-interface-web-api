@@ -11,56 +11,58 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using ConsoleApp2.Model;
 using ConsoleApp2.Results;
+using Newtonsoft.Json.Linq;
 
 namespace ConsoleApp2.Controllers
 {
 	public class ItemController : ApiController, IBaseController<MyItem>
 	{
+		//TODO : Add DI
+		//TODO : Add Proxy on Decorator
 		private readonly IBaseService<MyItem> _service;
 
 		public ItemController(IBaseService<MyItem> service) {
-			_service = service;
+			_service = new LogInDecoratorService<MyItem>(new LoggerDecoratorService<MyItem>(new ItemService<MyItem>()));
 		}
 
 		public ItemController()
 		{
-			_service = new ItemService<MyItem>();
+			_service = new LogInDecoratorService<MyItem>(new LoggerDecoratorService<MyItem>(new ItemService<MyItem>()));
 		}
 
 		[HttpPost]
 		public IHttpActionResult Add([FromBody] MyItem entity)
 		{
-			Console.WriteLine(entity.Id);
-			_service.Add(entity);
-			return new ItemResult(entity, Request);
+			_service.Add(entity, null);
+			return Ok();
 		}
 
 		[HttpDelete]
 		public IHttpActionResult Delete([FromBody] MyItem entity)
 		{
-			_service.Delete(entity);
-			return new ItemResult(entity, Request);
+			_service.Delete(entity, null);
+			return Ok();
 		}
 
 		[HttpPut]
 		public IHttpActionResult Update([FromBody] MyItem entity)
 		{
-			_service.Update(entity);
-			return new ItemResult(entity, Request);
+			_service.Update(entity, null);
+			return Ok();
 		}
 
 		[HttpGet]
 		public IHttpActionResult GetById(long id)
 		{
-			return new ItemResult(_service.GetById(id), Request);
+			var json = JToken.FromObject(_service.GetById(id, null));
+			return Ok(json);
 		}
 
 		[HttpGet]
 		public IHttpActionResult GetAll()
 		{
-			_service.GetAll();
-			//return new ItemsResult( _service.GetAll().ToArray(), Request);
-			return new ItemResult(new MyItem(), Request);
+			var json = JToken.FromObject(_service.GetAll(null));
+			return Ok(json);
 		}
 
 	}
