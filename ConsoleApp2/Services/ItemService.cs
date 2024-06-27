@@ -63,8 +63,8 @@ public class ItemService<T> : IBaseService<T> where T : IBaseEntity
 
 	public void Update(T entity, Connection connection)
 	{
-		ItemRevision itemRevision = connection.WebServiceManager.ItemService.GetItemsByFileIds(entity.Id);
-		itemRevision[0].Name = entity.Name;
+		//ItemRevision itemRevision = connection.WebServiceManager.ItemService.GetItemsByFileIds(entity.Id);
+		//itemRevision[0].Name = entity.Name;
 
 		
 		// only can change name, detail, comment, itemTypeID, and units
@@ -73,11 +73,12 @@ public class ItemService<T> : IBaseService<T> where T : IBaseEntity
 
 	public T GetById(long id, Connection connection)
 	{
-		var item = connection.WebServiceManager.ItemService.GetItemsByFileIds(id);
-		MyItem result = default(MyItem);
-		result.Id = item[0].Id;
-		result.Name = item[0].Name;
-		return result as T;
+		//var item = connection.WebServiceManager.ItemService.GetItemsByFileIds(id);
+		//MyItem result = default(MyItem);
+		//result.Id = item[0].Id;
+		//result.Name = item[0].Name;
+		//return result as T;
+		throw new NotImplementedException();
 	}
 
 	public IEnumerable<T> GetAll(Connection connection)

@@ -73,8 +73,8 @@ namespace ConsoleApp2.Services
 					DataType.String,
 					true, 
 					true, 
-					string.Empty, 
-					entity.AssociatedEntityName,
+					string.Empty,
+					entity.AssociatedEntityName.ToArray(),
 					null, 
 					null, 
 					null
@@ -98,11 +98,16 @@ namespace ConsoleApp2.Services
 		public void Update(T entity, Connection connection)
 		{
 			try {
-				var ret = connection.WebServiceManager.BehaviorService.GetBehaviorConfigurationsByNames("ITEM", new string[] { "UserDefinedProperty" });
-				
-				var id = ret.Select(bhv => bhv.BhvArray.Select(elem => elem.Id == entity.Id));
-	
-	            //TODO :  Test the code
+				Dictionary<string, BhvCfg[]> bhvCfgMap = new Dictionary<string, BhvCfg[]>();
+				var servConf = connection.WebServiceManager.AdminService.GetServerConfiguration();
+				servConf.EntClassCfgArray.ForEach(entClass =>
+				{
+					var bhvCfg = connection.WebServiceManager.BehaviorService.GetBehaviorConfigurationsByNames(entClass.Id, new string[] { "UserDefinedProperty" });
+					bhvCfgMap.Add(entClass.Id, bhvCfg);
+				});
+
+				var propDef = bhvCfgMap.Select((k, v) => v == entity.Id);
+
 				List<EntClassAssoc> entClassAssocList = new List<EntClassAssoc>();
 				entity.AssociatedEntityName.ForEach(name => { 
 					EntClassAssoc entClassAssoc = new EntClassAssoc(); 
@@ -115,7 +120,7 @@ namespace ConsoleApp2.Services
 				prop.Id = entity.Id;
 				prop.DispName = entity.Name;
 				prop.DfltVal = "DefaultListValue1";
-				prop.EntClassAssocArray = new EntClassAssoc[] { entClassAssoc };
+				prop.EntClassAssocArray = entClassAssocList.ToArray();
 				prop.IsAct = true;
 				prop.IsBasicSrch = true;
 				prop.IsSys = false;
@@ -139,7 +144,7 @@ namespace ConsoleApp2.Services
 			List<T> entities = new List<T>();
 
 			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-			foreach (var entity in conf.EntClassCfgArray) { 
+			foreach (var entity in conf.EntClassCfgArray) {
 				var temp = connection.PropertyManager.GetPropertyDefinitions(
 				entity.Id,
 				null,
@@ -149,7 +154,7 @@ namespace ConsoleApp2.Services
 					T elem = (T)Activator.CreateInstance(typeof(T));
 					elem.Id = property.Value.Id;
 					// TODO : Test it
-					elem.AssociatedEntityName = property.Value.AssociatedEntityName;
+					property.Value.AssociatedEntityClasses.ForEach(entityClass => elem.AssociatedEntityName.Add(entityClass.EntityClass.Id));
 					elem.Name = property.Value.DisplayName;
 					entities.Add(elem);
                 }
@@ -165,7 +170,7 @@ namespace ConsoleApp2.Services
 				T result = (T)Activator.CreateInstance(typeof(T));
 				result.Id = entity.Id;
 				result.Name = entity.DisplayName;
-				entity.AssociatedEntityName.ForEach(name => result.EntityName.Add(name));
+				entity.AssociatedEntityClasses.ForEach( classes => result.AssociatedEntityName.Add(classes.EntityClass.Id));
 				return result;
 			}
 			catch (Exception e)
