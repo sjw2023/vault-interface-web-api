@@ -68,17 +68,21 @@ namespace ConsoleApp2.Services
 			{
 				Guid guid = Guid.NewGuid();
 				PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
-					guid.ToString(), entity.Name, DataType.String,
-					true, true, string.Empty, entity.AssociatedEntityName,
-					null, null, null);
+					guid.ToString(), 
+					entity.Name, 
+					DataType.String,
+					true, 
+					true, 
+					string.Empty, 
+					entity.AssociatedEntityName,
+					null, 
+					null, 
+					null
+					);
 			} catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
-			//PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
-			//	guid.ToString(), "TestMapAPI", DataType.String,
-			//	false, true, string.Empty, new string[] { "FILE" },
-			//	new EntClassCtntSrcPropCfg[] { entClsCtntSrcPropCfg }, null, null);
 		}
 
 		public void Delete(T entity, Connection connection)
@@ -95,10 +99,8 @@ namespace ConsoleApp2.Services
 		{
 			try {
 				var ret = connection.WebServiceManager.BehaviorService.GetBehaviorConfigurationsByNames("ITEM", new string[] { "UserDefinedProperty" });
-                ret.ForEach(bhv => bhv.BhvArray.ForEach( elem => Console.WriteLine(elem.Id)));
 				
 				var id = ret.Select(bhv => bhv.BhvArray.Select(elem => elem.Id == entity.Id));
-				entity.AssociatedEntityName.));
 	
 	            //TODO :  Test the code
 				List<EntClassAssoc> entClassAssocList = new List<EntClassAssoc>();
@@ -138,7 +140,6 @@ namespace ConsoleApp2.Services
 
 			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
 			foreach (var entity in conf.EntClassCfgArray) { 
-				entity.BhvArray.ForEach(bhv => Console.WriteLine(bhv));
 				var temp = connection.PropertyManager.GetPropertyDefinitions(
 				entity.Id,
 				null,
