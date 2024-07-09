@@ -16,8 +16,9 @@ namespace ConsoleApp2
 		{
 			var config = new HttpSelfHostConfiguration("http://192.168.20.31:8080");
 
-			System.Web.Http.Filters.ExceptionFilterAttribute filter = 
-			config.Filters.Add();
+			//System.Web.Http.Filters.ExceptionFilterAttribute filter = 
+			//config.Filters.Add();
+
 
 			config.MapHttpAttributeRoutes();
 
