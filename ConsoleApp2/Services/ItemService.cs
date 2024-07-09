@@ -203,6 +203,7 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : MyItem
 			Console.WriteLine(ex.StackTrace);
 			Console.WriteLine(ex.InnerException);
 			Console.WriteLine(ex.Detail.InnerText);
+			throw new Exception(ex.Message);
 		}
 	}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http.SelfHost;
 using VDF = Autodesk.DataManagement.Client.Framework;
 using System.Web.Http;
-
+using Swashbuckle.Application;
 
 namespace ConsoleApp2
 {
@@ -15,10 +15,8 @@ namespace ConsoleApp2
 		static void Main(string[] args)
 		{
 			var config = new HttpSelfHostConfiguration("http://192.168.20.31:8080");
-
-			//System.Web.Http.Filters.ExceptionFilterAttribute filter = 
-			//config.Filters.Add();
-
+			
+			config.EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API")).EnableSwaggerUi();
 
 			config.MapHttpAttributeRoutes();
 
