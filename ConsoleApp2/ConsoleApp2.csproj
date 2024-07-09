@@ -339,8 +339,11 @@
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
     <Compile Include="Controllers\EntityController.cs" />
-    <Compile Include="Exceptions\VIErrorResult.cs" />
-    <Compile Include="Exceptions\VIExceptionHanlder.cs" />
+    <Compile Include="Exceptions\CustomApiControllerActionInvoker.cs" />
+    <Compile Include="Exceptions\CustomException.cs" />
+    <Compile Include="Exceptions\CustomExceptionFilter.cs" />
+    <Compile Include="Exceptions\VaultErrorCodes.cs" />
+    <Compile Include="Exceptions\VaultException.cs" />
     <Compile Include="Model\Bom.cs" />
     <Compile Include="Model\IdDTO.cs" />
     <Compile Include="Model\Property.cs" />

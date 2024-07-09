@@ -1,17 +1,14 @@
-﻿using Autodesk.Connectivity.WebServices;
-using ConsoleApp2.Controllers;
-using MyItem = ConsoleApp2.Model.Item;
+﻿using MyItem = ConsoleApp2.Model.Item;
 using ConsoleApp2.Services;
-using DevExpress.Pdf.Drawing;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 using ConsoleApp2.Model;
 using ConsoleApp2.Results;
 using Newtonsoft.Json.Linq;
+using ConsoleApp2.Exceptions;
+using System.Net.Http;
+using System.Net;
 
 namespace ConsoleApp2.Controllers
 {
@@ -67,10 +64,13 @@ namespace ConsoleApp2.Controllers
 		}
 
 		[HttpGet]
-		public IHttpActionResult GetAll([FromBody] IdDTO idDTO)
+		public HttpResponseMessage GetAll([FromBody] IdDTO idDTO)
 		{
 			var json = JToken.FromObject(_service.GetAll( idDTO.Ids, null ));
-			return Ok(json);
+			return new HttpResponseMessage { 
+				Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json"),
+				StatusCode = HttpStatusCode.OK
+			};
 		}
 
 		[HttpGet]
@@ -98,11 +98,14 @@ namespace ConsoleApp2.Controllers
 		}
 		[HttpGet]
 		[Route("name/")]
-		public IHttpActionResult GetByName([FromUri]string name)
+		public HttpResponseMessage GetByName([FromUri] string name)
 		{
-			Console.WriteLine(name);
 			var json = JToken.FromObject(_itemService.GetByName(name, null));
-			return Ok(json);
+			return new HttpResponseMessage
+			{
+				Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json"),
+				StatusCode = HttpStatusCode.OK
+			};
 		}
 	}
 }

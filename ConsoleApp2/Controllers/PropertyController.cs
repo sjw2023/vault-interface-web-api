@@ -5,6 +5,8 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -50,10 +52,14 @@ namespace ConsoleApp2.Controllers
 			return Ok(json);
 		}
 		[HttpGet]
-		public IHttpActionResult GetAll([FromBody]IdDTO idDTO)
+		public HttpResponseMessage GetAll([FromBody]IdDTO idDTO)
 		{
 			var json = JToken.FromObject(_service.GetAll(null, null));
-			return Ok(json);
+			return new HttpResponseMessage
+			{
+				Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json"),
+				StatusCode = HttpStatusCode.OK
+			};
 		}
 	}
 }

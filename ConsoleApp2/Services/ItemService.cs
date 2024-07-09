@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using ConsoleApp2.Services;
 using MyItem = ConsoleApp2.Model.Item;
-using ConsoleApp2.Model;
 using VaultItem = Autodesk.Connectivity.WebServices.Item;
-
 using VDF = Autodesk.DataManagement.Client.Framework;
 using Autodesk.Connectivity.WebServices;
 using ConsoleApp2.Util;
-using DevExpress.XtraLayout.Customization.UserCustomization;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Exceptions;
-using System.Web.Http.ExceptionHandling;
-using System.Web.Http;
-using System.Net.Http;
-using System.Net;
 
+
+[CustomExceptionFilter]
 public class ItemService<T> : IItemService<T>, IBaseService<T> where T : MyItem
 {
 	private string _entityClassId = VDF.Vault.Currency.Entities.EntityClassIds.Items;
@@ -144,66 +139,40 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : MyItem
 	/// <returns></returns>
 	public IEnumerable<T> GetAll(long[] ids, VDF.Vault.Currency.Connections.Connection connection)
 	{
-		try
-		{
-			//TODO : create server context and store the Vault Configuration information
-			//ServerCfg serverCfg = connection.WebServiceManager.AdminService.GetServerConfiguration();
-			//TODO : Updating _items is not done with this code. Refactor to check items update status.
+		//TODO : create server context and store the Vault Configuration information
+		//ServerCfg serverCfg = connection.WebServiceManager.AdminService.GetServerConfiguration();
+		//TODO : Updating _items is not done with this code. Refactor to check items update status.
 
-			List<T> itemsToRet = new List<T>();
-			List<VaultItem> items = new List<VaultItem>();
-			if (ids == null) { 
-				items = _helperMethod.GetAllItems(connection);
-			}
-			else {
-				items = connection.WebServiceManager.ItemService.GetItemsByIds( ids ).ToList();
-			}
-			var masterIds = from item in items
-							select item.MasterId;
-			var properties = _helperMethod.GetPropInst(connection, masterIds.ToArray(), _entityClassId);
-			foreach ( var item in items) { 
-				T itemTmp = (T)Activator.CreateInstance(typeof(T));
-				itemTmp.Id = item.Id;
-				itemTmp.MasterId = item.MasterId;
-				itemTmp.Name = item.ItemNum;
-				itemTmp.PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList();
-				itemsToRet.Add(itemTmp);
-			}
-			return itemsToRet;
+		List<T> itemsToRet = new List<T>();
+		List<VaultItem> items = new List<VaultItem>();
+		if (ids == null) { 
+			items = _helperMethod.GetAllItems(connection);
 		}
-		catch (VaultServiceErrorException ex)
-		{
-			var e = (VaultServiceErrorException)ex;
-			Console.WriteLine(e.Source);
-			Console.WriteLine($"Failed to get item by id {e.Message}");
-			Console.WriteLine(e.StackTrace);
-			Console.WriteLine(e.InnerException);
-
-			throw new Exception(ex.Message);
+		else {
+			items = connection.WebServiceManager.ItemService.GetItemsByIds( ids ).ToList();
 		}
-		throw new NotImplementedException();
+		var masterIds = from item in items
+						select item.MasterId;
+		var properties = _helperMethod.GetPropInst(connection, masterIds.ToArray(), _entityClassId);
+		foreach ( var item in items) { 
+			T itemTmp = (T)Activator.CreateInstance(typeof(T));
+			itemTmp.Id = item.Id;
+			itemTmp.MasterId = item.MasterId;
+			itemTmp.Name = item.ItemNum;
+			itemTmp.PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList();
+			itemsToRet.Add(itemTmp);
+		}
+		return itemsToRet;
 	}
-
 	public T GetByName(string name, Connection connection )
 	{
-		try { 
-			var toRet = (T)Activator.CreateInstance(typeof(T));
-			var latestItem = connection.WebServiceManager.ItemService.GetLatestItemByItemNumber(name);
-			toRet.Id = latestItem.Id;
-			toRet.MasterId = latestItem.MasterId;
-			toRet.Name = latestItem.ItemNum;
-			var properties = _helperMethod.GetPropInst(connection, new long[] { latestItem.MasterId },_entityClassId);
-			toRet.PropInstDTOs = properties.Where(prop => prop.Id == latestItem.Id).ToList();
-			return toRet;
-		}
-		catch (VaultServiceErrorException ex)
-		{
-			Console.WriteLine(ex.Source);
-			Console.WriteLine($"Failed to get item by name {ex.Message}");
-			Console.WriteLine(ex.StackTrace);
-			Console.WriteLine(ex.InnerException);
-			Console.WriteLine(ex.Detail.InnerText);
-			throw new Exception(ex.Message);
-		}
+		var toRet = (T)Activator.CreateInstance(typeof(T));
+		var latestItem = connection.WebServiceManager.ItemService.GetLatestItemByItemNumber(name);
+		toRet.Id = latestItem.Id;
+		toRet.MasterId = latestItem.MasterId;
+		toRet.Name = latestItem.ItemNum;
+		var properties = _helperMethod.GetPropInst(connection, new long[] { latestItem.MasterId },_entityClassId);
+		toRet.PropInstDTOs = properties.Where(prop => prop.Id == latestItem.Id).ToList();
+		return toRet;
 	}
 }

@@ -1,33 +1,27 @@
-﻿namespace WebAPITest
+﻿namespace ConsoleApp2.Exceptions
 {
-	using Microsoft.AspNetCore.Mvc.Filters;
-	using Microsoft.AspNetCore.WebUtilities;
+	using Autodesk.Connectivity.WebServices;
 	using System;
 	using System.Net;
 	using System.Net.Http;
 	using System.Web.Http.Filters;
 
-	public class CustomExceptionFilter : System.Web.Http.Filters.ExceptionFilterAttribute
+	public class CustomExceptionFilter : ExceptionFilterAttribute
 	{
 		public override void OnException(HttpActionExecutedContext actionExecutedContext)
 		{
-			string exceptionMessage = string.Empty;
-			if (actionExecutedContext.Exception.InnerException == null)
+			if (actionExecutedContext.Exception is VaultServiceErrorException)
 			{
-				exceptionMessage = actionExecutedContext.Exception.Message;
-			}
-			else
-			{
-				exceptionMessage = actionExecutedContext.Exception.InnerException.Message;
-			}
-			//We can log this exception message to the file or database.
-			var response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+				Console.WriteLine("VaultServiceErrorException");
 
-			{
-				Content = new StringContent("An unhandled exception was thrown by service."),
-                    ReasonPhrase = "Internal Server Error.Please Contact your Administrator."
-			};
-			actionExecutedContext.Response = response;
+				VaultException vaultException = new VaultException(actionExecutedContext.Exception.Message, "202020");
+				
+				var errorMessage = new System.Web.Http.HttpError(vaultException.ErrorMessage)
+				{ { "ErrorCode",vaultException.ErrorCode } };
+
+				actionExecutedContext.Response =
+					actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+			}
 		}
 	}
 }

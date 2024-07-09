@@ -7,6 +7,8 @@ using System.Web.Http.SelfHost;
 using VDF = Autodesk.DataManagement.Client.Framework;
 using System.Web.Http;
 using Swashbuckle.Application;
+using ConsoleApp2.Exceptions;
+using System.Web.Http.Controllers;
 
 namespace ConsoleApp2
 {
@@ -16,7 +18,11 @@ namespace ConsoleApp2
 		{
 			var config = new HttpSelfHostConfiguration("http://192.168.20.31:8080");
 			
+			config.Filters.Add(new CustomExceptionFilter());
+
 			config.EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API")).EnableSwaggerUi();
+
+			//config.Services.Replace(typeof(IHttpActionInvoker), new CustomApiControllerActionInvoker());
 
 			config.MapHttpAttributeRoutes();
 
