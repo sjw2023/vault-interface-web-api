@@ -36,7 +36,7 @@ namespace ConsoleApp2.Results
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<T> GetAll(Connection connection)
+		public IEnumerable<T> GetAll(long[] ids, Connection connection)
 		{
 			throw new NotImplementedException();
 		}

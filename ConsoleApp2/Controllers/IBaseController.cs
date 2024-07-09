@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,6 @@ namespace ConsoleApp2.Controllers
 		IHttpActionResult Delete(T entity);
 		IHttpActionResult Update(T entity);
 		IHttpActionResult GetById(long id);
-		IHttpActionResult GetAll();
+		IHttpActionResult GetAll(IdDTO idDTO);
 	}
 }

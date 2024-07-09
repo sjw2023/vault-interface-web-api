@@ -50,9 +50,9 @@ namespace ConsoleApp2.Controllers
 			return Ok(json);
 		}
 		[HttpGet]
-		public IHttpActionResult GetAll()
+		public IHttpActionResult GetAll([FromBody]IdDTO idDTO)
 		{
-			var json = JToken.FromObject(_service.GetAll(null));
+			var json = JToken.FromObject(_service.GetAll(null, null));
 			return Ok(json);
 		}
 	}

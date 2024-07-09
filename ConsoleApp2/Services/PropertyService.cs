@@ -139,7 +139,7 @@ namespace ConsoleApp2.Services
 			}
 		}
 
-		public IEnumerable<T> GetAll(Connection connection)
+		public IEnumerable<T> GetAll(long[] ids, Connection connection)
 		{
 			List<T> entities = new List<T>();
 

@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2.Results
 {
-	public class LoggerDecoratorService<T> : IBaseService<T>
+	public class LoggerDecoratorService<T> : IBaseService<T>, IItemService<T>
 	{
 		private readonly IBaseService<T> _decorated;
+		private readonly IItemService<T> _decoratedItem;
 		private Connection _connection;
 		public LoggerDecoratorService(IBaseService<T> decorated)
 		{
 			_decorated = decorated;
+			_decoratedItem = decorated as IItemService<T>;
 		}
-		private void Log(string msg, object arg = null) {
+		private void Log(string msg, object arg = null)
+		{
 			Console.ForegroundColor = ConsoleColor.Red;
 			Console.WriteLine(msg, arg);
 			Console.ResetColor();
@@ -44,18 +47,26 @@ namespace ConsoleApp2.Results
 
 		public T GetById(long id, Connection connection)
 		{
-				Log("Getting entity by id: {0}", id);
-				var entity = _decorated.GetById(id, connection);
-				Log("Entity found: {0}", entity);
+			Log("Getting entity by id: {0}", id);
+			var entity = _decorated.GetById(id, connection);
+			Log("Entity found: {0}", entity);
 			return entity;
 		}
 
-		public IEnumerable<T> GetAll(Connection connection)
+		public IEnumerable<T> GetAll(long[] ids, Connection connection)
 		{
 			Log("Getting all entities");
-			var entities = _decorated.GetAll(connection);
+			var entities = _decorated.GetAll(ids, connection);
 			Log("All entities found: {0}", entities.Count());
 			return entities;
+		}
+
+		public T GetByName(string nam1e, Connection connection)
+		{
+			Log("Getting entity by name: {0}", nam1e);
+			var entity = _decoratedItem.GetByName(nam1e, connection);
+			Log("Entity found: {0}", entity);
+			return entity;
 		}
 	}
 }

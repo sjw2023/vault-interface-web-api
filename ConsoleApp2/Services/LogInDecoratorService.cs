@@ -1,4 +1,5 @@
 ﻿using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
+using ConsoleApp2.Model;
 using ConsoleApp2.Services;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using VDF = Autodesk.DataManagement.Client.Framework;
 
 namespace ConsoleApp2.Services
 {
-	public class LogInDecoratorService<T> : IBaseService<T>
+	public class LogInDecoratorService<T> : IBaseService<T>, IItemService<T>
 	{
 		private VDF.Vault.Currency.Connections.Connection _connection;
 		public VDF.Vault.Currency.Connections.Connection Connection
@@ -27,10 +28,12 @@ namespace ConsoleApp2.Services
 		//TODO: Add AuthenticationFlags
 		//TODO: Add ConnectionProperties
 		//TODO: Add ConnectionOptions
+		private readonly IItemService<T> _decoratedItem;
 		private readonly IBaseService<T> _decorated;
 		public LogInDecoratorService(IBaseService<T> decorated)
 		{
 			_decorated = decorated;
+			_decoratedItem = decorated as IItemService<T>;
 		}
 		public void LogIn()
 		{
@@ -92,12 +95,20 @@ namespace ConsoleApp2.Services
 			return entity;
 		}
 
-		public IEnumerable<T> GetAll(Connection connection)
+		public IEnumerable<T> GetAll(long[] ids, Connection connection)
 		{
 			LogIn();
-			var entities = _decorated.GetAll(_connection);
+			var entities = _decorated.GetAll(ids, _connection);
 			LogOut();
 			return entities;
+		}
+
+		public T GetByName(string nam1e, Connection connection)
+		{
+			LogIn();
+			var entity = _decoratedItem.GetByName(nam1e, _connection);
+			LogOut();
+			return entity;
 		}
 	}
 }

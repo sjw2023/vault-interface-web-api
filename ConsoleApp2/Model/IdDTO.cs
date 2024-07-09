@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2.Model
 {
-	public interface IBaseEntity
+	public class IdDTO
 	{
-		long Id { get; set; }
+		private long[] _ids;
+		public long[] Ids { get { return _ids; } set { _ids = value; } }
 	}
 }
