@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,11 @@ namespace ConsoleApp2.Exceptions
 {
 	public class VaultException : CustomException
 	{
-		public VaultException(string errorCode, string errorMessage) : base()
+		public List<ExcelErrorData> ErrorData { get; set; }
+		public VaultException(string errorCode, List<ExcelErrorData> errorData) : base()
 		{
 			base.ErrorCode = errorCode;
-			base.ErrorMessage = errorMessage;
+			ErrorData = errorData;
 		}
 	}
 }

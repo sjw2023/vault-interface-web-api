@@ -2,8 +2,10 @@
 {
 	using Autodesk.Connectivity.WebServices;
 	using System;
+	using System.Linq;
 	using System.Net;
 	using System.Net.Http;
+	using System.Runtime.Remoting.Messaging;
 	using System.Web.Http.Filters;
 
 	public class CustomExceptionFilter : ExceptionFilterAttribute
@@ -12,12 +14,11 @@
 		{
 			if (actionExecutedContext.Exception is VaultServiceErrorException)
 			{
-				Console.WriteLine("VaultServiceErrorException");
+				var errorInfo = Program.ErrorInfo[actionExecutedContext.Exception.Message];
+				string combinedDescriptions = string.Join(", ", errorInfo.Select(data => $"{data.Name}: {data.Description}"));
 
-				VaultException vaultException = new VaultException(actionExecutedContext.Exception.Message, "202020");
-				
-				var errorMessage = new System.Web.Http.HttpError(vaultException.ErrorMessage)
-				{ { "ErrorCode",vaultException.ErrorCode } };
+				var errorMessage = new System.Web.Http.HttpError(combinedDescriptions)
+				{ { "ErrorCode", actionExecutedContext.Exception.Message } };
 
 				actionExecutedContext.Response =
 					actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);

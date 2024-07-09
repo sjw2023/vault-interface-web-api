@@ -1,23 +1,17 @@
 ﻿using Autodesk.Connectivity.WebServices;
 using Autodesk.DataManagement.Client.Framework.Internal.ExtensionMethods;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
+using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
 using ConsoleApp2.Util;
-using DevExpress.Utils.Extensions;
-using DevExpress.XtraBars.Docking2010.DragEngine;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Services.Protocols;
-using System.Xml.Serialization;
-using static DevExpress.XtraPrinting.Native.ExportOptionsPropertiesNames;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
 namespace ConsoleApp2.Services
 {
+	[CustomExceptionFilter]
 	public class BomService<T> : IBaseService<T> where T : Bom, new()
 	{
 		private HelperMethod _helperMethod = new HelperMethod();
@@ -110,8 +104,6 @@ namespace ConsoleApp2.Services
 
 		public T GetById(long id, Connection connection)
 		{
-			try
-			{
 				T bom = (T)Activator.CreateInstance(typeof(T));
 				var parentChildRelationships = connection.WebServiceManager.ItemService.GetItemBOMAssociationsByItemIds(new long[] { id }, true);
 				List<ItemAssoc> parentChildRelationshipsList = parentChildRelationships.ToList();
@@ -143,12 +135,6 @@ namespace ConsoleApp2.Services
 				}
 				bom.Id = id;
 				return bom;
-			}
-			catch (Exception e) { 
-				var ex = (VaultServiceErrorException)e;
-				Console.WriteLine($"{ex.Message} | {ex.Detail.InnerText}");
-				throw new Exception(ex.Message);
-			}
 		}
 		public void Update(T entity, Connection connection)
 		{

@@ -1,25 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.UI.WebControls;
 using Autodesk.Connectivity.WebServices;
-using Autodesk.Connectivity.WebServicesTools;
 using Autodesk.DataManagement.Client.Framework.Internal.ExtensionMethods;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
-using Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties;
+using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
-using DevExpress.Pdf.Native.BouncyCastle.Utilities;
-using DevExpress.XtraEditors;
-using VaultItem = Autodesk.Connectivity.WebServices.Item;
-using VDF = Autodesk.DataManagement.Client.Framework;
 
 namespace ConsoleApp2.Services
 {
+	[CustomExceptionFilter]
 	public class PropertyService<T> : IBaseService<T> where T : Property
 	{
 		public void Add(T entity, Connection connection)
@@ -64,8 +55,6 @@ namespace ConsoleApp2.Services
 			//entClsCtntSrcPropCfg.PriorityArray = new int[] { 0 };
 
 			//프로퍼티 추가
-			try
-			{
 				Guid guid = Guid.NewGuid();
 				PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
 					guid.ToString(), 
@@ -79,25 +68,15 @@ namespace ConsoleApp2.Services
 					null, 
 					null
 					);
-			} catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
 		}
 
 		public void Delete(T entity, Connection connection)
 		{
-			try {
 				connection.WebServiceManager.PropertyService.DeletePropertyDefinitions(new long[] { entity.Id });
-			}catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
 		}
 
 		public void Update(T entity, Connection connection)
 		{
-			try {
 				Dictionary<string, BhvCfg[]> bhvCfgMap = new Dictionary<string, BhvCfg[]>();
 				var servConf = connection.WebServiceManager.AdminService.GetServerConfiguration();
 				servConf.EntClassCfgArray.ForEach(entClass =>
@@ -132,11 +111,6 @@ namespace ConsoleApp2.Services
 					null,
 					new string[] { "DefaultListValue1" }
 					);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
 		}
 
 		public IEnumerable<T> GetAll(long[] ids, Connection connection)
@@ -164,21 +138,12 @@ namespace ConsoleApp2.Services
 
 		public T GetById(long id, Connection connection)
 		{
-			try
-			{
 				var entity = connection.PropertyManager.GetPropertyDefinitionById(id);
 				T result = (T)Activator.CreateInstance(typeof(T));
 				result.Id = entity.Id;
 				result.Name = entity.DisplayName;
 				entity.AssociatedEntityClasses.ForEach( classes => result.AssociatedEntityName.Add(classes.EntityClass.Id));
 				return result;
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-				return null;
-			}
-
 		}
 	}
 }
