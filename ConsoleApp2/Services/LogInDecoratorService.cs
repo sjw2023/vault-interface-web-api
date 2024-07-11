@@ -95,7 +95,7 @@ namespace ConsoleApp2.Services
 			return entity;
 		}
 
-		public IEnumerable<T> GetAll(long[] ids, Connection connection)
+		public T GetAll(long[] ids, Connection connection)
 		{
 			LogIn();
 			var entities = _decorated.GetAll(ids, _connection);

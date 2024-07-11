@@ -9,10 +9,11 @@ using Autodesk.Connectivity.WebServices;
 using ConsoleApp2.Util;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Exceptions;
+using ConsoleApp2.Model;
 
 
 [CustomExceptionFilter]
-public class ItemService<T> : IItemService<T>, IBaseService<T> where T : MyItem
+public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO 
 {
 	private string _entityClassId = VDF.Vault.Currency.Entities.EntityClassIds.Items;
 	private Cat[] _categories;
@@ -127,7 +128,7 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : MyItem
 
 	public T GetById(long id, VDF.Vault.Currency.Connections.Connection connection)
 	{
-		return GetAll( new long[] { id }, connection).ElementAt(0);
+		return GetAll( new long[] { id }, connection);
 	}
 	
 	/// <summary>
@@ -137,13 +138,13 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : MyItem
 	/// </summary>
 	/// <param name="connection"></param>
 	/// <returns></returns>
-	public IEnumerable<T> GetAll(long[] ids, VDF.Vault.Currency.Connections.Connection connection)
+	public T GetAll(long[] ids, VDF.Vault.Currency.Connections.Connection connection)
 	{
 		//TODO : create server context and store the Vault Configuration information
 		//ServerCfg serverCfg = connection.WebServiceManager.AdminService.GetServerConfiguration();
 		//TODO : Updating _items is not done with this code. Refactor to check items update status.
 
-		List<T> itemsToRet = new List<T>();
+		List<ConsoleApp2.Model.Item> itemsToRet = new List<ConsoleApp2.Model.Item>();
 		List<VaultItem> items = new List<VaultItem>();
 		if (ids == null) { 
 			items = _helperMethod.GetAllItems(connection);
@@ -155,24 +156,26 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : MyItem
 						select item.MasterId;
 		var properties = _helperMethod.GetPropInst(connection, masterIds.ToArray(), _entityClassId);
 		foreach ( var item in items) { 
-			T itemTmp = (T)Activator.CreateInstance(typeof(T));
+
+			var itemTmp = (ConsoleApp2.Model.Item)Activator.CreateInstance(typeof(ConsoleApp2.Model.Item));
+			//T itemTmp = (T)Activator.CreateInstance(typeof(T));
 			itemTmp.Id = item.Id;
 			itemTmp.MasterId = item.MasterId;
 			itemTmp.Name = item.ItemNum;
 			itemTmp.PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList();
 			itemsToRet.Add(itemTmp);
 		}
-		return itemsToRet;
+		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
 	}
 	public T GetByName(string name, Connection connection )
 	{
-		var toRet = (T)Activator.CreateInstance(typeof(T));
+		var toRet = (ConsoleApp2.Model.Item)Activator.CreateInstance(typeof(ConsoleApp2.Model.Item));
 		var latestItem = connection.WebServiceManager.ItemService.GetLatestItemByItemNumber(name);
 		toRet.Id = latestItem.Id;
 		toRet.MasterId = latestItem.MasterId;
 		toRet.Name = latestItem.ItemNum;
 		var properties = _helperMethod.GetPropInst(connection, new long[] { latestItem.MasterId },_entityClassId);
 		toRet.PropInstDTOs = properties.Where(prop => prop.Id == latestItem.Id).ToList();
-		return toRet;
+		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( new ConsoleApp2.Model.Item[] { toRet }));
 	}
 }

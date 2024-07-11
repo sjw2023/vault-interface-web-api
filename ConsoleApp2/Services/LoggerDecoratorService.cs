@@ -53,11 +53,11 @@ namespace ConsoleApp2.Results
 			return entity;
 		}
 
-		public IEnumerable<T> GetAll(long[] ids, Connection connection)
+		public T GetAll(long[] ids, Connection connection)
 		{
 			Log("Getting all entities");
 			var entities = _decorated.GetAll(ids, connection);
-			Log("All entities found: {0}", entities.Count());
+			Log("All entities found: {0}", entities);
 			return entities;
 		}
 

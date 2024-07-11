@@ -31,12 +31,12 @@ namespace ConsoleApp2.Results
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<T> GetAll()
+		public T GetAll()
 		{
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<T> GetAll(long[] ids, Connection connection)
+		public T GetAll(long[] ids, Connection connection)
 		{
 			throw new NotImplementedException();
 		}

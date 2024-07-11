@@ -13,48 +13,51 @@ using System.Web.Http;
 
 namespace ConsoleApp2.Controllers
 {
-	public class PropertyController : ApiController, IBaseController<Property>
+	[RoutePrefix("api/property")]
+	public class PropertyController : ApiController, IBaseController<PropertyDTO>
 	{
-		private readonly IBaseService<Property> _service;
+		private readonly IBaseService<PropertyDTO> _service;
 
-		public PropertyController(IBaseService<Property> service)
+		public PropertyController(IBaseService<PropertyDTO> service)
 		{
-			_service = new LogInDecoratorService<Property>(service);
+			_service = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(new PropertyService<PropertyDTO>()));
 		}
 
 		public PropertyController()
 		{
-			_service = new LogInDecoratorService<Property>(new LoggerDecoratorService<Property>(new PropertyService<Property>()));
+			_service = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(new PropertyService<PropertyDTO>()));
 		}
 
 		[HttpPost]
-		public IHttpActionResult Add([FromBody] Property entity)
+		public IHttpActionResult Add([FromBody] PropertyDTO entity)
 		{
 			_service.Add(entity, null);
 			return Ok();
 		}
 		[HttpDelete]
-		public IHttpActionResult Delete([FromBody] Property entity)
+		public IHttpActionResult Delete([FromBody] PropertyDTO entity)
 		{
 			_service.Delete(entity, null);
 			return Ok();
 		}
 		[HttpPut]
-		public IHttpActionResult Update([FromBody] Property entity)
+		public IHttpActionResult Update([FromBody] PropertyDTO entity)
 		{
 			_service.Update(entity, null);
 			return Ok();
 		}
 		[HttpGet]
+		[Route("{id}")]
 		public IHttpActionResult GetById(long id)
 		{
 			var json = JToken.FromObject(_service.GetById(id, null));
 			return Ok(json);
 		}
+
 		[HttpGet]
-		public HttpResponseMessage GetAll([FromBody]IdDTO idDTO)
+		public HttpResponseMessage GetAll([FromBody] PropertyDTO dto)
 		{
-			var json = JToken.FromObject(_service.GetAll(null, null));
+			var json = JToken.FromObject( _service.GetAll(dto.m_PropertyRequestDTO.m_IdDTO.Ids, null) );
 			return new HttpResponseMessage
 			{
 				Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json"),

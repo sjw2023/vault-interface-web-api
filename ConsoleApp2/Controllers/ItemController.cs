@@ -13,43 +13,43 @@ using System.Net;
 namespace ConsoleApp2.Controllers
 {
 	[RoutePrefix("api/item")]
-	public class ItemController : ApiController, IBaseController<MyItem>
+	public class ItemController : ApiController, IBaseController<ItemDTO>
 	{
 		//TODO : Add DI
 		//TODO : Add Proxy on Decorator
-		private readonly IBaseService<MyItem> _service;
-		private readonly IItemService<MyItem> _itemService;
-		private readonly IBaseService<Bom> _bomService;
+		private readonly IBaseService<ItemDTO> _service;
+		private readonly IItemService<ItemDTO> _itemService;
+		private readonly IBaseService<ItemDTO> _bomService;
 
 		public ItemController(IBaseService<MyItem> service) {
-			_service = new LogInDecoratorService<MyItem>(new LoggerDecoratorService<MyItem>(new ItemService<MyItem>()));
-			_itemService = new LogInDecoratorService<MyItem>(new LoggerDecoratorService<MyItem>(new ItemService<MyItem>()));
-			_bomService = new LogInDecoratorService<Bom>(new LoggerDecoratorService<Bom>(new BomService<Bom>()));
+			_service = new LogInDecoratorService<ItemDTO>(new LoggerDecoratorService<ItemDTO>(new ItemService<ItemDTO>()));
+			_itemService = new LogInDecoratorService<ItemDTO>(new LoggerDecoratorService<ItemDTO>(new ItemService<ItemDTO>()));
+			_bomService = new LogInDecoratorService<ItemDTO>(new LoggerDecoratorService<ItemDTO>(new BomService<ItemDTO>()));
 		}
 
 		public ItemController()
 		{
-			_service = new LogInDecoratorService<MyItem>(new LoggerDecoratorService<MyItem>(new ItemService<MyItem>()));
-			_itemService = new LogInDecoratorService<MyItem>(new LoggerDecoratorService<MyItem>(new ItemService<MyItem>()));
-			_bomService = new LogInDecoratorService<Bom>(new LoggerDecoratorService<Bom>(new BomService<Bom>()));
+			_service = new LogInDecoratorService<ItemDTO>(new LoggerDecoratorService<ItemDTO>(new ItemService<ItemDTO>()));
+			_itemService = new LogInDecoratorService<ItemDTO>(new LoggerDecoratorService<ItemDTO>(new ItemService<ItemDTO>()));
+			_bomService = new LogInDecoratorService<ItemDTO>(new LoggerDecoratorService<ItemDTO>(new BomService<ItemDTO>()));
 		}
 
 		[HttpPost]
-		public IHttpActionResult Add([FromBody] MyItem entity)
+		public IHttpActionResult Add([FromBody] ItemDTO entity)
 		{
 			_service.Add(entity, null);
 			return Ok();
 		}
 
 		[HttpDelete]
-		public IHttpActionResult Delete([FromBody] MyItem entity)
+		public IHttpActionResult Delete([FromBody] ItemDTO entity)
 		{
 			_service.Delete(entity, null);
 			return Ok();
 		}
 
 		[HttpPut]
-		public IHttpActionResult Update([FromBody] MyItem entity)
+		public IHttpActionResult Update([FromBody] ItemDTO entity)
 		{
 			_service.Update(entity, null);
 			return Ok();
@@ -62,11 +62,11 @@ namespace ConsoleApp2.Controllers
 			var json = JToken.FromObject(_service.GetById(id, null));
 			return Ok(json);
 		}
-
+		
 		[HttpGet]
-		public HttpResponseMessage GetAll([FromBody] IdDTO idDTO)
+		public HttpResponseMessage GetAll([FromBody] ItemDTO dto )
 		{
-			var json = JToken.FromObject(_service.GetAll( idDTO.Ids, null ));
+			var json = JToken.FromObject(_service.GetAll( dto.m_ItemRequestDTO.m_IdDTO.Ids, null ));
 			return new HttpResponseMessage { 
 				Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json"),
 				StatusCode = HttpStatusCode.OK
@@ -91,7 +91,7 @@ namespace ConsoleApp2.Controllers
 
 		[HttpPost]
 		[Route("bom/{id}")]
-		public IHttpActionResult AddBomToItem([FromBody] Bom entity, long id)
+		public IHttpActionResult AddBomToItem([FromBody] ItemDTO entity, long id)
 		{
 			_bomService.Add(entity, null);
 			return Ok();
@@ -107,5 +107,6 @@ namespace ConsoleApp2.Controllers
 				StatusCode = HttpStatusCode.OK
 			};
 		}
+
 	}
 }

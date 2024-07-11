@@ -15,6 +15,6 @@ namespace ConsoleApp2.Controllers
 		IHttpActionResult Delete(T entity);
 		IHttpActionResult Update(T entity);
 		IHttpActionResult GetById(long id);
-		HttpResponseMessage GetAll(IdDTO idDTO);
+		HttpResponseMessage GetAll(T dto);
 	}
 }

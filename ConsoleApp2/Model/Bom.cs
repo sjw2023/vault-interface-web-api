@@ -39,6 +39,16 @@ namespace ConsoleApp2.Model
 		{
 			this._children = new List<BomNode>();  // null 대신 빈 리스트로 초기화
 		}
+		public Bom(long id, List<BomNode> children)
+		{
+			Id = id;
+			Children = children;
+		}
+		public Bom(Bom bom) { 
+			Console.WriteLine("Creating Bom with copy ctor");
+			Id = bom.Id;
+			Children = bom.Children;
+		}
 	}
 	public class BomNode {
 		private long _id;

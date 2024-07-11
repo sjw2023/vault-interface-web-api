@@ -20,12 +20,6 @@ namespace ConsoleApp2.Model
 			get { return _masterId; }
 			set { _masterId = value; }
 		}
-		private List<Bom> _boms;
-		public List<Bom> Boms
-		{
-			get { return _boms; }
-			set { _boms = value; }
-		}
 		private List<PropInstDTO> _propInstDTOs;
 		public List<PropInstDTO> PropInstDTOs
 		{
@@ -33,5 +27,20 @@ namespace ConsoleApp2.Model
 			set { _propInstDTOs = value; }
 		}
 		public Item() { }
+		public Item(Item item) { 
+			Console.WriteLine("Creating Item with copy ctor");
+			Id = item.Id;
+			Name = item.Name;
+			MasterId = item.MasterId;
+			PropInstDTOs = item.PropInstDTOs;
+		}
+		public Item(long id, string name, long masterId, List<PropInstDTO> propInstDTOs)
+		{
+			Console.WriteLine("Creating Item with id, name, masterId, boms, propInstDTOs");
+			Id = id;
+			Name = name;
+			MasterId = masterId;
+			PropInstDTOs = propInstDTOs;
+		}
 	}
 }

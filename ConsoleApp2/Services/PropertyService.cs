@@ -7,11 +7,12 @@ using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
+using DevExpress.Export.Xl;
 
 namespace ConsoleApp2.Services
 {
 	[CustomExceptionFilter]
-	public class PropertyService<T> : IBaseService<T> where T : Property
+	public class PropertyService<T> : IBaseService<T> where T : PropertyDTO
 	{
 		public void Add(T entity, Connection connection)
 		{
@@ -55,68 +56,67 @@ namespace ConsoleApp2.Services
 			//entClsCtntSrcPropCfg.PriorityArray = new int[] { 0 };
 
 			//프로퍼티 추가
-				Guid guid = Guid.NewGuid();
-				PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
-					guid.ToString(), 
-					entity.Name, 
-					DataType.String,
-					true, 
-					true, 
-					string.Empty,
-					entity.AssociatedEntityName.ToArray(),
-					null, 
-					null, 
-					null
-					);
+				//Guid guid = Guid.NewGuid();
+				//PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
+					//guid.ToString(),
+					//entity.m_PropertyResposeDTO.m_Property.Name, 
+					//DataType.String,
+					//true, 
+					//true, 
+					//string.Empty,
+					////entity.m_PropertyResposeDTO.m_Property.AssociatedEntityName.ToArray(),
+					//null, 
+					//null, 
+					//null
+					//);
 		}
 
 		public void Delete(T entity, Connection connection)
 		{
-				connection.WebServiceManager.PropertyService.DeletePropertyDefinitions(new long[] { entity.Id });
+				connection.WebServiceManager.PropertyService.DeletePropertyDefinitions(new long[] { entity.m_PropertyResponseDTO.m_Property[0].Id });
 		}
 
 		public void Update(T entity, Connection connection)
 		{
-				Dictionary<string, BhvCfg[]> bhvCfgMap = new Dictionary<string, BhvCfg[]>();
-				var servConf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-				servConf.EntClassCfgArray.ForEach(entClass =>
-				{
-					var bhvCfg = connection.WebServiceManager.BehaviorService.GetBehaviorConfigurationsByNames(entClass.Id, new string[] { "UserDefinedProperty" });
-					bhvCfgMap.Add(entClass.Id, bhvCfg);
-				});
+				//Dictionary<string, BhvCfg[]> bhvCfgMap = new Dictionary<string, BhvCfg[]>();
+				//var servConf = connection.WebServiceManager.AdminService.GetServerConfiguration();
+				//servConf.EntClassCfgArray.ForEach(entClass =>
+				//{
+				//	var bhvCfg = connection.WebServiceManager.BehaviorService.GetBehaviorConfigurationsByNames(entClass.Id, new string[] { "UserDefinedProperty" });
+				//	bhvCfgMap.Add(entClass.Id, bhvCfg);
+				//});
 
-				var propDef = bhvCfgMap.Select((k, v) => v == entity.Id);
+				//var propDef = bhvCfgMap.Select((k, v) => v == entity.m_PropertyResposeDTO.m_Property.Id);
 
-				List<EntClassAssoc> entClassAssocList = new List<EntClassAssoc>();
-				entity.AssociatedEntityName.ForEach(name => { 
-					EntClassAssoc entClassAssoc = new EntClassAssoc(); 
-					entClassAssoc.EntClassId = name;
-					entClassAssoc.MapDirection= AllowedMappingDirection.Write;
-					entClassAssocList.Add(entClassAssoc); 
-						});
+				//List<EntClassAssoc> entClassAssocList = new List<EntClassAssoc>();
+				//entity.m_PropertyResposeDTO.m_Property.AssociatedEntityName.ForEach(name => { 
+				//	EntClassAssoc entClassAssoc = new EntClassAssoc(); 
+				//	entClassAssoc.EntClassId = name;
+				//	entClassAssoc.MapDirection= AllowedMappingDirection.Write;
+				//	entClassAssocList.Add(entClassAssoc); 
+				//		});
 
-				PropDef prop = new PropDef();
-				prop.Id = entity.Id;
-				prop.DispName = entity.Name;
-				prop.DfltVal = "DefaultListValue1";
-				prop.EntClassAssocArray = entClassAssocList.ToArray();
-				prop.IsAct = true;
-				prop.IsBasicSrch = true;
-				prop.IsSys = false;
-				prop.Typ = DataType.String;
+				//PropDef prop = new PropDef();
+				//prop.Id = entity.m_PropertyResposeDTO.m_Property.Id;
+				//prop.DispName = entity.m_PropertyResposeDTO.m_Property.Name;
+				//prop.DfltVal = "DefaultListValue1";
+				//prop.EntClassAssocArray = entClassAssocList.ToArray();
+				//prop.IsAct = true;
+				//prop.IsBasicSrch = true;
+				//prop.IsSys = false;
+				//prop.Typ = DataType.String;
 
-				connection.WebServiceManager.PropertyService.UpdatePropertyDefinitionInfo(
-					prop,
-					null,
-					null,
-					new string[] { "DefaultListValue1" }
-					);
+				//connection.WebServiceManager.PropertyService.UpdatePropertyDefinitionInfo(
+				//	prop,
+				//	null,
+				//	null,
+				//	new string[] { "DefaultListValue1" }
+				//	);
 		}
 
-		public IEnumerable<T> GetAll(long[] ids, Connection connection)
+		public T GetAll(long[] ids, Connection connection)
 		{
-			List<T> entities = new List<T>();
-
+			PropertyDTO toRet = (PropertyDTO)Activator.CreateInstance(typeof(PropertyDTO));
 			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
 			foreach (var entity in conf.EntClassCfgArray) {
 				var temp = connection.PropertyManager.GetPropertyDefinitions(
@@ -125,25 +125,26 @@ namespace ConsoleApp2.Services
 				PropertyDefinitionFilter.IncludeAll);
                 foreach (var property in temp)
                 {
-					T elem = (T)Activator.CreateInstance(typeof(T));
-					elem.Id = property.Value.Id;
-					// TODO : Test it
-					property.Value.AssociatedEntityClasses.ForEach(entityClass => elem.AssociatedEntityName.Add(entityClass.EntityClass.Id));
-					elem.Name = property.Value.DisplayName;
-					entities.Add(elem);
+					Property property1 = new Property();
+					property1.Id = property.Value.Id;
+					property1.Name = property.Value.DisplayName;
+					property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
+					toRet.m_PropertyResponseDTO.m_Property.Add(property1);
                 }
             }
-			return entities;
+			return (T)toRet;
 		}
 
 		public T GetById(long id, Connection connection)
 		{
-				var entity = connection.PropertyManager.GetPropertyDefinitionById(id);
-				T result = (T)Activator.CreateInstance(typeof(T));
-				result.Id = entity.Id;
-				result.Name = entity.DisplayName;
-				entity.AssociatedEntityClasses.ForEach( classes => result.AssociatedEntityName.Add(classes.EntityClass.Id));
-				return result;
+			var entity = connection.PropertyManager.GetPropertyDefinitionById(id);
+			T result = (T)Activator.CreateInstance(typeof(T));
+			Property entity1 = new Property();
+			entity1.Id = entity.Id;
+			entity1.Name = entity.DisplayName;
+			entity.AssociatedEntityClasses.ForEach( classes => entity1.AssociatedEntityName.Add(classes.EntityClass.Id));
+			result.m_PropertyResponseDTO.m_Property.Add(entity1);
+			return result;
 		}
 	}
 }

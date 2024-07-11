@@ -424,9 +424,12 @@
     <Compile Include="Model\Bom.cs" />
     <Compile Include="Model\ExcelErrorData.cs" />
     <Compile Include="Model\IdDTO.cs" />
+    <Compile Include="Model\ItemDTO.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\PropertyDTO.cs" />
+    <Compile Include="Model\PropertyRequestDTO.cs" />
     <Compile Include="Model\PropInstDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

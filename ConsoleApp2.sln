@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{F7A4D0EA-0ECC-47E1-9A82-C96878C8E81C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaultInterfaceTest", "VaultInterfaceTest\VaultInterfaceTest.csproj", "{716DBF5D-3F06-4F01-B68E-71979744808D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{F7A4D0EA-0ECC-47E1-9A82-C96878C8E81C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7A4D0EA-0ECC-47E1-9A82-C96878C8E81C}.Release|x64.ActiveCfg = Release|x64
 		{F7A4D0EA-0ECC-47E1-9A82-C96878C8E81C}.Release|x64.Build.0 = Release|x64
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Debug|x64.Build.0 = Debug|Any CPU
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Release|x64.ActiveCfg = Release|Any CPU
+		{716DBF5D-3F06-4F01-B68E-71979744808D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
