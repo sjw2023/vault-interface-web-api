@@ -20,9 +20,9 @@ namespace ConsoleApp2.Exceptions
 			{
 				var baseException = result.Exception.InnerExceptions[0];//result.Exception.GetBaseException();
 
-				if (baseException is VaultException)
+				if (baseException is InterfaceException)
 				{
-					var baseExcept = baseException as VaultException;
+					var baseExcept = baseException as InterfaceException;
 					var errorMessagError = new System.Web.Http.HttpError(baseExcept.ErrorMessage)
 					{ { "ErrorCode", baseExcept.ErrorCode } };
 					return Task.Run<HttpResponseMessage>(() =>

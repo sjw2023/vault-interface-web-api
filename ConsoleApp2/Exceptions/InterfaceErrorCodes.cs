@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2.Exceptions
 {
-	public class CustomException : Exception
+	public enum InterfaceErrorCodes
 	{
-		public virtual int ErrorCode { get; set; }
-		public virtual string ErrorMessage { get; set; } = string.Empty;
+		BOM_OF_ITEM_NOT_EXIST = 1000,
 	}
 }

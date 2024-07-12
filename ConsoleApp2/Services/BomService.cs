@@ -106,6 +106,9 @@ namespace ConsoleApp2.Services
 		{
 			Bom bom = new Bom();
 			var parentChildRelationships = connection.WebServiceManager.ItemService.GetItemBOMAssociationsByItemIds(new long[] { id }, true);
+			if (parentChildRelationships == null) { 
+				throw new InterfaceException( (int)InterfaceErrorCodes.BOM_OF_ITEM_NOT_EXIST, InterfaceErrorCodes.BOM_OF_ITEM_NOT_EXIST.ToString() );
+			}
 			List<ItemAssoc> parentChildRelationshipsList = parentChildRelationships.ToList();
 			int index = 0;
 			while (parentChildRelationshipsList.Count>0) {
@@ -134,7 +137,7 @@ namespace ConsoleApp2.Services
 				}
 			}
 			bom.Id = id;
-			return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( new Bom[] { bom }));
+			return (T) new ItemDTO((new ItemDTO.ItemResponseDTO( new Bom[] { bom })));
 		}
 		public void Update(T entity, Connection connection)
 		{

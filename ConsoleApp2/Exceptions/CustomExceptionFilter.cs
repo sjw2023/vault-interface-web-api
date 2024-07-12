@@ -7,6 +7,7 @@
 	using System.Net.Http;
 	using System.Runtime.Remoting.Messaging;
 	using System.Web.Http.Filters;
+	using System.Web.Services.Description;
 
 	public class CustomExceptionFilter : ExceptionFilterAttribute
 	{
@@ -16,12 +17,17 @@
 			{
 				var errorInfo = Program.ErrorInfo[actionExecutedContext.Exception.Message];
 				string combinedDescriptions = string.Join(", ", errorInfo.Select(data => $"{data.Name}: {data.Description}"));
-
 				var errorMessage = new System.Web.Http.HttpError(combinedDescriptions)
 				{ { "ErrorCode", actionExecutedContext.Exception.Message } };
-
 				actionExecutedContext.Response =
 					actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+			}
+			if (actionExecutedContext.Exception is InterfaceException) { 
+				var exception = actionExecutedContext.Exception as InterfaceException;
+				var errorMessage = new System.Web.Http.HttpError("Bad Request"){
+					{ "ErrorCode", exception.ErrorCode },
+					{ "ErrorMessage", exception.ErrorMessage} };
+				actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
 			}
 		}
 	}

@@ -18,7 +18,6 @@ namespace ConsoleApp2.Services
 		{
 			//파일 관련 프로퍼티 읽기
 			//PropDef[] props = connection.WebServiceManager.PropertyService.GetPropertyDefinitionsByEntityClassId("FILE");
-
 			//인벤터 파일 연결 모니커 생성
 			//string Moniker = "";
 			//foreach (PropDef prop in props)
@@ -35,7 +34,6 @@ namespace ConsoleApp2.Services
 			//		}
 			//	}
 			//}
-
 			//인벤터 파일 연결 속성 추가
 			//CtntSrcPropDef ctntSrcPropDef = new CtntSrcPropDef();
 			//ctntSrcPropDef.DispName = "UserPropertyTest";
@@ -46,7 +44,6 @@ namespace ConsoleApp2.Services
 			//ctntSrcPropDef.MapDirection = AllowedMappingDirection.Write;
 			//ctntSrcPropDef.Typ = DataType.String;
 			//ctntSrcPropDef.Moniker = "4!" + Moniker + "!nvarchar";
-
 			//EntClassCtntSrcPropCfg entClsCtntSrcPropCfg = new EntClassCtntSrcPropCfg();
 			//entClsCtntSrcPropCfg.EntClassId = "FILE";
 			//entClsCtntSrcPropCfg.CanCreateNewArray = new bool[] { true };
@@ -54,7 +51,6 @@ namespace ConsoleApp2.Services
 			//entClsCtntSrcPropCfg.MapDirectionArray = new Autodesk.Connectivity.WebServices.MappingDirection[] { Autodesk.Connectivity.WebServices.MappingDirection.Write };
 			//entClsCtntSrcPropCfg.MapTypArray = new Autodesk.Connectivity.WebServices.MappingType[] { Autodesk.Connectivity.WebServices.MappingType.Constant };
 			//entClsCtntSrcPropCfg.PriorityArray = new int[] { 0 };
-
 			//프로퍼티 추가
 				//Guid guid = Guid.NewGuid();
 				//PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
@@ -73,50 +69,48 @@ namespace ConsoleApp2.Services
 
 		public void Delete(T entity, Connection connection)
 		{
-				connection.WebServiceManager.PropertyService.DeletePropertyDefinitions(new long[] { entity.m_PropertyResponseDTO.m_Property[0].Id });
+			throw new NotImplementedException();
+			connection.WebServiceManager.PropertyService.DeletePropertyDefinitions(new long[] { entity.m_PropertyResponseDTO.m_Property[0].Id });
 		}
 
 		public void Update(T entity, Connection connection)
 		{
-				//Dictionary<string, BhvCfg[]> bhvCfgMap = new Dictionary<string, BhvCfg[]>();
-				//var servConf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-				//servConf.EntClassCfgArray.ForEach(entClass =>
-				//{
-				//	var bhvCfg = connection.WebServiceManager.BehaviorService.GetBehaviorConfigurationsByNames(entClass.Id, new string[] { "UserDefinedProperty" });
-				//	bhvCfgMap.Add(entClass.Id, bhvCfg);
-				//});
-
-				//var propDef = bhvCfgMap.Select((k, v) => v == entity.m_PropertyResposeDTO.m_Property.Id);
-
-				//List<EntClassAssoc> entClassAssocList = new List<EntClassAssoc>();
-				//entity.m_PropertyResposeDTO.m_Property.AssociatedEntityName.ForEach(name => { 
-				//	EntClassAssoc entClassAssoc = new EntClassAssoc(); 
-				//	entClassAssoc.EntClassId = name;
-				//	entClassAssoc.MapDirection= AllowedMappingDirection.Write;
-				//	entClassAssocList.Add(entClassAssoc); 
-				//		});
-
-				//PropDef prop = new PropDef();
-				//prop.Id = entity.m_PropertyResposeDTO.m_Property.Id;
-				//prop.DispName = entity.m_PropertyResposeDTO.m_Property.Name;
-				//prop.DfltVal = "DefaultListValue1";
-				//prop.EntClassAssocArray = entClassAssocList.ToArray();
-				//prop.IsAct = true;
-				//prop.IsBasicSrch = true;
-				//prop.IsSys = false;
-				//prop.Typ = DataType.String;
-
-				//connection.WebServiceManager.PropertyService.UpdatePropertyDefinitionInfo(
-				//	prop,
-				//	null,
-				//	null,
-				//	new string[] { "DefaultListValue1" }
-				//	);
+			throw new NotImplementedException();
+			//Dictionary<string, BhvCfg[]> bhvCfgMap = new Dictionary<string, BhvCfg[]>();
+			//var servConf = connection.WebServiceManager.AdminService.GetServerConfiguration();
+			//servConf.EntClassCfgArray.ForEach(entClass =>
+			//{
+			//	var bhvCfg = connection.WebServiceManager.BehaviorService.GetBehaviorConfigurationsByNames(entClass.Id, new string[] { "UserDefinedProperty" });
+			//	bhvCfgMap.Add(entClass.Id, bhvCfg);
+			//});
+			//var propDef = bhvCfgMap.Select((k, v) => v == entity.m_PropertyResposeDTO.m_Property.Id);
+			//List<EntClassAssoc> entClassAssocList = new List<EntClassAssoc>();
+			//entity.m_PropertyResposeDTO.m_Property.AssociatedEntityName.ForEach(name => { 
+			//	EntClassAssoc entClassAssoc = new EntClassAssoc(); 
+			//	entClassAssoc.EntClassId = name;
+			//	entClassAssoc.MapDirection= AllowedMappingDirection.Write;
+			//	entClassAssocList.Add(entClassAssoc); 
+			//		});
+			//PropDef prop = new PropDef();
+			//prop.Id = entity.m_PropertyResposeDTO.m_Property.Id;
+			//prop.DispName = entity.m_PropertyResposeDTO.m_Property.Name;
+			//prop.DfltVal = "DefaultListValue1";
+			//prop.EntClassAssocArray = entClassAssocList.ToArray();
+			//prop.IsAct = true;
+			//prop.IsBasicSrch = true;
+			//prop.IsSys = false;
+			//prop.Typ = DataType.String;
+			//connection.WebServiceManager.PropertyService.UpdatePropertyDefinitionInfo(
+			//	prop,
+			//	null,
+			//	null,
+			//	new string[] { "DefaultListValue1" }
+			//	);
 		}
 
 		public T GetAll(long[] ids, Connection connection)
 		{
-			PropertyDTO toRet = (PropertyDTO)Activator.CreateInstance(typeof(PropertyDTO));
+			PropertyDTO toRet = new PropertyDTO();
 			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
 			foreach (var entity in conf.EntClassCfgArray) {
 				var temp = connection.PropertyManager.GetPropertyDefinitions(
@@ -139,9 +133,11 @@ namespace ConsoleApp2.Services
 		{
 			var entity = connection.PropertyManager.GetPropertyDefinitionById(id);
 			T result = (T)Activator.CreateInstance(typeof(T));
-			Property entity1 = new Property();
-			entity1.Id = entity.Id;
-			entity1.Name = entity.DisplayName;
+			Property entity1 = new Property
+			{
+				Id = entity.Id,
+				Name = entity.DisplayName
+			};
 			entity.AssociatedEntityClasses.ForEach( classes => entity1.AssociatedEntityName.Add(classes.EntityClass.Id));
 			result.m_PropertyResponseDTO.m_Property.Add(entity1);
 			return result;

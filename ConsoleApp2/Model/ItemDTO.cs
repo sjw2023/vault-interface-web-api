@@ -28,7 +28,7 @@ namespace ConsoleApp2.Model
 		public ItemDTO(ItemRequestDTO itemRequestDTO, ItemResponseDTO itemResponseDTO) { 
 			Console.WriteLine("Creating ItemDto with res, req");
 			_itemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO);
-			_itemResponseDTO = itemResponseDTO;
+			_itemResponseDTO = new ItemResponseDTO(itemResponseDTO.BomDTOs);
 		}
 		public ItemDTO(ItemDTO itemDTO) { 
 			_itemRequestDTO = itemDTO.m_ItemRequestDTO;

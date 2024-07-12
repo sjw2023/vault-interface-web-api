@@ -21,72 +21,62 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 
 	public void Add(T entity, VDF.Vault.Currency.Connections.Connection connection)
 	{
-		try{ 
-			long catId = GetCategoryIdByName("ITEM", connection);
-			Autodesk.Connectivity.WebServices.Item item = connection.WebServiceManager.ItemService.AddItemRevision(catId);
+		throw new NotImplementedException();
+		long catId = GetCategoryIdByName("ITEM", connection);
+		Autodesk.Connectivity.WebServices.Item item = connection.WebServiceManager.ItemService.AddItemRevision(catId);
 
-			//TODO : Create Numbering scheme service or helper method. Show the numbering scheme list and select the scheme
-			// set item numbering scheme
-			NumSchm numSchm1 = new NumSchm();
-			NumSchm[] numSchms = connection.WebServiceManager.NumberingService.GetNumberingSchemes("ITEM", NumSchmType.All);
-			foreach (NumSchm numSchm in numSchms)
-			{
-				if (numSchm.SchmID == 8)
-				{
-					numSchm1 = numSchm;
-				}
-			}
-			item.NumSchmId = numSchm1.SchmID;
-
-
-
-			string[] newItemNum = new string[] { "ItemAddTest" };
-			StringArray[] fieldInputs = new StringArray[1];
-			StringArray tempArr = new StringArray();
-			tempArr.Items = newItemNum;
-			fieldInputs[0] = tempArr;
-
-			ProductRestric[] productRestrics;
-
-			//Update Item number to Vault
-			ItemNum[] itemNums = connection.WebServiceManager.ItemService.AddItemNumbers(new long[] { item.MasterId }, new long[] { item.NumSchmId }, fieldInputs, out productRestrics);
-
-			//Set new item values
-			item.ItemNum = itemNums[0].ItemNum1;
-			item.Title = "11111";
-			item.VerNum = 10;
-			item.RevNum = "A";
-
-
-			///set BOM information
-			ItemAssocParam[] itemAssocParams = new ItemAssocParam[1];
-			itemAssocParams[0] = new ItemAssocParam();
-			//itemAssocParams[0].BOMOrder = newest;
-			itemAssocParams[0].CldItemID = 40581;
-			//itemAssocParams[0].Id = 1;
-			itemAssocParams[0].Quant = 1;
-			itemAssocParams[0].EditAct = BOMEditAction.Add;
-			//itemAssocParams[0].InstCount = 1;
-			//itemAssocParams[0].IsIncluded = true;
-			itemAssocParams[0].IsStatic = true;
-			//itemAssocParams[0].PositionNum = "position number";
-			//itemAssocParams[0].UnitID = new;
-			//itemAssocParams[0].UnitSize = 1;
-
-
-			var revs = connection.WebServiceManager.ItemService.UpdateItemBOMAssociations( item.Id, itemAssocParams, BOMViewEditOptions.ReturnBOMFragmentsOnEdits);
-			//connection.WebServiceManager.ItemService.UpdateAndCommitItems(revs);
-
-			//Update Item values to Vault
-			connection.WebServiceManager.ItemService.UpdateAndCommitItems(new Autodesk.Connectivity.WebServices.Item[] { item });
-		}
-		catch (Exception ex)
+		//TODO : Create Numbering scheme service or helper method. Show the numbering scheme list and select the scheme
+		// set item numbering scheme
+		NumSchm numSchm1 = new NumSchm();
+		NumSchm[] numSchms = connection.WebServiceManager.NumberingService.GetNumberingSchemes("ITEM", NumSchmType.All);
+		foreach (NumSchm numSchm in numSchms)
 		{
-			Console.WriteLine(ex.Source);
-			Console.WriteLine($"Failed to add item {ex.Message}");
-			Console.WriteLine(ex.StackTrace);
-			Console.WriteLine(ex.InnerException);
+			if (numSchm.SchmID == 8)
+			{
+				numSchm1 = numSchm;
+			}
 		}
+		item.NumSchmId = numSchm1.SchmID;
+
+		string[] newItemNum = new string[] { "ItemAddTest" };
+		StringArray[] fieldInputs = new StringArray[1];
+		StringArray tempArr = new StringArray();
+		tempArr.Items = newItemNum;
+		fieldInputs[0] = tempArr;
+
+		ProductRestric[] productRestrics;
+
+		//Update Item number to Vault
+		ItemNum[] itemNums = connection.WebServiceManager.ItemService.AddItemNumbers(new long[] { item.MasterId }, new long[] { item.NumSchmId }, fieldInputs, out productRestrics);
+
+		//Set new item values
+		item.ItemNum = itemNums[0].ItemNum1;
+		item.Title = "11111";
+		item.VerNum = 10;
+		item.RevNum = "A";
+
+
+		///set BOM information
+		ItemAssocParam[] itemAssocParams = new ItemAssocParam[1];
+		itemAssocParams[0] = new ItemAssocParam();
+		//itemAssocParams[0].BOMOrder = newest;
+		itemAssocParams[0].CldItemID = 40581;
+		//itemAssocParams[0].Id = 1;
+		itemAssocParams[0].Quant = 1;
+		itemAssocParams[0].EditAct = BOMEditAction.Add;
+		//itemAssocParams[0].InstCount = 1;
+		//itemAssocParams[0].IsIncluded = true;
+		itemAssocParams[0].IsStatic = true;
+		//itemAssocParams[0].PositionNum = "position number";
+		//itemAssocParams[0].UnitID = new;
+		//itemAssocParams[0].UnitSize = 1;
+
+
+		var revs = connection.WebServiceManager.ItemService.UpdateItemBOMAssociations( item.Id, itemAssocParams, BOMViewEditOptions.ReturnBOMFragmentsOnEdits);
+		//connection.WebServiceManager.ItemService.UpdateAndCommitItems(revs);
+
+		//Update Item values to Vault
+		connection.WebServiceManager.ItemService.UpdateAndCommitItems(new Autodesk.Connectivity.WebServices.Item[] { item });
 	}
 
 	/// <summary>
@@ -120,12 +110,16 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		throw new NotImplementedException();
 		//ItemRevision itemRevision = connection.WebServiceManager.ItemService.GetItemsByFileIds(entity.Id);
 		//itemRevision[0].Name = entity.Name;
-
-
-		// only can change name, detail, comment, itemTypeID, and units
+		// change name, detail, comment, itemTypeID, and units
 		connection.WebServiceManager.ItemService.UpdateAndCommitItems(new VaultItem[] {  });
 	}
 
+	/// <summary>
+	/// Delegate to GetALL to fine Item by Id
+	/// </summary>
+	/// <param name="id"></param>
+	/// <param name="connection"></param>
+	/// <returns></returns>
 	public T GetById(long id, VDF.Vault.Currency.Connections.Connection connection)
 	{
 		return GetAll( new long[] { id }, connection);
@@ -134,7 +128,6 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 	/// <summary>
 	/// Get all items and its properties values
 	/// TODO : Refactor this method can get thumbnail
-	///		: Refactor more efficient way to get all items
 	/// </summary>
 	/// <param name="connection"></param>
 	/// <returns></returns>
@@ -155,27 +148,30 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		var masterIds = from item in items
 						select item.MasterId;
 		var properties = _helperMethod.GetPropInst(connection, masterIds.ToArray(), _entityClassId);
-		foreach ( var item in items) { 
+		foreach ( var item in items) {
 
-			var itemTmp = (ConsoleApp2.Model.Item)Activator.CreateInstance(typeof(ConsoleApp2.Model.Item));
-			//T itemTmp = (T)Activator.CreateInstance(typeof(T));
-			itemTmp.Id = item.Id;
-			itemTmp.MasterId = item.MasterId;
-			itemTmp.Name = item.ItemNum;
-			itemTmp.PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList();
+			var itemTmp = new ConsoleApp2.Model.Item
+			{
+				Id = item.Id,
+				MasterId = item.MasterId,
+				Name = item.ItemNum,
+				PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
+			};
 			itemsToRet.Add(itemTmp);
 		}
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
 	}
 	public T GetByName(string name, Connection connection )
 	{
-		var toRet = (ConsoleApp2.Model.Item)Activator.CreateInstance(typeof(ConsoleApp2.Model.Item));
 		var latestItem = connection.WebServiceManager.ItemService.GetLatestItemByItemNumber(name);
-		toRet.Id = latestItem.Id;
-		toRet.MasterId = latestItem.MasterId;
-		toRet.Name = latestItem.ItemNum;
 		var properties = _helperMethod.GetPropInst(connection, new long[] { latestItem.MasterId },_entityClassId);
-		toRet.PropInstDTOs = properties.Where(prop => prop.Id == latestItem.Id).ToList();
+		var toRet = new ConsoleApp2.Model.Item
+		{
+			Id = latestItem.Id,
+			MasterId = latestItem.MasterId,
+			Name = latestItem.ItemNum,
+			PropInstDTOs = properties.Where(prop => prop.Id == latestItem.Id).ToList()
+		};
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( new ConsoleApp2.Model.Item[] { toRet }));
 	}
 }
