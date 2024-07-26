@@ -1,6 +1,8 @@
-﻿using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
+﻿using Autodesk.Connectivity.WebServices;
+using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Model;
 using ConsoleApp2.Services;
+using DevExpress.Accessibility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,8 +41,10 @@ namespace ConsoleApp2.Services
 		{
 			try
 			{
-				_result = VDF.Vault.Library.ConnectionManager.LogIn("192.168.10.250", "DTcenter", "DTcenter", "1234"
-						//"192.168.10.250", "DTcenter", "joowon.suh@woosungautocon.com", "R-6qEbT#*nrJLZp"
+				_result = VDF.Vault.Library.ConnectionManager.LogIn(
+						//"192.168.10.250", "WSA", "DTcenter", "1234"
+						"192.168.10.250", "DTcenter", "DTcenter", "1234"
+						//"192.168.10.250", "WSA", "joowon.suh@woosungautocon.com", "R-6qEbT#*nrJLZp"
 						, VDF.Vault.Currency.Connections.AuthenticationFlags.Standard, null);
 				if (!_result.Success)
 				{
@@ -107,6 +111,13 @@ namespace ConsoleApp2.Services
 		{
 			LogIn();
 			var entity = _decoratedItem.GetByName(nam1e, _connection);
+			LogOut();
+			return entity;
+		}
+		public T GetBySchCond(SrchCond [] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchstatus, Connection connection)
+		{
+			LogIn();
+			var entity = _decoratedItem.GetBySchCond(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus, _connection);
 			LogOut();
 			return entity;
 		}

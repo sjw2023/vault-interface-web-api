@@ -23,10 +23,10 @@ namespace ConsoleApp2.Controllers
 			_service = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(service));
 		}
 
-		//public PropertyController()
-		//{
-		//	_service = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(new PropertyService<PropertyDTO>()));
-		//}
+		public PropertyController()
+		{
+			_service = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(new PropertyService<PropertyDTO>()));
+		}
 
 		[HttpPost]
 		public IHttpActionResult Add([FromBody] PropertyDTO entity)

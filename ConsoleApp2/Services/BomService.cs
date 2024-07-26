@@ -115,7 +115,10 @@ namespace ConsoleApp2.Services
 				var relation = parentChildRelationshipsList[index];
 				if (relation.ParItemID == id)
 				{
-					bom.Children.Add(new BomNode() { Id = relation.CldItemID });
+					bom.Children.Add(new BomNode() { 
+						Id = relation.CldItemID,
+						Quantity = relation.Quant,
+					});
 					parentChildRelationshipsList.RemoveAt(index);
 				}
 				else
@@ -126,6 +129,7 @@ namespace ConsoleApp2.Services
 						cursor.Children.Add(new BomNode()
 						{
 							Id = relation.CldItemID,
+							Quantity = relation.Quant,
 						});
 						parentChildRelationshipsList.RemoveAt(index);
 					}

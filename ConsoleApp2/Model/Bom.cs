@@ -53,6 +53,8 @@ namespace ConsoleApp2.Model
 	public class BomNode {
 		private long _id;
 		public long Id { get { return _id; } set { _id = value; } }
+		private double _quantity;
+		public double Quantity { get { return _quantity; } set { _quantity = value; } }
 		private List<BomNode> _children;
 		public List<BomNode> Children
 		{

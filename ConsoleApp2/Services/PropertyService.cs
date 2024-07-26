@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Autodesk.Connectivity.WebServices;
-using Autodesk.DataManagement.Client.Framework.Internal.ExtensionMethods;
-using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
+﻿using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
-using DevExpress.Export.Xl;
+using System;
 
 namespace ConsoleApp2.Services
 {
@@ -16,6 +11,7 @@ namespace ConsoleApp2.Services
 	{
 		public void Add(T entity, Connection connection)
 		{
+			throw new NotImplementedException();
 			//파일 관련 프로퍼티 읽기
 			//PropDef[] props = connection.WebServiceManager.PropertyService.GetPropertyDefinitionsByEntityClassId("FILE");
 			//인벤터 파일 연결 모니커 생성
@@ -52,19 +48,19 @@ namespace ConsoleApp2.Services
 			//entClsCtntSrcPropCfg.MapTypArray = new Autodesk.Connectivity.WebServices.MappingType[] { Autodesk.Connectivity.WebServices.MappingType.Constant };
 			//entClsCtntSrcPropCfg.PriorityArray = new int[] { 0 };
 			//프로퍼티 추가
-				//Guid guid = Guid.NewGuid();
-				//PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
-					//guid.ToString(),
-					//entity.m_PropertyResposeDTO.m_Property.Name, 
-					//DataType.String,
-					//true, 
-					//true, 
-					//string.Empty,
-					////entity.m_PropertyResposeDTO.m_Property.AssociatedEntityName.ToArray(),
-					//null, 
-					//null, 
-					//null
-					//);
+			//Guid guid = Guid.NewGuid();
+			//PropDefInfo propDefInfo = connection.WebServiceManager.PropertyService.AddPropertyDefinition(
+			//guid.ToString(),
+			//entity.m_PropertyResposeDTO.m_Property.Name, 
+			//DataType.String,
+			//true, 
+			//true, 
+			//string.Empty,
+			////entity.m_PropertyResposeDTO.m_Property.AssociatedEntityName.ToArray(),
+			//null, 
+			//null, 
+			//null
+			//);
 		}
 
 		public void Delete(T entity, Connection connection)
@@ -112,20 +108,21 @@ namespace ConsoleApp2.Services
 		{
 			PropertyDTO toRet = new PropertyDTO();
 			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-			foreach (var entity in conf.EntClassCfgArray) {
+			foreach (var entity in conf.EntClassCfgArray)
+			{
 				var temp = connection.PropertyManager.GetPropertyDefinitions(
 				entity.Id,
 				null,
 				PropertyDefinitionFilter.IncludeAll);
-                foreach (var property in temp)
-                {
+				foreach (var property in temp)
+				{
 					Property property1 = new Property();
 					property1.Id = property.Value.Id;
 					property1.Name = property.Value.DisplayName;
 					property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
 					toRet.m_PropertyResponseDTO.m_Property.Add(property1);
-                }
-            }
+				}
+			}
 			return (T)toRet;
 		}
 
@@ -138,7 +135,7 @@ namespace ConsoleApp2.Services
 				Id = entity.Id,
 				Name = entity.DisplayName
 			};
-			entity.AssociatedEntityClasses.ForEach( classes => entity1.AssociatedEntityName.Add(classes.EntityClass.Id));
+			entity.AssociatedEntityClasses.ForEach(classes => entity1.AssociatedEntityName.Add(classes.EntityClass.Id));
 			result.m_PropertyResponseDTO.m_Property.Add(entity1);
 			return result;
 		}

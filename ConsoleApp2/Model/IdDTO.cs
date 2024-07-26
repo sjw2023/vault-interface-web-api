@@ -10,16 +10,21 @@ namespace ConsoleApp2.Model
 		public IdDTO(IdDTO idDTO) {
 			Console.WriteLine("Creating IdDTO with copy ctor");
 			_ids = idDTO._ids;
+			Console.WriteLine("Returning IdDTO with copy ctor");
 		}
 		public IdDTO(long[] ids) { 
 			Console.WriteLine("Creating IdDTO with ids");
 			_ids = ids;
+			Console.WriteLine("Returning IdDTO with ids");
 		}
 		public IdDTO()
 		{
+			Console.WriteLine("Creating IdDTO with default ctor");
+			_ids = new long[0];
+			Console.WriteLine("Returning IdDTO with default ctor");
 		}
 		private long[] _ids;
-			public long[] Ids { get { return _ids; } set { _ids = value; } }
+		public long[] Ids { get { return _ids; } set { _ids = value; } }
 		}
 
 }

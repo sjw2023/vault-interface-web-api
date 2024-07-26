@@ -20,6 +20,12 @@ namespace ConsoleApp2.Model
 			get { return _masterId; }
 			set { _masterId = value; }
 		}
+		private List<FileAssocDTO> _fileAssocDTOs;
+		public List<FileAssocDTO> FileAssocDTOs
+		{
+			get { return _fileAssocDTOs; }
+			set { _fileAssocDTOs = value; }
+		}
 		private List<PropInstDTO> _propInstDTOs;
 		public List<PropInstDTO> PropInstDTOs
 		{

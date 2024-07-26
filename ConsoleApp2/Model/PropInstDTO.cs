@@ -14,7 +14,7 @@ namespace ConsoleApp2.Model
 		public long PropDefId { get; set; }
 		private string _name;
 		public string Name { get; set; }
-		private string _value;
-		public string Value { get; set; }
+		private object _value;
+		public object Value { get; set; }
 	}
 }

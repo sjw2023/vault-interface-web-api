@@ -1,4 +1,5 @@
-﻿using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
+﻿using Autodesk.Connectivity.WebServices;
+using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Services;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,13 @@ namespace ConsoleApp2.Results
 			Log("Getting entity by name: {0}", nam1e);
 			var entity = _decoratedItem.GetByName(nam1e, connection);
 			Log("Entity found: {0}", entity);
+			return entity;
+		}
+		public T GetBySchCond(SrchCond[] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchstatus, Connection connection)
+		{
+			Log("Getting entity by srch cond");
+			var entity = _decoratedItem.GetBySchCond(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus, _connection);
+			Log("Entity found : {0}", entity);
 			return entity;
 		}
 	}

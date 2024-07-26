@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autodesk.Connectivity.WebServices;
+using DevExpress.Utils.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +13,19 @@ namespace ConsoleApp2.Model
 	{
 
 		private ItemRequestDTO _itemRequestDTO;
-		[JsonIgnore]
 		public ItemRequestDTO m_ItemRequestDTO { get { return _itemRequestDTO; } set { _itemRequestDTO = value; } }
 		private ItemResponseDTO _itemResponseDTO;
-		[JsonIgnore]
 		public ItemResponseDTO m_ItemResponseDTO { get { return _itemResponseDTO; } set { _itemResponseDTO = value; } }
 
 		public ItemDTO(ItemResponseDTO itemResponseDTO) { 
 			Console.WriteLine("Creating ItemDTo with resps");
 			_itemResponseDTO = new ItemResponseDTO(itemResponseDTO.ItemDTOs, itemResponseDTO.BomDTOs);
+			Console.WriteLine("Returning from ItemDTO with resps");
 		}
 		public ItemDTO(ItemRequestDTO itemRequestDTO) { 
 			Console.WriteLine("Creating ItemDTO with req");
 			_itemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO);
+			Console.WriteLine("Returning from ItemDTo with req");
 		}
 		public ItemDTO(ItemRequestDTO itemRequestDTO, ItemResponseDTO itemResponseDTO) { 
 			Console.WriteLine("Creating ItemDto with res, req");
@@ -31,26 +33,32 @@ namespace ConsoleApp2.Model
 			_itemResponseDTO = new ItemResponseDTO(itemResponseDTO.BomDTOs);
 		}
 		public ItemDTO(ItemDTO itemDTO) { 
-			_itemRequestDTO = itemDTO.m_ItemRequestDTO;
 			Console.WriteLine("Creating ItemDto with Copy ctor");
+			_itemRequestDTO = itemDTO.m_ItemRequestDTO;
+			Console.WriteLine("Returning from ItemDto Copy ctor");
 			//_itemResponseDTO = itemDTO.m_ItemResponseDTO;
 		}
 		private ItemDTO()
 		{
-			Console.WriteLine("Creating with default cons");
+			Console.WriteLine("Creating ItemDTO with default cons");
 			_itemRequestDTO = new ItemRequestDTO(new ItemRequestDTO(new IdDTO()));
+			Console.WriteLine("Returning from ItemDto default ctor");
 		}
 		public class ItemRequestDTO { 
 			public ItemRequestDTO(ItemRequestDTO itemRequestDTO) { 
-				Console.WriteLine("Creating ItemRequest with copy cons");
-				m_IdDTO = new IdDTO( itemRequestDTO.m_IdDTO );
+				Console.WriteLine("Creating ItemRequest with copy ctor");
+				//m_IdDTO = new IdDTO( itemRequestDTO.m_IdDTO );
+				m_IdDTO = itemRequestDTO.m_IdDTO;
+				Console.WriteLine("Returning from ItemRequestDTO copy ctor");
 			}
 			public ItemRequestDTO(IdDTO idDTO) { 
 				Console.WriteLine("Creating ItemRequest dto with idDTO");
-				m_IdDTO = new IdDTO(idDTO);
+				//m_IdDTO = new IdDTO(idDTO);
+				m_IdDTO = idDTO;
+				Console.WriteLine("Returning ItemRequest dto with idDTO");
 			}
-			private IdDTO _idDTO;
-			public IdDTO m_IdDTO { get { return _idDTO; } set { _idDTO = value; } }
+			private IdDTO m_idDTO;
+			public IdDTO m_IdDTO { get { return m_idDTO; } set { m_idDTO = value; } }
 		}
 
 		public class ItemResponseDTO {

@@ -1,5 +1,6 @@
 ﻿using Autodesk.Connectivity.WebServices;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities;
+using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
 using System;
 using System.Collections.Generic;
@@ -39,45 +40,47 @@ namespace ConsoleApp2.Util
 		/// <returns></returns>
 		public List<PropInstDTO> GetPropInst(VDF.Vault.Currency.Connections.Connection connection, long[] ids, string entityClassId)
 		{
-			try
+			//Get property definition infos by entity class id
+			var propDefInfos = connection.WebServiceManager.PropertyService.GetPropertyDefinitionInfosByEntityClassId(entityClassId, null);
+			//Extract property definition ids
+			var propDefIds = from info in propDefInfos
+							 select info.PropDef.Id;
+			//Get latest items by item master ids
+			var latestItems = connection.WebServiceManager.ItemService.GetLatestItemsByItemMasterIds(ids);
+			//Extract item ids
+			var idsParameter = from item in latestItems
+					  select item.Id;
+			//Get properties by item ids
+			var properties = connection.WebServiceManager.PropertyService.GetProperties(entityClassId, idsParameter.ToArray(), propDefIds.ToArray());
+			List<PropInstDTO> ret = new List<PropInstDTO>();
+			foreach (var _ in properties)
 			{
-				var propDefInfos = connection.WebServiceManager.PropertyService.GetPropertyDefinitionInfosByEntityClassId(entityClassId, null);
-				var propDefIds = from info in propDefInfos
-								 select info.PropDef.Id;
-				var latestItems = connection.WebServiceManager.ItemService.GetLatestItemsByItemMasterIds(ids);
-				var idsParameter = from item in latestItems
-						  select item.Id;
-				var properties = connection.WebServiceManager.PropertyService.GetProperties(entityClassId, idsParameter.ToArray(), propDefIds.ToArray());
-				List<PropInstDTO> ret = new List<PropInstDTO>();
-				foreach (var _ in properties)
+				PropInstDTO instance = new PropInstDTO();
+				instance.Id = _.EntityId;
+				instance.PropDefId = _.PropDefId;
+				var propDef = from propDefInfo in propDefInfos
+							  where propDefInfo.PropDef.Id == _.PropDefId
+							  select propDefInfo;
+				instance.Name = propDef.First().PropDef.SysName;
+				if (_.Val == null)
 				{
-					PropInstDTO instance = new PropInstDTO();
-					instance.Id = _.EntityId;
-					instance.PropDefId = _.PropDefId;
-					var propDef = from propDefInfo in propDefInfos
-								  where propDefInfo.PropDef.Id == _.PropDefId
-								  select propDefInfo;
-					instance.Name = propDef.First().PropDef.SysName;
-					if (_.Val == null)
+					instance.Value = "null";
+				}
+				else
+				{
+					if (instance.Name == "Thumbnail")
 					{
-						instance.Value = "null";
+						instance.Value = _.Val;
 					}
-					else
-					{
+					else { 
 						instance.Value = _.Val.ToString();
 					}
-					ret.Add(instance);
 				}
-				//var itemResult = connection.WebServiceManager.ItemService.GetItemsByRevisionIds(new long[] { 40573 }, true);
-				//var itemTest = connection.WebServiceManager.ItemService.GetLatestItemByItemMasterId(39920);
-				return ret;
+				ret.Add(instance);
 			}
-			catch (Exception e)
-			{
-				var ex = (VaultServiceErrorException)e;
-				Console.WriteLine($"{ex.Message} | {ex.Detail.InnerText}");
-				throw new Exception(ex.Message);
-			}
+			//var itemResult = connection.WebServiceManager.ItemService.GetItemsByRevisionIds(new long[] { 40573 }, true);
+			//var itemTest = connection.WebServiceManager.ItemService.GetLatestItemByItemMasterId(39920);
+			return ret;
 		}
 	}
 }

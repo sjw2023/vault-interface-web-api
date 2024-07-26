@@ -136,28 +136,52 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		//TODO : create server context and store the Vault Configuration information
 		//ServerCfg serverCfg = connection.WebServiceManager.AdminService.GetServerConfiguration();
 		//TODO : Updating _items is not done with this code. Refactor to check items update status.
-
+		bool isAll = ids == null;
 		List<ConsoleApp2.Model.Item> itemsToRet = new List<ConsoleApp2.Model.Item>();
 		List<VaultItem> items = new List<VaultItem>();
-		if (ids == null) { 
+		if (isAll) { 
+			Console.WriteLine("GetAll null : " + items.Count);
 			items = _helperMethod.GetAllItems(connection);
 		}
 		else {
 			items = connection.WebServiceManager.ItemService.GetItemsByIds( ids ).ToList();
+			Console.WriteLine("GetAll : " + items.Count);
 		}
 		var masterIds = from item in items
 						select item.MasterId;
+		var itemIds = from item in items
+					  select item.Id;
+		List<ItemFileAssoc> itemFileAssocs = new List<ItemFileAssoc>();
+		ItemFileAssoc[] itemFileAssoc = connection.WebServiceManager.ItemService.GetItemFileAssociationsByItemIds(itemIds.ToArray(), ItemFileLnkTypOpt.Primary);
 		var properties = _helperMethod.GetPropInst(connection, masterIds.ToArray(), _entityClassId);
 		foreach ( var item in items) {
-
-			var itemTmp = new ConsoleApp2.Model.Item
+			List<FileAssocDTO> fileAssocDTOs = new List<FileAssocDTO>();
+			fileAssocDTOs.AddRange(itemFileAssoc.Where(assoc => assoc.ParItemId == item.Id).Select(assoc => new FileAssocDTO(assoc)));
+			if (isAll)
 			{
-				Id = item.Id,
-				MasterId = item.MasterId,
-				Name = item.ItemNum,
-				PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
-			};
+				var itemTmp = new ConsoleApp2.Model.Item
+				{
+					Id = item.Id,
+					MasterId = item.MasterId,
+					Name = item.ItemNum,
+					//add each files
+					//FileAssocDTOs = fileAssocDTOs,
+					//PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
+				};
 			itemsToRet.Add(itemTmp);
+			}
+			else { 
+			var itemTmp = new ConsoleApp2.Model.Item
+					{
+						Id = item.Id,
+					MasterId = item.MasterId,
+					Name = item.ItemNum,
+					//add each files
+					FileAssocDTOs = fileAssocDTOs,
+					PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
+				};
+			itemsToRet.Add(itemTmp);
+			}	
 		}
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
 	}
@@ -173,5 +197,11 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 			PropInstDTOs = properties.Where(prop => prop.Id == latestItem.Id).ToList()
 		};
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( new ConsoleApp2.Model.Item[] { toRet }));
+	}
+
+	public T GetBySchCond(SrchCond [] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchstatus, Connection connection)
+	{
+		connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus);
+		throw new NotImplementedException();
 	}
 }

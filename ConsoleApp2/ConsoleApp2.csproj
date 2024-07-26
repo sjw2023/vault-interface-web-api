@@ -419,6 +419,7 @@
     <Compile Include="Exceptions\CustomExceptionFilter.cs" />
     <Compile Include="Exceptions\InterfaceErrorCodes.cs" />
     <Compile Include="Model\Bom.cs" />
+    <Compile Include="Model\FileAssocDTO.cs" />
     <Compile Include="Model\ExcelErrorData.cs" />
     <Compile Include="Model\IdDTO.cs" />
     <Compile Include="Model\ItemDTO.cs" />
@@ -461,6 +462,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\" />
+    <Folder Include="Resolver\" />
     <Folder Include="VaultModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
