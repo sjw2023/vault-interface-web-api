@@ -72,7 +72,7 @@ namespace ConsoleApp2.Results
 		public T GetBySchCond(SrchCond[] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchstatus, Connection connection)
 		{
 			Log("Getting entity by srch cond");
-			var entity = _decoratedItem.GetBySchCond(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus, _connection);
+			var entity = _decoratedItem.GetBySchCond(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus, connection);
 			Log("Entity found : {0}", entity);
 			return entity;
 		}

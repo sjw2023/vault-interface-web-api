@@ -10,6 +10,7 @@ using ConsoleApp2.Exceptions;
 using System.Net.Http;
 using System.Net;
 using Autodesk.Connectivity.WebServices;
+using System.Linq;
 
 namespace ConsoleApp2.Controllers
 {
@@ -111,12 +112,16 @@ namespace ConsoleApp2.Controllers
 
 		[HttpGet]
 		[Route("test")]
-		public IHttpActionResult GetBySrchCond(String srchText, long oper, long rule, bool requestLatestOnly)
+		public IHttpActionResult GetBySrchCond([FromUri] ItemSearchRequestDTO itemSearchRequestDTO )
 		{
-			string bookmark;
-			//SeachS
-			var json = JToken.FromObject(_itemService.GetBySchCond(srchCond, sortConditions, bRequestLatestOnly, bookmark, searchstatus, null));
-			return Ok("Test");
+			string bookmark = null;
+			SrchStatus searchstatus = null;
+			//?LatestReleasedOnly=true&SearchCond=Name%3D%27%25%27&SearchSort=Name%20ASC
+			Console.WriteLine(itemSearchRequestDTO.SrchCond);
+			Console.WriteLine(itemSearchRequestDTO.SrchSort);
+			Console.WriteLine(itemSearchRequestDTO.LatestReleasedOnly);
+			var json = JToken.FromObject(_itemService.GetBySchCond( itemSearchRequestDTO.SrchCond, itemSearchRequestDTO.SrchSort, itemSearchRequestDTO.LatestReleasedOnly, ref bookmark, out searchstatus, null));
+			return Ok(json);
 		}
 
 	}

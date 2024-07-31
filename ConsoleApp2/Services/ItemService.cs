@@ -10,6 +10,7 @@ using ConsoleApp2.Util;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
+using System.Runtime.Remoting.Messaging;
 
 
 [CustomExceptionFilter]
@@ -153,7 +154,10 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 					  select item.Id;
 		List<ItemFileAssoc> itemFileAssocs = new List<ItemFileAssoc>();
 		ItemFileAssoc[] itemFileAssoc = connection.WebServiceManager.ItemService.GetItemFileAssociationsByItemIds(itemIds.ToArray(), ItemFileLnkTypOpt.Primary);
-		var properties = _helperMethod.GetPropInst(connection, masterIds.ToArray(), _entityClassId);
+		List<PropInstDTO> properties = new List<PropInstDTO>();
+		if (!isAll) {
+			properties.AddRange(_helperMethod.GetPropInst(connection, masterIds.ToArray(), _entityClassId));
+		}
 		foreach ( var item in items) {
 			List<FileAssocDTO> fileAssocDTOs = new List<FileAssocDTO>();
 			fileAssocDTOs.AddRange(itemFileAssoc.Where(assoc => assoc.ParItemId == item.Id).Select(assoc => new FileAssocDTO(assoc)));
@@ -174,17 +178,19 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 			var itemTmp = new ConsoleApp2.Model.Item
 					{
 						Id = item.Id,
-					MasterId = item.MasterId,
-					Name = item.ItemNum,
-					//add each files
-					FileAssocDTOs = fileAssocDTOs,
-					PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
-				};
+						MasterId = item.MasterId,
+						Name = item.ItemNum,
+				//add each files
+				FileAssocDTOs = fileAssocDTOs,
+				PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
+			};
 			itemsToRet.Add(itemTmp);
 			}	
 		}
+		Console.WriteLine("GetAll : " + itemsToRet.Count);
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
 	}
+
 	public T GetByName(string name, Connection connection )
 	{
 		var latestItem = connection.WebServiceManager.ItemService.GetLatestItemByItemNumber(name);
@@ -201,7 +207,13 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 
 	public T GetBySchCond(SrchCond [] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchstatus, Connection connection)
 	{
-		connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus);
-		throw new NotImplementedException();
+		var items = connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus);
+		Console.WriteLine("GetBySchCond : " + searchstatus.TotalHits);
+	
+		List<MyItem> itemsToRet = new List<MyItem>();
+		foreach (var item in items) { 
+			itemsToRet.Add(new MyItem(item));
+		}
+		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
 	}
 }

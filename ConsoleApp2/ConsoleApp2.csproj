@@ -419,6 +419,8 @@
     <Compile Include="Exceptions\CustomExceptionFilter.cs" />
     <Compile Include="Exceptions\InterfaceErrorCodes.cs" />
     <Compile Include="Model\Bom.cs" />
+    <Compile Include="Model\ItemSearchRequestDTO.cs" />
+    <Compile Include="Model\MyFilter.cs" />
     <Compile Include="Model\FileAssocDTO.cs" />
     <Compile Include="Model\ExcelErrorData.cs" />
     <Compile Include="Model\IdDTO.cs" />

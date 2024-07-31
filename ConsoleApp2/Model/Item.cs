@@ -48,5 +48,10 @@ namespace ConsoleApp2.Model
 			MasterId = masterId;
 			PropInstDTOs = propInstDTOs;
 		}
+		public Item(Autodesk.Connectivity.WebServices.Item vaultItem) { 
+			this.Name = vaultItem.ItemNum;
+			this.Id = vaultItem.Id;
+			this.MasterId = vaultItem.MasterId;
+		}
 	}
 }
