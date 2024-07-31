@@ -40,7 +40,6 @@ namespace ConsoleApp2.Model
 		private ItemDTO()
 		{
 			Console.WriteLine("Creating ItemDTO with default ctor");
-			m_ItemRequestDTO = new ItemRequestDTO(new ItemRequestDTO(new IdDTO()));
 			Console.WriteLine("Returning from ItemDto default ctor");
 		}
 		public class ItemRequestDTO {
