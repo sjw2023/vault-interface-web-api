@@ -220,19 +220,18 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 	public T GetByDate(string date = null, VDF.Vault.Currency.Connections.Connection connection = null)
 	{
 		SrchCond[] srchConds = null;
+		SrchCond temp = new SrchCond();
 		if(date != null)
 		{
 			Console.WriteLine("date not null");
+			temp.PropTyp = 0;
+			temp.SrchOper = 7;
+			temp.SrchRule = SearchRuleType.May;
+			temp.SrchTxt = date;
+			temp.PropDefId = 25;
 			srchConds = new SrchCond[]
             		{
-            			new SrchCond()
-            			{
-            				PropDefId = 25,
-            				PropTyp = 0,
-            				SrchRule = SearchRuleType.May,
-            				SrchOper = 7,
-            				SrchTxt = date,
-            			} 	
+			            temp
             		};
 		}
 		string bookmark = null;
