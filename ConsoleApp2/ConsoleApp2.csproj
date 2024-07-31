@@ -63,58 +63,73 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autodesk.Connectivity.Explorer.Extensibility">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.Extensibility.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.Explorer.ExtensibilityTools">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.ExtensibilityTools.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.ExtensibilityTools.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.Extensibility.Framework">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Extensibility.Framework.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Extensibility.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.IDServicesWrapper">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.IDServicesWrapper.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.IDServicesWrapper.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.JobProcessor.Extensibility">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.JobProcessor.Extensibility.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.JobProcessor.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.LicenseWrapper">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.LicenseWrapper.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.LicenseWrapper.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.WebServices">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.WebServices.WCF">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.WCF.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.WCF.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Forms">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Forms.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Vault">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Vault.Forms">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.Forms.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Server.Extensibility">
-      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Server.Extensibility.dll</HintPath>
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Server.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.102.2.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.102.2\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Data.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v21.1.Core">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Office.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Office.v21.1.Core, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Office.v21.1.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Pdf.v21.1.Core">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Pdf.v21.1.Core.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Pdf.v21.1.Core, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Pdf.v21.1.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Pdf.v21.1.Drawing">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Pdf.v21.1.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Pdf.v21.1.Drawing, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Pdf.v21.1.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v21.1.Core">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Printing.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Printing.v21.1.Core, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -126,21 +141,42 @@
     <Reference Include="DevExpress.Sparkline.v21.1.Core">
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Sparkline.v21.1.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Utils.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Utils.v21.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Utils.v21.1, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Utils.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraBars.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraBars.v21.1, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraBars.v21.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraEditors.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraEditors.v21.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraEditors.v21.1, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraEditors.v21.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraGrid.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraGrid.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraLayout.v21.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraLayout.v21.1, Version=21.1.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraLayout.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraPrinting.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v21.1">
+      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\DevExpress.XtraTreeList.v21.1.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>

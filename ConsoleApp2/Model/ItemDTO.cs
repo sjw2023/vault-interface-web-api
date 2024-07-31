@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsoleApp2.Model
 {
@@ -44,21 +45,32 @@ namespace ConsoleApp2.Model
 			_itemRequestDTO = new ItemRequestDTO(new ItemRequestDTO(new IdDTO()));
 			Console.WriteLine("Returning from ItemDto default ctor");
 		}
-		public class ItemRequestDTO { 
+		public class ItemRequestDTO {
 			public ItemRequestDTO(ItemRequestDTO itemRequestDTO) { 
 				Console.WriteLine("Creating ItemRequest with copy ctor");
 				//m_IdDTO = new IdDTO( itemRequestDTO.m_IdDTO );
 				m_IdDTO = itemRequestDTO.m_IdDTO;
 				Console.WriteLine("Returning from ItemRequestDTO copy ctor");
 			}
-			public ItemRequestDTO(IdDTO idDTO) { 
+
+			public ItemRequestDTO(IdDTO idDTO)
+			{
 				Console.WriteLine("Creating ItemRequest dto with idDTO");
 				//m_IdDTO = new IdDTO(idDTO);
 				m_IdDTO = idDTO;
 				Console.WriteLine("Returning ItemRequest dto with idDTO");
 			}
-			private IdDTO m_idDTO;
+
+			public ItemRequestDTO(IdDTO mIdDto = null, string date = null)
+			{
+				m_idDTO = mIdDto ?? throw new ArgumentNullException(nameof(mIdDto));
+				Date = date ?? throw new ArgumentNullException(nameof(date));
+			}
+
+			private IdDTO m_idDTO { get; set; }
 			public IdDTO m_IdDTO { get { return m_idDTO; } set { m_idDTO = value; } }
+			//TODO : Add validation of data
+			public string Date { get; set; }
 		}
 
 		public class ItemResponseDTO {

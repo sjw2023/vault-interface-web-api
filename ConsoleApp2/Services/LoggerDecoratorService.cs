@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace ConsoleApp2.Results
 {
@@ -73,6 +74,13 @@ namespace ConsoleApp2.Results
 		{
 			Log("Getting entity by srch cond");
 			var entity = _decoratedItem.GetBySchCond(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus, connection);
+			Log("Entity found : {0}", entity);
+			return entity;
+		}
+		public T GetByDate(string date, Connection connection)
+		{
+			Log("Getting entity by date");
+			var entity = _decoratedItem.GetByDate(date, connection);
 			Log("Entity found : {0}", entity);
 			return entity;
 		}

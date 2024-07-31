@@ -7,10 +7,11 @@ using VaultItem = Autodesk.Connectivity.WebServices.Item;
 using VDF = Autodesk.DataManagement.Client.Framework;
 using Autodesk.Connectivity.WebServices;
 using ConsoleApp2.Util;
-using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
 using System.Runtime.Remoting.Messaging;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using Connection = Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections.Connection;
 
 
 [CustomExceptionFilter]
@@ -215,5 +216,27 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 			itemsToRet.Add(new MyItem(item));
 		}
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
+	}
+
+	public T GetByDate(string date = null, VDF.Vault.Currency.Connections.Connection connection = null)
+	{
+		SrchCond[] srchConds = null;
+		if(date != null)
+		{
+			srchConds = new SrchCond[]
+            		{
+            			new SrchCond()
+            			{
+            				PropDefId = 25,
+            				PropTyp = 0,
+            				SrchRule = SearchRuleType.May,
+            				SrchOper = 7,
+            				SrchTxt = date,
+            			} 	
+            		};
+		}
+		string bookmark = null;
+		SrchStatus srchStatus = null;
+		return GetBySchCond(srchConds, null, true, ref bookmark, out srchStatus, connection);
 	}
 }

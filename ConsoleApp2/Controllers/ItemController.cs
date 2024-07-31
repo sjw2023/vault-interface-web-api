@@ -124,5 +124,12 @@ namespace ConsoleApp2.Controllers
 			return Ok(json);
 		}
 
+		[HttpGet]
+		[Route("/date")]
+		public IHttpActionResult GetByDate([FromBody] ItemDTO itemDto)
+		{
+			var json = JToken.FromObject(_itemService.GetByName( itemDto.m_ItemRequestDTO.Date, null ));
+			return Ok(json);	
+		}
 	}
 }
