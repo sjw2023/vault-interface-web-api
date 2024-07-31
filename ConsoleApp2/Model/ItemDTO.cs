@@ -80,11 +80,9 @@ namespace ConsoleApp2.Model
 			{
 			}
 			
-			[JsonPropertyName("IdDTO")]
 			public IdDTO m_IdDTO { get; set; }
 			
 			//TODO : Add validation of data
-			[JsonPropertyName("Date")]
 			public string Date { get; set; }
 		}
 
