@@ -1,13 +1,7 @@
 ﻿using Autodesk.Connectivity.WebServices;
-using Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities;
-using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static DevExpress.XtraPrinting.Native.ExportOptionsPropertiesNames;
 using VaultItem = Autodesk.Connectivity.WebServices.Item;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
@@ -32,6 +26,7 @@ namespace ConsoleApp2.Util
 			}
 			return items;
 		}
+		
 		/// <summary>
 		/// helper method
 		/// </summary>

@@ -99,8 +99,8 @@ namespace ConsoleApp2.Controllers
 		//	return Ok();
 		//}
 		[HttpPost]
-		[Route("name/")]
-		public HttpResponseMessage GetByName([FromUri] string name)
+		[Route("name/{name}")]
+		public HttpResponseMessage GetByName(string name)
 		{
 			var json = JToken.FromObject(_itemService.GetByName(name, null));
 			return new HttpResponseMessage
@@ -124,11 +124,11 @@ namespace ConsoleApp2.Controllers
 			return Ok(json);
 		}
 
-		[HttpGet]
-		[Route("/date")]
+		[HttpPost]
+		[Route("created")]
 		public IHttpActionResult GetByDate([FromBody] ItemDTO itemDto)
 		{
-			var json = JToken.FromObject(_itemService.GetByName( itemDto.m_ItemRequestDTO.Date, null ));
+			var json = JToken.FromObject(_itemService.GetByDate( itemDto.m_ItemRequestDTO.Date, null ));
 			return Ok(json);	
 		}
 	}

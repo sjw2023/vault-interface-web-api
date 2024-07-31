@@ -210,7 +210,6 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 	{
 		var items = connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus);
 		Console.WriteLine("GetBySchCond : " + searchstatus.TotalHits);
-	
 		List<MyItem> itemsToRet = new List<MyItem>();
 		foreach (var item in items) { 
 			itemsToRet.Add(new MyItem(item));
@@ -223,6 +222,7 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		SrchCond[] srchConds = null;
 		if(date != null)
 		{
+			Console.WriteLine("date not null");
 			srchConds = new SrchCond[]
             		{
             			new SrchCond()

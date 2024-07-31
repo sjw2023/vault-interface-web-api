@@ -13,36 +13,34 @@ namespace ConsoleApp2.Model
 	public class ItemDTO
 	{
 
-		private ItemRequestDTO _itemRequestDTO;
-		public ItemRequestDTO m_ItemRequestDTO { get { return _itemRequestDTO; } set { _itemRequestDTO = value; } }
-		private ItemResponseDTO _itemResponseDTO;
-		public ItemResponseDTO m_ItemResponseDTO { get { return _itemResponseDTO; } set { _itemResponseDTO = value; } }
+		public ItemRequestDTO m_ItemRequestDTO { get; set; }
+		public ItemResponseDTO m_ItemResponseDTO { get; set; }
 
 		public ItemDTO(ItemResponseDTO itemResponseDTO) { 
 			Console.WriteLine("Creating ItemDTo with resps");
-			_itemResponseDTO = new ItemResponseDTO(itemResponseDTO.ItemDTOs, itemResponseDTO.BomDTOs);
+			m_ItemResponseDTO = new ItemResponseDTO(itemResponseDTO.ItemDTOs, itemResponseDTO.BomDTOs);
 			Console.WriteLine("Returning from ItemDTO with resps");
 		}
 		public ItemDTO(ItemRequestDTO itemRequestDTO) { 
 			Console.WriteLine("Creating ItemDTO with req");
-			_itemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO);
+			m_ItemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO, itemRequestDTO.Date);
 			Console.WriteLine("Returning from ItemDTo with req");
 		}
 		public ItemDTO(ItemRequestDTO itemRequestDTO, ItemResponseDTO itemResponseDTO) { 
 			Console.WriteLine("Creating ItemDto with res, req");
-			_itemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO);
-			_itemResponseDTO = new ItemResponseDTO(itemResponseDTO.BomDTOs);
+			m_ItemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO);
+			m_ItemResponseDTO = new ItemResponseDTO(itemResponseDTO.BomDTOs);
 		}
 		public ItemDTO(ItemDTO itemDTO) { 
 			Console.WriteLine("Creating ItemDto with Copy ctor");
-			_itemRequestDTO = itemDTO.m_ItemRequestDTO;
+			m_ItemRequestDTO = itemDTO.m_ItemRequestDTO;
 			Console.WriteLine("Returning from ItemDto Copy ctor");
 			//_itemResponseDTO = itemDTO.m_ItemResponseDTO;
 		}
 		private ItemDTO()
 		{
 			Console.WriteLine("Creating ItemDTO with default cons");
-			_itemRequestDTO = new ItemRequestDTO(new ItemRequestDTO(new IdDTO()));
+			m_ItemRequestDTO = new ItemRequestDTO(new ItemRequestDTO(new IdDTO()));
 			Console.WriteLine("Returning from ItemDto default ctor");
 		}
 		public class ItemRequestDTO {
@@ -50,6 +48,7 @@ namespace ConsoleApp2.Model
 				Console.WriteLine("Creating ItemRequest with copy ctor");
 				//m_IdDTO = new IdDTO( itemRequestDTO.m_IdDTO );
 				m_IdDTO = itemRequestDTO.m_IdDTO;
+				Date = itemRequestDTO.Date;
 				Console.WriteLine("Returning from ItemRequestDTO copy ctor");
 			}
 
@@ -60,6 +59,13 @@ namespace ConsoleApp2.Model
 				m_IdDTO = idDTO;
 				Console.WriteLine("Returning ItemRequest dto with idDTO");
 			}
+			public ItemRequestDTO(string date)
+			{
+				Console.WriteLine("Creating ItemRequest dto with date");
+				//m_IdDTO = new IdDTO(idDTO);
+				Date = date;
+				Console.WriteLine("Returning ItemRequest dto with date");
+			}
 
 			public ItemRequestDTO(IdDTO mIdDto = null, string date = null)
 			{
@@ -68,8 +74,10 @@ namespace ConsoleApp2.Model
 			}
 
 			private IdDTO m_idDTO { get; set; }
+			[JsonPropertyName("m_IdDTO")]
 			public IdDTO m_IdDTO { get { return m_idDTO; } set { m_idDTO = value; } }
 			//TODO : Add validation of data
+			[JsonPropertyName("Date")]
 			public string Date { get; set; }
 		}
 
