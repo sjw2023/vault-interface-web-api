@@ -17,8 +17,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc0e5552f9a84946a87cac365be8442d6edc0/77/a1c0efd8/FromUriAttribute.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b5a5f023a523a581a454531cb22c6bc8cadf2ffb8917b935a87d2e438e902/JToken.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/43/bc697d3c/SrchCond.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -80,7 +79,7 @@
       <updated>1722298781374</updated>
       <workItem from="1722298782616" duration="1409000" />
       <workItem from="1722403706543" duration="1299000" />
-      <workItem from="1722418799653" duration="1321000" />
+      <workItem from="1722418799653" duration="1856000" />
     </task>
     <servers />
   </component>

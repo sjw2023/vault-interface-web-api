@@ -224,7 +224,7 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		if(date != null)
 		{
 			Console.WriteLine("date not null");
-			temp.PropTyp = 0;
+			temp.PropTyp = PropertySearchType.SingleProperty;
 			temp.SrchOper = 7;
 			temp.SrchRule = SearchRuleType.May;
 			temp.SrchTxt = date;
