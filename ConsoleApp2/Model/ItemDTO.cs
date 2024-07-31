@@ -16,27 +16,27 @@ namespace ConsoleApp2.Model
 		public ItemRequestDTO m_ItemRequestDTO { get; set; }
 		public ItemResponseDTO m_ItemResponseDTO { get; set; }
 
-		public ItemDTO(ItemResponseDTO itemResponseDTO) { 
-			Console.WriteLine("Creating ItemDTo with resps");
-			m_ItemResponseDTO = new ItemResponseDTO(itemResponseDTO.ItemDTOs, itemResponseDTO.BomDTOs);
-			Console.WriteLine("Returning from ItemDTO with resps");
+		// public ItemDTO(ItemResponseDTO itemResponseDTO) { 
+		// 	Console.WriteLine("Creating ItemDTo with resps");
+		// 	m_ItemResponseDTO = new ItemResponseDTO(itemResponseDTO.ItemDTOs, itemResponseDTO.BomDTOs);
+		// 	Console.WriteLine("Returning from ItemDTO with resps");
+		// }
+		// public ItemDTO(ItemRequestDTO itemRequestDTO) { 
+		// 	Console.WriteLine("Creating ItemDTO with req");
+		// 	m_ItemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO, itemRequestDTO.Date);
+		// 	Console.WriteLine("Returning from ItemDTo with req");
+		// }
+		public ItemDTO(ItemRequestDTO mItemRequestDto = null, ItemResponseDTO mItemResponseDto = null)
+		{
+			m_ItemRequestDTO = mItemRequestDto ?? throw new ArgumentNullException(nameof(mItemRequestDto));
+			m_ItemResponseDTO = mItemResponseDto ?? throw new ArgumentNullException(nameof(mItemResponseDto));
 		}
-		public ItemDTO(ItemRequestDTO itemRequestDTO) { 
-			Console.WriteLine("Creating ItemDTO with req");
-			m_ItemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO, itemRequestDTO.Date);
-			Console.WriteLine("Returning from ItemDTo with req");
-		}
-		public ItemDTO(ItemRequestDTO itemRequestDTO, ItemResponseDTO itemResponseDTO) { 
-			Console.WriteLine("Creating ItemDto with res, req");
-			m_ItemRequestDTO = new ItemRequestDTO(itemRequestDTO.m_IdDTO);
-			m_ItemResponseDTO = new ItemResponseDTO(itemResponseDTO.BomDTOs);
-		}
-		public ItemDTO(ItemDTO itemDTO) { 
-			Console.WriteLine("Creating ItemDto with Copy ctor");
-			m_ItemRequestDTO = itemDTO.m_ItemRequestDTO;
-			Console.WriteLine("Returning from ItemDto Copy ctor");
-			//_itemResponseDTO = itemDTO.m_ItemResponseDTO;
-		}
+		// public ItemDTO(ItemDTO itemDTO) { 
+		// 	Console.WriteLine("Creating ItemDto with Copy ctor");
+		// 	m_ItemRequestDTO = itemDTO.m_ItemRequestDTO;
+		// 	Console.WriteLine("Returning from ItemDto Copy ctor");
+		// 	//_itemResponseDTO = itemDTO.m_ItemResponseDTO;
+		// }
 		private ItemDTO()
 		{
 			Console.WriteLine("Creating ItemDTO with default cons");
@@ -44,33 +44,37 @@ namespace ConsoleApp2.Model
 			Console.WriteLine("Returning from ItemDto default ctor");
 		}
 		public class ItemRequestDTO {
-			public ItemRequestDTO(ItemRequestDTO itemRequestDTO) { 
-				Console.WriteLine("Creating ItemRequest with copy ctor");
-				//m_IdDTO = new IdDTO( itemRequestDTO.m_IdDTO );
-				m_IdDTO = itemRequestDTO.m_IdDTO;
-				Date = itemRequestDTO.Date;
-				Console.WriteLine("Returning from ItemRequestDTO copy ctor");
-			}
-
-			public ItemRequestDTO(IdDTO idDTO)
-			{
-				Console.WriteLine("Creating ItemRequest dto with idDTO");
-				//m_IdDTO = new IdDTO(idDTO);
-				m_IdDTO = idDTO;
-				Console.WriteLine("Returning ItemRequest dto with idDTO");
-			}
-			public ItemRequestDTO(string date)
-			{
-				Console.WriteLine("Creating ItemRequest dto with date");
-				//m_IdDTO = new IdDTO(idDTO);
-				Date = date;
-				Console.WriteLine("Returning ItemRequest dto with date");
-			}
+			// public ItemRequestDTO(ItemRequestDTO itemRequestDTO) { 
+			// 	Console.WriteLine("Creating ItemRequest with copy ctor");
+			// 	//m_IdDTO = new IdDTO( itemRequestDTO.m_IdDTO );
+			// 	m_IdDTO = itemRequestDTO.m_IdDTO;
+			// 	Date = itemRequestDTO.Date;
+			// 	Console.WriteLine("Returning from ItemRequestDTO copy ctor");
+			// }
+			//
+			// public ItemRequestDTO(IdDTO idDTO)
+			// {
+			// 	Console.WriteLine("Creating ItemRequest dto with idDTO");
+			// 	//m_IdDTO = new IdDTO(idDTO);
+			// 	m_IdDTO = idDTO;
+			// 	Console.WriteLine("Returning ItemRequest dto with idDTO");
+			// }
+			// public ItemRequestDTO(string date)
+			// {
+			// 	Console.WriteLine("Creating ItemRequest dto with date");
+			// 	//m_IdDTO = new IdDTO(idDTO);
+			// 	Date = date;
+			// 	Console.WriteLine("Returning ItemRequest dto with date");
+			// }
 
 			public ItemRequestDTO(IdDTO mIdDto = null, string date = null)
 			{
 				m_idDTO = mIdDto ?? throw new ArgumentNullException(nameof(mIdDto));
 				Date = date ?? throw new ArgumentNullException(nameof(date));
+			}
+
+			public ItemRequestDTO()
+			{
 			}
 
 			private IdDTO m_idDTO { get; set; }
