@@ -7,11 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/ItemDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/ItemDTO.cs" afterDir="false" />
-    </list>
+    <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +80,7 @@
       <updated>1722298781374</updated>
       <workItem from="1722298782616" duration="1409000" />
       <workItem from="1722403706543" duration="1299000" />
-      <workItem from="1722418799653" duration="294000" />
+      <workItem from="1722418799653" duration="667000" />
     </task>
     <servers />
   </component>

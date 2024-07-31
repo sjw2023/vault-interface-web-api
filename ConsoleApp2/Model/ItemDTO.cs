@@ -51,6 +51,7 @@ namespace ConsoleApp2.Model
 				Date = itemRequestDTO.Date;
 				Console.WriteLine("Returning from ItemRequestDTO copy ctor");
 			}
+			
 			public ItemRequestDTO(IdDTO idDTO)
 			{
 				Console.WriteLine("Creating ItemRequest dto with idDTO");
@@ -58,6 +59,7 @@ namespace ConsoleApp2.Model
 				m_IdDTO = idDTO;
 				Console.WriteLine("Returning ItemRequest dto with idDTO");
 			}
+			
 			public ItemRequestDTO(string date)
 			{
 				Console.WriteLine("Creating ItemRequest dto with date");
@@ -68,17 +70,17 @@ namespace ConsoleApp2.Model
 
 			public ItemRequestDTO(IdDTO mIdDto = null, string date = null)
 			{
-				m_idDTO = mIdDto ?? throw new ArgumentNullException(nameof(mIdDto));
+				m_IdDTO = mIdDto ?? throw new ArgumentNullException(nameof(mIdDto));
 				Date = date ?? throw new ArgumentNullException(nameof(date));
 			}
 
 			public ItemRequestDTO()
 			{
 			}
-
-			private IdDTO m_idDTO { get; set; }
-			[JsonPropertyName("m_IdDTO")]
-			public IdDTO m_IdDTO { get { return m_idDTO; } set { m_idDTO = value; } }
+			
+			[JsonPropertyName("IdDTO")]
+			public IdDTO m_IdDTO { get; set; }
+			
 			//TODO : Add validation of data
 			[JsonPropertyName("Date")]
 			public string Date { get; set; }
