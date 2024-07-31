@@ -42,7 +42,7 @@ namespace ConsoleApp2.Services
 			try
 			{
 				_result = VDF.Vault.Library.ConnectionManager.LogIn(
-						"192.168.10.250", "DTcenter", "DTcenter", "1234"
+						"192.168.10.250", "WSA", "DTcenter", "1234"
 						//"192.168.10.250", "DTcenter", "DTcenter", "1234"
 						//"192.168.10.250", "WSA", "joowon.suh@woosungautocon.com", "R-6qEbT#*nrJLZp"
 						, VDF.Vault.Currency.Connections.AuthenticationFlags.Standard, null);
