@@ -40,6 +40,7 @@ namespace ConsoleApp2.Model
 		private ItemDTO()
 		{
 			Console.WriteLine("Creating ItemDTO with default ctor");
+			m_ItemRequestDTO = new ItemRequestDTO( new IdDTO(), "");
 			Console.WriteLine("Returning from ItemDto default ctor");
 		}
 		public class ItemRequestDTO {
@@ -72,7 +73,7 @@ namespace ConsoleApp2.Model
 				Console.WriteLine("Creating ItemRequestDTO with all arg ctor");
 				m_IdDTO = mIdDto ?? throw new ArgumentNullException(nameof(mIdDto));
 				Date = date ?? throw new ArgumentNullException(nameof(date));
-				Console.WriteLine("Returning from ItemRequestDTO with all arg ctor");
+				Console.WriteLine(" ItemRequestDTO with all arg ctor");
 			}
 
 			public ItemRequestDTO()
