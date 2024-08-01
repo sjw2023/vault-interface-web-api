@@ -217,25 +217,22 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
 	}
 
-	public T GetByDate(string date = null, VDF.Vault.Currency.Connections.Connection connection = null)
+	public T GetByDate(List<string> dates = null, VDF.Vault.Currency.Connections.Connection connection = null)
 	{
-		SrchCond[] srchConds = null;
+		List<SrchCond> srchConds = new List<SrchCond>();
 		SrchCond temp = new SrchCond();
-		if(date != null)
+		if(dates != null)
 		{
-			Console.WriteLine($"Date not null : {date}");
+			Console.WriteLine($"Date not null : {dates}");
 			temp.PropTyp = PropertySearchType.SingleProperty;
 			temp.SrchOper = 7L;
 			temp.SrchRule = SearchRuleType.May;
-			temp.SrchTxt = date;
+			temp.SrchTxt = dates[0];
 			temp.PropDefId = 25L;
-			srchConds = new SrchCond[]
-            		{
-			            temp
-            		};
+			srchConds.Add(temp);
 		}
 		string bookmark = null;
 		SrchStatus srchStatus = null;
-		return GetBySchCond(srchConds, null, true, ref bookmark, out srchStatus, connection);
+		return GetBySchCond(srchConds.ToArray(), null, true, ref bookmark, out srchStatus, connection);
 	}
 }

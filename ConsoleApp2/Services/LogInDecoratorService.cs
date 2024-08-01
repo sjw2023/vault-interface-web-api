@@ -121,10 +121,10 @@ namespace ConsoleApp2.Services
 			LogOut();
 			return entity;
 		}
-		public T GetByDate(string date, VDF.Vault.Currency.Connections.Connection connection)
+		public T GetByDate(List<string> dates, VDF.Vault.Currency.Connections.Connection connection)
 		{
 			LogIn();
-			var entity = _decoratedItem.GetByDate(date, _connection);
+			var entity = _decoratedItem.GetByDate(dates, _connection);
 			LogOut();
 			return entity;
 		}
