@@ -40,7 +40,7 @@ namespace ConsoleApp2.Model
 		private ItemDTO()
 		{
 			Console.WriteLine("Creating ItemDTO with default ctor");
-			m_ItemRequestDTO = new ItemRequestDTO( new IdDTO(), new string(' ',125), new string( ' ', 125));
+			m_ItemRequestDTO = new ItemRequestDTO( new IdDTO(), new string(' ',125));
 			Console.WriteLine("Returning from ItemDto default ctor");
 		}
 		public class ItemRequestDTO {
@@ -48,8 +48,7 @@ namespace ConsoleApp2.Model
 				Console.WriteLine("Creating ItemRequest with copy ctor");
 				//m_IdDTO = new IdDTO( itemRequestDTO.m_IdDTO );
 				m_IdDTO = itemRequestDTO.m_IdDTO;
-				createdDate = itemRequestDTO.createdDate;
-				modifiedDate = itemRequestDTO.modifiedDate;
+				Date = itemRequestDTO.Date;
 				Console.WriteLine("Returning from ItemRequestDTO copy ctor");
 			}
 			
@@ -61,21 +60,19 @@ namespace ConsoleApp2.Model
 				Console.WriteLine("Returning ItemRequest dto with idDTO");
 			}
 			
-			public ItemRequestDTO(string crtDate, string modDate)
+			public ItemRequestDTO(string date)
 			{
 				Console.WriteLine("Creating ItemRequest dto with date");
 				//m_IdDTO = new IdDTO(idDTO);
-				createdDate = createdDate;
-				modifiedDate = modifiedDate;
+				Date = date;
 				Console.WriteLine("Returning ItemRequest dto with date");
 			}
 
-			public ItemRequestDTO(IdDTO mIdDto = null, string date = null, string modDate = null)
+			public ItemRequestDTO(IdDTO mIdDto = null, string date = null)
 			{
 				Console.WriteLine("Creating ItemRequestDTO with all arg ctor");
 				m_IdDTO = mIdDto ?? throw new ArgumentNullException(nameof(mIdDto));
-				createdDate = date ?? throw new ArgumentNullException(nameof(date));
-				modifiedDate = modDate ?? throw new ArgumentNullException(nameof(modDate));
+				Date = date ?? throw new ArgumentNullException(nameof(date));
 				Console.WriteLine(" ItemRequestDTO with all arg ctor");
 			}
 
@@ -85,8 +82,7 @@ namespace ConsoleApp2.Model
 			
 			public IdDTO m_IdDTO { get; set; }
 			//TODO : Add validation of data
-			public string createdDate { get; set; }
-			public string modifiedDate { get; set; }
+			public string Date { get; set; }
 		}
 
 		public class ItemResponseDTO {

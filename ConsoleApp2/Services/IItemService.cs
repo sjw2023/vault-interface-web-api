@@ -16,6 +16,6 @@ namespace ConsoleApp2.Services
 			ref string bookmark,
 			out SrchStatus searchstatus,
 			VDF.Vault.Currency.Connections.Connection connection);
-		T GetByDate(List<string> dates, Connection connection);
+		T GetByDate(string date, Connection connection);
 	}
 }

@@ -118,19 +118,15 @@ namespace ConsoleApp2.Controllers
 			string bookmark = null;
 			SrchStatus searchstatus = null;
 			//?LatestReleasedOnly=true&SearchCond=Name%3D%27%25%27&SearchSort=Name%20ASC
-			Console.WriteLine(itemSearchRequestDTO.SrchCond);
-			Console.WriteLine(itemSearchRequestDTO.SrchSort);
-			Console.WriteLine(itemSearchRequestDTO.LatestReleasedOnly);
 			var json = JToken.FromObject(_itemService.GetBySchCond( itemSearchRequestDTO.SrchCond, itemSearchRequestDTO.SrchSort, itemSearchRequestDTO.LatestReleasedOnly, ref bookmark, out searchstatus, null));
 			return Ok(json);
 		}
 
 		[HttpPost]
-		[Route("created")]
+		[Route("createdOrModified")]
 		public IHttpActionResult GetByDate([FromBody] ItemDTO itemDto)
 		{
-			Console.WriteLine($"Item modified date : {itemDto.m_ItemRequestDTO.modifiedDate}");
-			var json = JToken.FromObject(_itemService.GetByDate( new List<string>() {itemDto.m_ItemRequestDTO.createdDate, itemDto.m_ItemRequestDTO.modifiedDate}, null ));
+			var json = JToken.FromObject(_itemService.GetByDate( itemDto.m_ItemRequestDTO.Date, null ));
 			return Ok(json);	
 		}
 	}

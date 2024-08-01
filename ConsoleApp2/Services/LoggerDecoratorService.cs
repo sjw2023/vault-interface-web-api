@@ -77,10 +77,10 @@ namespace ConsoleApp2.Results
 			Log("Entity found : {0}", entity);
 			return entity;
 		}
-		public T GetByDate(List<string> dates, Connection connection)
+		public T GetByDate(string date, Connection connection)
 		{
 			Log("Getting entity by date");
-			var entity = _decoratedItem.GetByDate(dates, connection);
+			var entity = _decoratedItem.GetByDate(date, connection);
 			Log("Entity found : {0}", entity);
 			return entity;
 		}

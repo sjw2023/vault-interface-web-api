@@ -9,19 +9,17 @@ using Autodesk.Connectivity.WebServices;
 using ConsoleApp2.Util;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
-using System.Runtime.Remoting.Messaging;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Connection = Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections.Connection;
 
 
 [CustomExceptionFilter]
-public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO 
+public class ItemService<T> : IItemService<T> where T : ItemDTO 
 {
 	private string _entityClassId = VDF.Vault.Currency.Entities.EntityClassIds.Items;
 	private Cat[] _categories;
 	private HelperMethod _helperMethod = new HelperMethod();
 
-	public void Add(T entity, VDF.Vault.Currency.Connections.Connection connection)
+	public void Add(T entity, Connection connection)
 	{
 		throw new NotImplementedException();
 		long catId = GetCategoryIdByName("ITEM", connection);
@@ -58,7 +56,7 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		item.RevNum = "A";
 
 
-		///set BOM information
+		// set BOM information
 		ItemAssocParam[] itemAssocParams = new ItemAssocParam[1];
 		itemAssocParams[0] = new ItemAssocParam();
 		//itemAssocParams[0].BOMOrder = newest;
@@ -87,7 +85,7 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 	/// <param name="entityClassId"></param>
 	/// <param name="connection"></param>
 	/// <returns></returns>
-	private long GetCategoryIdByName(string entityClassId, VDF.Vault.Currency.Connections.Connection connection)
+	private long GetCategoryIdByName(string entityClassId, Connection connection)
 	{
 		if (_categories == null) { 
 			_categories = connection.WebServiceManager.CategoryService.GetCategoriesByEntityClassId(entityClassId, true);
@@ -102,38 +100,41 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 		return catId;
 	}
 
-	public void Delete(T entity, VDF.Vault.Currency.Connections.Connection connection)
+	public void Delete(T entity, Connection connection)
 	{
 		throw new NotImplementedException();
 	}
 
-	public void Update(T entity, VDF.Vault.Currency.Connections.Connection connection)
+	public void Update(T entity, Connection connection)
 	{
 		throw new NotImplementedException();
-		//ItemRevision itemRevision = connection.WebServiceManager.ItemService.GetItemsByFileIds(entity.Id);
-		//itemRevision[0].Name = entity.Name;
-		// change name, detail, comment, itemTypeID, and units
+		/*
+		ItemRevision itemRevision = connection.WebServiceManager.ItemService.GetItemsByFileIds(entity.Id);
+		itemRevision[0].Name = entity.Name;
+		change name, detail, comment, itemTypeID, and units
+		*/
 		connection.WebServiceManager.ItemService.UpdateAndCommitItems(new VaultItem[] {  });
 	}
 
 	/// <summary>
-	/// Delegate to GetALL to fine Item by Id
+	/// Delegate to GetALL to fine Item by id
 	/// </summary>
 	/// <param name="id"></param>
 	/// <param name="connection"></param>
 	/// <returns></returns>
-	public T GetById(long id, VDF.Vault.Currency.Connections.Connection connection)
+	public T GetById(long id, Connection connection)
 	{
-		return GetAll( new long[] { id }, connection);
+		return GetAll( new [] { id }, connection);
 	}
 	
 	/// <summary>
 	/// Get all items and its properties values
 	/// TODO : Refactor this method can get thumbnail
 	/// </summary>
+	/// <param name="ids"></param>
 	/// <param name="connection"></param>
 	/// <returns></returns>
-	public T GetAll(long[] ids, VDF.Vault.Currency.Connections.Connection connection)
+	public T GetAll(long[] ids, Connection connection)
 	{
 		//TODO : create server context and store the Vault Configuration information
 		//ServerCfg serverCfg = connection.WebServiceManager.AdminService.GetServerConfiguration();
@@ -153,7 +154,6 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 						select item.MasterId;
 		var itemIds = from item in items
 					  select item.Id;
-		List<ItemFileAssoc> itemFileAssocs = new List<ItemFileAssoc>();
 		ItemFileAssoc[] itemFileAssoc = connection.WebServiceManager.ItemService.GetItemFileAssociationsByItemIds(itemIds.ToArray(), ItemFileLnkTypOpt.Primary);
 		List<PropInstDTO> properties = new List<PropInstDTO>();
 		if (!isAll) {
@@ -176,16 +176,16 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 			itemsToRet.Add(itemTmp);
 			}
 			else { 
-			var itemTmp = new ConsoleApp2.Model.Item
-					{
-						Id = item.Id,
-						MasterId = item.MasterId,
-						Name = item.ItemNum,
-				//add each files
-				FileAssocDTOs = fileAssocDTOs,
-				PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
-			};
-			itemsToRet.Add(itemTmp);
+				var itemTmp = new ConsoleApp2.Model.Item
+				{
+					Id = item.Id,
+					MasterId = item.MasterId,
+					Name = item.ItemNum,
+					//add each files
+					FileAssocDTOs = fileAssocDTOs,
+					PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
+				};
+				itemsToRet.Add(itemTmp);
 			}	
 		}
 		Console.WriteLine("GetAll : " + itemsToRet.Count);
@@ -195,7 +195,7 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 	public T GetByName(string name, Connection connection )
 	{
 		var latestItem = connection.WebServiceManager.ItemService.GetLatestItemByItemNumber(name);
-		var properties = _helperMethod.GetPropInst(connection, new long[] { latestItem.MasterId },_entityClassId);
+		var properties = _helperMethod.GetPropInst(connection, new [] { latestItem.MasterId },_entityClassId);
 		var toRet = new ConsoleApp2.Model.Item
 		{
 			Id = latestItem.Id,
@@ -203,36 +203,50 @@ public class ItemService<T> : IItemService<T>, IBaseService<T> where T : ItemDTO
 			Name = latestItem.ItemNum,
 			PropInstDTOs = properties.Where(prop => prop.Id == latestItem.Id).ToList()
 		};
-		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( new ConsoleApp2.Model.Item[] { toRet }));
+		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( new [] { toRet }));
 	}
 
-	public T GetBySchCond(SrchCond [] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchstatus, Connection connection)
+	public T GetBySchCond(SrchCond [] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchStatus, Connection connection)
 	{
-		var items = connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions(srchCond, sortConditions, bRequestLatestOnly, ref bookmark, out searchstatus);
-		Console.WriteLine("GetBySchCond : " + searchstatus.TotalHits);
+		SrchStatus tempStatus = null;
+		List<VaultItem> items = new List<VaultItem>();
+		while (tempStatus == null || tempStatus.TotalHits > items.Count) 
+		{ 
+			items.AddRange(connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions( srchCond, null, true, ref bookmark, out tempStatus));
+			Console.WriteLine("GetBySchCond : " + tempStatus.TotalHits);
+		}
 		List<MyItem> itemsToRet = new List<MyItem>();
 		foreach (var item in items) { 
 			itemsToRet.Add(new MyItem(item));
 		}
+		searchStatus = tempStatus;
 		return (T) new ItemDTO(new ItemDTO.ItemResponseDTO( itemsToRet.ToArray() ));
 	}
 
-	public T GetByDate(List<string> dates = null, VDF.Vault.Currency.Connections.Connection connection = null)
+	public T GetByDate(string date = null, Connection connection = null)
 	{
 		List<SrchCond> srchConds = new List<SrchCond>();
-		SrchCond temp = new SrchCond();
-		if(dates != null)
+		if(date != null)
 		{
-			Console.WriteLine($"Date not null : {dates}");
+			SrchCond temp = new SrchCond();
 			temp.PropTyp = PropertySearchType.SingleProperty;
 			temp.SrchOper = 7L;
 			temp.SrchRule = SearchRuleType.May;
-			temp.SrchTxt = dates[0];
-			temp.PropDefId = 25L;
+			temp.SrchTxt = date;
+			temp.PropDefId = 25;
 			srchConds.Add(temp);
+			
+			SrchCond temp2 = new SrchCond();
+			Console.WriteLine($"{date}");
+			temp2.PropTyp = PropertySearchType.SingleProperty;
+			temp2.SrchOper = 7;
+			temp2.SrchRule = SearchRuleType.May;
+			temp2.SrchTxt = date;
+			temp2.PropDefId = 11;
+			srchConds.Add(temp2);
 		}
 		string bookmark = null;
-		SrchStatus srchStatus = null;
-		return GetBySchCond(srchConds.ToArray(), null, true, ref bookmark, out srchStatus, connection);
+		SrchStatus searchStatus = null;
+		return GetBySchCond(srchConds.ToArray(), null, true, ref bookmark, out searchStatus, connection);
 	}
 }
