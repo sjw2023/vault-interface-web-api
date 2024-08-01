@@ -1,6 +1,7 @@
 ﻿using MyItem = ConsoleApp2.Model.Item;
 using ConsoleApp2.Services;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web.Http;
 using ConsoleApp2.Model;
@@ -128,7 +129,8 @@ namespace ConsoleApp2.Controllers
 		[Route("created")]
 		public IHttpActionResult GetByDate([FromBody] ItemDTO itemDto)
 		{
-			var json = JToken.FromObject(_itemService.GetByDate( itemDto.m_ItemRequestDTO.Date, null ));
+			Console.WriteLine($"Item modified date : {itemDto.m_ItemRequestDTO.modifiedDate}");
+			var json = JToken.FromObject(_itemService.GetByDate( new List<string>() {itemDto.m_ItemRequestDTO.createdDate, itemDto.m_ItemRequestDTO.modifiedDate}, null ));
 			return Ok(json);	
 		}
 	}

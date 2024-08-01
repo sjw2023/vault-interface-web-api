@@ -1,4 +1,5 @@
-﻿using Autodesk.Connectivity.WebServices;
+﻿using System.Collections.Generic;
+using Autodesk.Connectivity.WebServices;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Model;
 using VDF = Autodesk.DataManagement.Client.Framework;
@@ -15,6 +16,6 @@ namespace ConsoleApp2.Services
 			ref string bookmark,
 			out SrchStatus searchstatus,
 			VDF.Vault.Currency.Connections.Connection connection);
-		T GetByDate(string date, Connection connection);
+		T GetByDate(List<string> dates, Connection connection);
 	}
 }
