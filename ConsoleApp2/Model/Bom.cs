@@ -21,21 +21,16 @@
                 }
                 else
                 {
-                    var result = FindBom(child.Children, target);  // 재귀 호출의 반환값을 저장
-                    if (result != null)  // 유효한 값이 반환되면 그것을 반환
+                    var result = FindBom(child.Children, target);
+                    if (result != null)
                         return result;
                 }
             }
-            return null;  // 아무 것도 찾지 못했을 때
+            return null;
         }
         public Bom()
         {
-            this._children = new List<BomNode>();  // null 대신 빈 리스트로 초기화
-        }
-        public Bom(long id, List<BomNode> children)
-        {
-            Id = id;
-            Children = children;
+            this._children = new List<BomNode>();
         }
         public Bom(Bom bom)
         {
@@ -43,7 +38,13 @@
             Id = bom.Id;
             Children = bom.Children;
         }
-    }
+
+        public Bom(long id, List<BomNode> children)
+        {
+            Id = id;
+            Children = children;
+        }
+            }
     public class BomNode
     {
         private long _id;

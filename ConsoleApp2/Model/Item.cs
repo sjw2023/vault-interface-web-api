@@ -2,28 +2,11 @@
 {
     public class Item : IBaseEntity
     {
-        private long _id;
-        public long Id { get { return _id; } set { _id = value; } }
-        private string _name;
-        public string Name { get { return _name; } set { _name = value; } }
-        private long _masterId;
-        public long MasterId
-        {
-            get { return _masterId; }
-            set { _masterId = value; }
-        }
-        private List<FileAssocDTO> _fileAssocDTOs;
-        public List<FileAssocDTO> FileAssocDTOs
-        {
-            get { return _fileAssocDTOs; }
-            set { _fileAssocDTOs = value; }
-        }
-        private List<PropInstDTO> _propInstDTOs;
-        public List<PropInstDTO> PropInstDTOs
-        {
-            get { return _propInstDTOs; }
-            set { _propInstDTOs = value; }
-        }
+        public long Id { get; set;} 
+        public string Name { get; set; }
+        public long MasterId { get; set; }
+        public List<FileAssocDTO> FileAssocDTOs { get; set; } 
+        public List<PropInstDTO> PropInstDTOs { get ; set ; }
         public Item() { }
         public Item(Item item)
         {
@@ -41,6 +24,7 @@
             MasterId = masterId;
             PropInstDTOs = propInstDTOs;
         }
+        // Additional constructor for convinience
         public Item(Autodesk.Connectivity.WebServices.Item vaultItem)
         {
             this.Name = vaultItem.ItemNum;
