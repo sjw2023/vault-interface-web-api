@@ -8,13 +8,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/EntityController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/IBaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Controllers/IBaseController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/ItemDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/ItemDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/PropertyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Controllers/PropertyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/IBaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/IBaseEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/MyFilter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/IBaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/IBaseService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/IItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/IItemService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LogInDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/LogInDecoratorService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LoggerDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/LoggerDecoratorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/Service.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/Service.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Util/ExcelService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Util/ExcelService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,28 +45,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET 프로젝트.ConsoleApp2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat#4&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.maddyhome.idea.vim.ui.VimEmulationConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET 프로젝트.ConsoleApp2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "refacto#6",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\sjw20\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\sjw20\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\sjw20\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\sjw20\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\sjw20\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\sjw20\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ConsoleApp2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
