@@ -22,24 +22,9 @@ namespace ConsoleApp2.Util
 			string bookmark = null;
 			SrchStatus status = null;
 			
-			// Remove . test purpose
-			List<SrchCond> searchConditions = new List<SrchCond>();
-			SrchCond srchCond = new SrchCond();
-			srchCond.PropDefId = 47;
-			srchCond.SrchOper = 3;
-			srchCond.SrchRule = SearchRuleType.Must;
-			srchCond.PropTyp = PropertySearchType.SingleProperty;
-
-			
-			
 			while (status == null || status.TotalHits > items.Count)
 			{
 				items.AddRange(connection.WebServiceManager.ItemService.FindItemRevisionsBySearchConditions(null, null, true, ref bookmark, out status));
-			}
-
-			foreach (var item in items)
-			{
-				Console.WriteLine($"{item.ItemNum}");
 			}
 			Console.WriteLine($"{status.TotalHits}");
 			return items;
