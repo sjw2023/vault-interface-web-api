@@ -9,7 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
