@@ -1,14 +1,12 @@
-﻿namespace ConsoleApp2.Model
+﻿using System;
+using System.Collections.Generic;
+
+namespace ConsoleApp2.Model
 {
     public class Bom : IBaseEntity
     {
         public long Id { get; set; }
-        private List<BomNode> _children;
-        public List<BomNode> Children
-        {
-            get { return _children; }
-            set { _children = value; }
-        }
+        public List<BomNode> Children { get ; set ; }
         public BomNode FindBom(List<BomNode> nodes, long target)
         {
             if (nodes == null)
@@ -30,41 +28,34 @@
         }
         public Bom()
         {
-            this._children = new List<BomNode>();
+            this.Children = new List<BomNode>();
         }
         public Bom(Bom bom)
         {
             Console.WriteLine("Creating Bom with copy ctor");
-            Id = bom.Id;
-            Children = bom.Children;
+            this.Id = bom.Id;
+            this.Children = bom.Children;
         }
 
         public Bom(long id, List<BomNode> children)
         {
-            Id = id;
-            Children = children;
+            this.Id = id;
+            this.Children = children;
         }
-            }
+    }
     public class BomNode
     {
-        private long _id;
-        public long Id { get { return _id; } set { _id = value; } }
-        private double _quantity;
-        public double Quantity { get { return _quantity; } set { _quantity = value; } }
-        private List<BomNode> _children;
-        public List<BomNode> Children
-        {
-            get { return _children; }
-            set { _children = value; }
-        }
+        public long Id { get ; set ; }
+        public double Quantity { get ; set ; }
+        public List<BomNode> Children { get ; set ; }
         public BomNode()
         {
-            this._children = new List<BomNode>();
+            this.Children = new List<BomNode>();
         }
         public BomNode(long id)
         {
-            this._id = id;
-            this._children = new List<BomNode>();
+            this.Id = id;
+            this.Children = new List<BomNode>();
         }
     }
 }

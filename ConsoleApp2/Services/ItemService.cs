@@ -30,10 +30,10 @@ public class ItemService<T> : IItemService<T> where T : ItemDTO
         foreach (NumSchm numSchm in numSchms)
         {
             if (numSchm.SchmID == 8)
-            {
-                numSchm1 = numSchm;
-            }
+{
+            numSchm1 = numSchm;
         }
+    }
         item.NumSchmId = numSchm1.SchmID;
 
         string[] newItemNum = new string[] { "ItemAddTest" };

@@ -5,6 +5,7 @@ using ConsoleApp2.Model;
 using ConsoleApp2.Results;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using System.Text;
 using Autodesk.Connectivity.WebServices;
 
 namespace ConsoleApp2.Controllers

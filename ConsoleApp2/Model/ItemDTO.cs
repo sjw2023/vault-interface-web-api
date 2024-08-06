@@ -12,14 +12,13 @@ namespace ConsoleApp2.Model
 {
 	public class ItemDTO
 	{
-
+    // TODO : Replace mapper to factory pattern.
 		public ItemRequestDTO m_ItemRequestDTO { get; set; }
 		public ItemResponseDTO m_ItemResponseDTO { get; set; }
 		public ItemDTO(ItemDTO itemDTO) { 
 			Console.WriteLine("Creating ItemDto with Copy ctor");
 			m_ItemRequestDTO = itemDTO.m_ItemRequestDTO;
 			Console.WriteLine("Returning from ItemDto Copy ctor");
-			//_itemResponseDTO = itemDTO.m_ItemResponseDTO;
 		}
 		public ItemDTO(ItemResponseDTO itemResponseDTO) { 
 			Console.WriteLine("Creating ItemDTo with resps");
@@ -105,6 +104,5 @@ namespace ConsoleApp2.Model
 			private Bom[] m_bomDTOs;
 			public Bom[] BomDTOs { get { return m_bomDTOs; } set { m_bomDTOs = value; } }
 		}
-		
 	}
 }
