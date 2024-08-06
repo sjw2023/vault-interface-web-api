@@ -20,14 +20,14 @@
 				var errorMessage = new System.Web.Http.HttpError(combinedDescriptions)
 				{ { "ErrorCode", actionExecutedContext.Exception.Message } };
 				actionExecutedContext.Response =
-					actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+					actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.OK, errorMessage);
 			}
 			if (actionExecutedContext.Exception is InterfaceException) { 
 				var exception = actionExecutedContext.Exception as InterfaceException;
-				var errorMessage = new System.Web.Http.HttpError("Bad Request"){
+				var errorMessage = new System.Web.Http.HttpError("OK"){
 					{ "ErrorCode", exception.ErrorCode },
 					{ "ErrorMessage", exception.ErrorMessage} };
-				actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+				actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.OK, errorMessage);
 			}
 		}
 	}
