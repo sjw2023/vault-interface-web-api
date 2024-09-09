@@ -1,10 +1,11 @@
 ﻿using Autodesk.Connectivity.WebServices;
-using Autodesk.DataManagement.Client.Framework.Internal.ExtensionMethods;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
 using ConsoleApp2.Util;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
 namespace ConsoleApp2.Services
@@ -102,7 +103,7 @@ namespace ConsoleApp2.Services
 
         public T GetById(long id, Connection connection)
         {
-            Bom bom = new Bom();
+            Bom bom = new Bom(true);
             var parentChildRelationships = connection.WebServiceManager.ItemService.GetItemBOMAssociationsByItemIds(new long[] { id }, true);
             if (parentChildRelationships == null)
             {
@@ -119,6 +120,7 @@ namespace ConsoleApp2.Services
                     {
                         Id = relation.CldItemID,
                         Quantity = relation.Quant,
+                        IsHighest = false,
                     });
                     parentChildRelationshipsList.RemoveAt(index);
                 }
@@ -131,6 +133,7 @@ namespace ConsoleApp2.Services
                         {
                             Id = relation.CldItemID,
                             Quantity = relation.Quant,
+                            IsHighest = false,
                         });
                         parentChildRelationshipsList.RemoveAt(index);
                     }

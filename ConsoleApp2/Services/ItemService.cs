@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ConsoleApp2.Services;
 using MyItem = ConsoleApp2.Model.Item;
 using VaultItem = Autodesk.Connectivity.WebServices.Item;

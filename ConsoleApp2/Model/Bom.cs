@@ -7,6 +7,7 @@ namespace ConsoleApp2.Model
     {
         public long Id { get; set; }
         public List<BomNode> Children { get ; set ; }
+        public bool IsHighest { get; set; }
         public BomNode FindBom(List<BomNode> nodes, long target)
         {
             if (nodes == null)
@@ -30,6 +31,10 @@ namespace ConsoleApp2.Model
         {
             this.Children = new List<BomNode>();
         }
+        public Bom(bool isHighest) { 
+            this.Children = new List<BomNode>();
+            this.IsHighest = isHighest;
+        }
         public Bom(Bom bom)
         {
             Console.WriteLine("Creating Bom with copy ctor");
@@ -37,7 +42,7 @@ namespace ConsoleApp2.Model
             this.Children = bom.Children;
         }
 
-        public Bom(long id, List<BomNode> children)
+        public Bom(long id, List<BomNode> children, bool isHighest)
         {
             this.Id = id;
             this.Children = children;
@@ -48,6 +53,8 @@ namespace ConsoleApp2.Model
         public long Id { get ; set ; }
         public double Quantity { get ; set ; }
         public List<BomNode> Children { get ; set ; }
+        public bool IsHighest { get; set; }
+
         public BomNode()
         {
             this.Children = new List<BomNode>();

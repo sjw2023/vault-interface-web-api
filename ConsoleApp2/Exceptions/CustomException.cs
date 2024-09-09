@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace ConsoleApp2.Exceptions
 {
     public class CustomException : Exception

@@ -8,16 +8,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/PropertyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Controllers/PropertyController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomApiControllerActionInvoker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomApiControllerActionInvoker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/InterfaceErrorCodes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Exceptions/InterfaceErrorCodes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/InterfaceException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Exceptions/InterfaceException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Bom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/Bom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/IdDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/IdDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/ItemDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/ItemDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Property.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/Property.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LogInDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/LogInDecoratorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LoggerDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/LoggerDecoratorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/Service.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/Service.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Util/ExcelService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Util/ExcelService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +61,6 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/joowon/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
-      "/Users/joowon/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
-      "/Users/joowon/Library/Application Support/Symbols/src"
-    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -93,6 +95,8 @@
       <workItem from="1722403706543" duration="1299000" />
       <workItem from="1722418799653" duration="2657000" />
       <workItem from="1722903363682" duration="1404000" />
+      <workItem from="1723597601003" duration="2156000" />
+      <workItem from="1724397705846" duration="1310000" />
     </task>
     <servers />
   </component>
@@ -101,6 +105,7 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
 </project>

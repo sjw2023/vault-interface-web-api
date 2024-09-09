@@ -1,4 +1,7 @@
-﻿namespace ConsoleApp2.Exceptions
+﻿using System.Linq;
+using System.Net;
+
+namespace ConsoleApp2.Exceptions
 {
     using Autodesk.Connectivity.WebServices;
     using System.Net.Http;
@@ -23,7 +26,7 @@
                 var errorMessage = new System.Web.Http.HttpError("Bad Request"){
                     { "ErrorCode", exception.ErrorCode },
                     { "ErrorMessage", exception.ErrorMessage} };
-                actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, errorMessage);
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.OK, errorMessage);
             }
         }
     }

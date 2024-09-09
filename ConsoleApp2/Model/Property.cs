@@ -1,4 +1,7 @@
-﻿namespace ConsoleApp2.Model
+﻿using System;
+using System.Collections.Generic;
+
+namespace ConsoleApp2.Model
 {
     public class Property : IBaseEntity
     {

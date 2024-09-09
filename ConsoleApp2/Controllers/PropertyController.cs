@@ -1,8 +1,10 @@
-﻿using ConsoleApp2.Model;
+﻿using System.Net;
+using ConsoleApp2.Model;
 using ConsoleApp2.Results;
 using ConsoleApp2.Services;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 
 namespace ConsoleApp2.Controllers
@@ -48,8 +50,6 @@ namespace ConsoleApp2.Controllers
             return Ok(json);
         }
 
-using System.Text;
-using System.Threading.Tasks;
 		[HttpGet]
     public HttpResponseMessage GetAll([FromBody] PropertyDTO dto)
     {

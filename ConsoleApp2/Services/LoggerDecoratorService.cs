@@ -1,4 +1,5 @@
-﻿using Autodesk.Connectivity.WebServices;
+﻿using System;
+using Autodesk.Connectivity.WebServices;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Services;
 

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.SelfHost;
-using VDF = Autodesk.DataManagement.Client.Framework;
 using System.Web.Http;
 using Swashbuckle.Application;
 using ConsoleApp2.Exceptions;
-using System.Web.Http.Controllers;
 using ConsoleApp2.Model;
 
 namespace ConsoleApp2

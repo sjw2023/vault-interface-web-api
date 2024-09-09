@@ -1,4 +1,6 @@
-﻿using Autodesk.Connectivity.WebServices;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Autodesk.Connectivity.WebServices;
 using ConsoleApp2.Model;
 using VaultItem = Autodesk.Connectivity.WebServices.Item;
 using VDF = Autodesk.DataManagement.Client.Framework;
