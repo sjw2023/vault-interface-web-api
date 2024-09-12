@@ -1,13 +1,5 @@
-﻿namespace ConsoleApp2.Exceptions
-{
-	using Autodesk.Connectivity.WebServices;
-	using System;
-	using System.Linq;
-	using System.Net;
-	using System.Net.Http;
-	using System.Runtime.Remoting.Messaging;
-	using System.Web.Http.Filters;
-	using System.Web.Services.Description;
+﻿using System.Linq;
+using System.Net;
 
 	public class CustomExceptionFilter : ExceptionFilterAttribute
 	{

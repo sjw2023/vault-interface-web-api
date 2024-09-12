@@ -416,7 +416,6 @@
     <Compile Include="app_start\SwaggerConfig.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
-    <Compile Include="Controllers\EntityController.cs" />
     <Compile Include="Exceptions\InterfaceException.cs" />
     <Compile Include="Exceptions\CustomApiControllerActionInvoker.cs" />
     <Compile Include="Exceptions\CustomException.cs" />
@@ -424,7 +423,6 @@
     <Compile Include="Exceptions\InterfaceErrorCodes.cs" />
     <Compile Include="Model\Bom.cs" />
     <Compile Include="Model\ItemSearchRequestDTO.cs" />
-    <Compile Include="Model\MyFilter.cs" />
     <Compile Include="Model\FileAssocDTO.cs" />
     <Compile Include="Model\ExcelErrorData.cs" />
     <Compile Include="Model\IdDTO.cs" />

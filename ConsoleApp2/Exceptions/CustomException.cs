@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 
 namespace ConsoleApp2.Exceptions
 {
-	public class CustomException : Exception
-	{
-		public virtual int ErrorCode { get; set; }
-		public virtual string ErrorMessage { get; set; } = string.Empty;
-	}
+    public class CustomException : Exception
+    {
+        public virtual int ErrorCode { get; set; }
+        public virtual string ErrorMessage { get; set; } = string.Empty;
+    }
 }
