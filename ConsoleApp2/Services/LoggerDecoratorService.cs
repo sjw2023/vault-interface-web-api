@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Autodesk.Connectivity.WebServices;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using ConsoleApp2.Services;
@@ -79,5 +80,5 @@ namespace ConsoleApp2.Results
             Log("Entity found : {0}", entity);
             return entity;
         }
-    }
+	}
 }

@@ -3,6 +3,8 @@ using Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
 using System;
+using System.CodeDom;
+using System.Collections.Generic;
 
 namespace ConsoleApp2.Services
 {
@@ -66,7 +68,7 @@ namespace ConsoleApp2.Services
 		public void Delete(T entity, Connection connection)
 		{
 			throw new NotImplementedException();
-			connection.WebServiceManager.PropertyService.DeletePropertyDefinitions(new long[] { entity.m_PropertyResponseDTO.m_Property[0].Id });
+			//connection.WebServiceManager.PropertyService.DeletePropertyDefinitions(new long[] { entity.m_PropertyResponseDTO.m_Property[0].Id });
 		}
 
 		public void Update(T entity, Connection connection)
@@ -106,24 +108,25 @@ namespace ConsoleApp2.Services
 
 		public T GetAll(long[] ids, Connection connection)
 		{
-			PropertyDTO toRet = new PropertyDTO();
-			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-			foreach (var entity in conf.EntClassCfgArray)
-			{
-				var temp = connection.PropertyManager.GetPropertyDefinitions(
-				entity.Id,
-				null,
-				PropertyDefinitionFilter.IncludeAll);
-				foreach (var property in temp)
-				{
-					Property property1 = new Property();
-					property1.Id = property.Value.Id;
-					property1.Name = property.Value.DisplayName;
-					property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
-					toRet.m_PropertyResponseDTO.m_Property.Add(property1);
-				}
-			}
-			return (T)toRet;
+			//PropertyDTO toRet = new PropertyDTO();
+			//var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
+			//foreach (var entity in conf.EntClassCfgArray)
+			//{
+			//	var temp = connection.PropertyManager.GetPropertyDefinitions(
+			//	entity.Id,
+			//	null,
+			//	PropertyDefinitionFilter.IncludeAll);
+			//	foreach (var property in temp)
+			//	{
+			//		Property property1 = new Property();
+			//		property1.Id = property.Value.Id;
+			//		property1.Name = property.Value.DisplayName;
+			//		property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
+			//		toRet.m_PropertyResponseDTO.m_Property.Add(property1);
+			//	}
+			//}
+			//return (T)toRet;
+			throw new NotImplementedException();
 		}
 
 		public T GetById(long id, Connection connection)

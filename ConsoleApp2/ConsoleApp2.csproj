@@ -416,30 +416,31 @@
     <Compile Include="app_start\SwaggerConfig.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="dtos\ItremAssocDTO.cs" />
     <Compile Include="Exceptions\InterfaceException.cs" />
     <Compile Include="Exceptions\CustomApiControllerActionInvoker.cs" />
     <Compile Include="Exceptions\CustomException.cs" />
     <Compile Include="Exceptions\CustomExceptionFilter.cs" />
     <Compile Include="Exceptions\InterfaceErrorCodes.cs" />
     <Compile Include="Model\Bom.cs" />
-    <Compile Include="Model\ItemSearchRequestDTO.cs" />
-    <Compile Include="Model\FileAssocDTO.cs" />
+    <Compile Include="dtos\BomAfterDateDTO.cs" />
+    <Compile Include="dtos\ItemSearchRequestDTO.cs" />
+    <Compile Include="dtos\FileAssocDTO.cs" />
     <Compile Include="Model\ExcelErrorData.cs" />
-    <Compile Include="Model\IdDTO.cs" />
-    <Compile Include="Model\ItemDTO.cs" />
+    <Compile Include="dtos\IdDTO.cs" />
+    <Compile Include="dtos\ItemDTO.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Model\IBaseEntity.cs" />
     <Compile Include="Model\Item.cs" />
-    <Compile Include="Model\PropertyDTO.cs" />
-    <Compile Include="Model\PropertyRequestDTO.cs" />
-    <Compile Include="Model\PropInstDTO.cs" />
+    <Compile Include="dtos\PropertyDTO.cs" />
+    <Compile Include="dtos\PropertyRequestDTO.cs" />
+    <Compile Include="dtos\PropInstDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Services\BomService.cs" />
     <Compile Include="Services\IItemService.cs" />
     <Compile Include="Services\LoggerDecoratorService.cs" />
-    <Compile Include="Services\Service.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\PropertyService.cs" />
@@ -464,11 +465,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\" />
-    <Folder Include="Resolver\" />
-    <Folder Include="VaultModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

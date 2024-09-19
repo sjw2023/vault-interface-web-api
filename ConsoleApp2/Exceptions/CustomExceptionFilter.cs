@@ -1,7 +1,12 @@
-﻿using System.Linq;
+﻿using Autodesk.Connectivity.WebServices;
+using ConsoleApp2;
+using ConsoleApp2.Exceptions;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Web.Http.Filters;
 
-	public class CustomExceptionFilter : ExceptionFilterAttribute
+public class CustomExceptionFilter : ExceptionFilterAttribute
 	{
 		public override void OnException(HttpActionExecutedContext actionExecutedContext)
 		{
@@ -18,9 +23,10 @@ using System.Net;
 				var exception = actionExecutedContext.Exception as InterfaceException;
 				var errorMessage = new System.Web.Http.HttpError("OK"){
 					{ "ErrorCode", exception.ErrorCode },
-					{ "ErrorMessage", exception.ErrorMessage} };
+					{ "ErrorMessage", exception.ErrorMessage} 
+				};
 				actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.OK, errorMessage);
 			}
 		}
 	}
-}
+

@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Text;
 using Autodesk.Connectivity.WebServices;
+using System.Linq;
 
 namespace ConsoleApp2.Controllers
 {
@@ -97,6 +98,7 @@ namespace ConsoleApp2.Controllers
         //	_bomService.Add(entity, null);
         //	return Ok();
         //}
+
         [HttpPost]
         [Route("name/{name}")]
         public HttpResponseMessage GetByName(string name)
@@ -114,10 +116,9 @@ namespace ConsoleApp2.Controllers
         public IHttpActionResult GetBySrchCond([FromUri] ItemSearchRequestDTO itemSearchRequestDTO)
         {
             string bookmark = null;
-            SrchStatus searchstatus = null;
-            //?LatestReleasedOnly=true&SearchCond=Name%3D%27%25%27&SearchSort=Name%20ASC
-            var json = JToken.FromObject(_itemService.GetBySchCond(itemSearchRequestDTO.SrchCond, itemSearchRequestDTO.SrchSort, itemSearchRequestDTO.LatestReleasedOnly, ref bookmark, out searchstatus, null));
-            return Ok(json);
+			//?LatestReleasedOnly=true&SearchCond=Name%3D%27%25%27&SearchSort=Name%20ASC
+			var json = JToken.FromObject(_itemService.GetBySchCond(itemSearchRequestDTO.SrchCond, itemSearchRequestDTO.SrchSort, itemSearchRequestDTO.LatestReleasedOnly, ref bookmark, out SrchStatus searchstatus, null));
+			return Ok(json);
         }
 
         [HttpPost]
@@ -127,5 +128,16 @@ namespace ConsoleApp2.Controllers
             var json = JToken.FromObject(_itemService.GetByDate(itemDto.m_ItemRequestDTO.Date, null));
             return Ok(json);
         }
+        [HttpPost]
+        [Route("getBomAfterDate")]
+        public IHttpActionResult GetBomAfterDate([FromBody] ItemDTO itemDTO)
+		{
+            var items = _itemService.GetByDate(itemDTO.m_ItemRequestDTO.Date, null);
+			var ids = items.m_ItemResponseDTO.ItemDTOs.Select(item => item.Id).ToArray();
+			var links = _bomService.GetAll(ids.ToArray(), null);
+            items.m_ItemResponseDTO.itemAssocs = links.m_ItemResponseDTO.itemAssocs;
+            var json = JToken.FromObject(items);
+			return Ok(json);
+		}
     }
 }

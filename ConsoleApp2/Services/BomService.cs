@@ -80,34 +80,26 @@ namespace ConsoleApp2.Services
 
         public T GetAll(long[] ids, VDF.Vault.Currency.Connections.Connection connection)
         {
-            ////TODO : Updating _items is not done with this code. Refactor to check items update status.
-            //if (_items == null)
-            //{
-            //	_items = _helperMethod.GetAllItems(connection);
-            //}
-            //List<T> itemsToRet = new List<T>();
-            //var ids = from item in _items
-            //		  select item.Id;
-            //var relations = connection.WebServiceManager.ItemService.GetItemBOMAssociationsByItemIds(ids.ToArray(), true);
-            //foreach (var id in ids) 
-            //{ 
-            //	var children = from relation in relations
-            //				   where relation.ParItemID == id
-            //				   select relation.CldItemID;
-            //	T bomEle= (T)Activator.CreateInstance(typeof(T));
-            //	itemsToRet.Add(bomEle);
-            //}
-            //return itemsToRet;
-            throw new NotImplementedException();
+            long[] temp = ids;
+			if (ids == null)
+			{
+				_items = _helperMethod.GetAllItems(connection);
+				temp = (from item in _items
+						select item.Id).ToArray();
+			}
+			List<T> itemsToRet = new List<T>();
+            var relations = connection.WebServiceManager.ItemService.GetItemBOMAssociationsByItemIds(temp, true);
+            return (T)new ItemDTO((new ItemDTO.ItemResponseDTO(relations)));
         }
 
         public T GetById(long id, Connection connection)
         {
-            Bom bom = new Bom(true);
+            Bom bom = new Bom();
             var parentChildRelationships = connection.WebServiceManager.ItemService.GetItemBOMAssociationsByItemIds(new long[] { id }, true);
             if (parentChildRelationships == null)
             {
-                throw new InterfaceException((int)InterfaceErrorCodes.BOM_OF_ITEM_NOT_EXIST, InterfaceErrorCodes.BOM_OF_ITEM_NOT_EXIST.ToString());
+                //throw new InterfaceException((int)InterfaceErrorCodes.BOM_OF_ITEM_NOT_EXIST, InterfaceErrorCodes.BOM_OF_ITEM_NOT_EXIST.ToString());
+                return (T)new ItemDTO((new ItemDTO.ItemResponseDTO(new Bom[] { bom })));
             }
             List<ItemAssoc> parentChildRelationshipsList = parentChildRelationships.ToList();
             int index = 0;
@@ -147,6 +139,7 @@ namespace ConsoleApp2.Services
             bom.Id = id;
             return (T)new ItemDTO((new ItemDTO.ItemResponseDTO(new Bom[] { bom })));
         }
+        
         public void Update(T entity, Connection connection)
         {
             //ItemAssocParam[] itemAssocParams = new ItemAssocParam[1];

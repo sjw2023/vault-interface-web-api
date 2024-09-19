@@ -18,7 +18,7 @@ namespace ConsoleApp2
 			ErrorInfo = excelService.ReadExcelFile(excelFilePath);
 
 			var config = new HttpSelfHostConfiguration("http://192.168.20.31:8080");
-			
+
 			config.Filters.Add(new CustomExceptionFilter());
 
 			config.EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API")).EnableSwaggerUi();
