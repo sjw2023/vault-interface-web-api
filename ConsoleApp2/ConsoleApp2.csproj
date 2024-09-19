@@ -416,7 +416,7 @@
     <Compile Include="app_start\SwaggerConfig.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\PropertyController.cs" />
-    <Compile Include="dtos\ItremAssocDTO.cs" />
+    <Compile Include="dtos\ItemAssocDTO.cs" />
     <Compile Include="Exceptions\InterfaceException.cs" />
     <Compile Include="Exceptions\CustomApiControllerActionInvoker.cs" />
     <Compile Include="Exceptions\CustomException.cs" />

@@ -135,7 +135,7 @@ namespace ConsoleApp2.Controllers
             var items = _itemService.GetByDate(itemDTO.m_ItemRequestDTO.Date, null);
 			var ids = items.m_ItemResponseDTO.ItemDTOs.Select(item => item.Id).ToArray();
 			var links = _bomService.GetAll(ids.ToArray(), null);
-            items.m_ItemResponseDTO.itemAssocs = links.m_ItemResponseDTO.itemAssocs;
+            items.m_ItemResponseDTO.ItemAssoc = links.m_ItemResponseDTO.ItemAssoc;
             var json = JToken.FromObject(items);
 			return Ok(json);
 		}

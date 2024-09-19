@@ -8,30 +8,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Bom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/Bom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/FileAssocDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/IdDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/ItemDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/ItemSearchRequestDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/PropInstDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/PropertyDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/PropertyRequestDTO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/IBaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/IBaseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LogInDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/LogInDecoratorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LoggerDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/LoggerDecoratorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/PropertyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/PropertyService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/Service.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/ItremAssocDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemAssocDTO.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,21 +37,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET 프로젝트.ConsoleApp2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.and.region&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.ConsoleApp2.executor": "Run",
+    ".NET 프로젝트.ConsoleApp2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "feature",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.language.and.region",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ConsoleApp2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -98,6 +88,7 @@
       <workItem from="1723597601003" duration="2156000" />
       <workItem from="1724397705846" duration="1310000" />
       <workItem from="1726787659893" duration="115000" />
+      <workItem from="1726787809844" duration="1706000" />
     </task>
     <servers />
   </component>

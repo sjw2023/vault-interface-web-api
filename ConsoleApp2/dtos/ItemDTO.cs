@@ -17,7 +17,7 @@ namespace ConsoleApp2.Model
 		public ItemDTO(ItemResponseDTO itemResponseDTO) { 
 			//Console.WriteLine("Creating ItemDTo with resps");
 			m_ItemResponseDTO = new ItemResponseDTO(itemResponseDTO.ItemDTOs, itemResponseDTO.BomDTOs, itemResponseDTO
-				.itemAssocs);
+				.ItemAssoc);
 			//Console.WriteLine("Returning from ItemDTO with resps");
 		}
 		public ItemDTO(ItemRequestDTO itemRequestDTO) { 
@@ -80,11 +80,11 @@ namespace ConsoleApp2.Model
 		}
 
 		public class ItemResponseDTO {
-			public ItemResponseDTO(Item[] itemDTOs, Bom[] boms, ItemAssocDTO[] itemAssocs ) {
+			public ItemResponseDTO(Item[] itemDTOs, Bom[] boms, ItemAssocDTO[] itemAssoc ) {
 				//Console.WriteLine("Creating ItemResp with items, boms");
 				m_itemDTOs = itemDTOs;
 				m_bomDTOs = boms;
-				this.itemAssocs = itemAssocs;
+				this.ItemAssoc = itemAssoc;
 			}
 			public ItemResponseDTO(Item[] itemDTOs) {
 				//Console.WriteLine("Creating ItemResp with items");
@@ -95,13 +95,13 @@ namespace ConsoleApp2.Model
 				m_bomDTOs = bomDTOs;
 			}
 			public ItemResponseDTO(ItemAssoc[] itemAssocs) { 
-				this.itemAssocs = new ItemAssocDTO[itemAssocs.Length];
+				this.ItemAssoc = new ItemAssocDTO[itemAssocs.Length];
 				for (int i = 0; i < itemAssocs.Length; i++)
 				{
-					this.itemAssocs[i] = new ItemAssocDTO(itemAssocs[i]);
+					this.ItemAssoc[i] = new ItemAssocDTO(itemAssocs[i]);
 				}
 			}
-			public ItemAssocDTO[] itemAssocs { get; set; }
+			public ItemAssocDTO[] ItemAssoc { get; set; }
 			private Item[] m_itemDTOs;
 			public Item[] ItemDTOs { get { return m_itemDTOs; } set { m_itemDTOs = value; } }
 			private Bom[] m_bomDTOs;
