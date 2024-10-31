@@ -51,28 +51,29 @@ namespace ConsoleApp2.Util
             foreach (var _ in properties)
             {
                 PropInstDTO instance = new PropInstDTO();
-                instance.Id = _.EntityId;
-                instance.PropDefId = _.PropDefId;
-                var propDef = from propDefInfo in propDefInfos
-                              where propDefInfo.PropDef.Id == _.PropDefId
-                              select propDefInfo;
-                instance.Name = propDef.First().PropDef.SysName;
-                if (_.Val == null)
-                {
-                    instance.Value = "null";
-                }
-                else
-                {
-                    if (instance.Name == "Thumbnail")
-                    {
-                        instance.Value = _.Val;
-                    }
-                    else
-                    {
-                        instance.Value = _.Val.ToString();
-                    }
-                }
-                ret.Add(instance);
+                                instance.Id = _.EntityId;
+                                instance.PropDefId = _.PropDefId;
+                                var propDef = from propDefInfo in propDefInfos
+                                              where propDefInfo.PropDef.Id == _.PropDefId
+                                              select propDefInfo;
+                                instance.Name = propDef.First().PropDef.SysName;
+                                if (_.Val == null)
+                                {
+                                    instance.Value = "null";
+                                }
+                                else
+                                {
+                                    if (instance.Name == "Thumbnail")
+                                    {
+                                        instance.Value = _.Val;
+                                    }
+                                    else
+                                    {
+                                        instance.Value = _.Val.ToString();
+                                    }
+                                }
+                                ret.Add(instance);    
+                
             }
             //var itemResult = connection.WebServiceManager.ItemService.GetItemsByRevisionIds(new long[] { 40573 }, true);
             //var itemTest = connection.WebServiceManager.ItemService.GetLatestItemByItemMasterId(39920);

@@ -53,6 +53,7 @@ namespace ConsoleApp2.Model
     {
         public long Id { get ; set ; }
         public double Quantity { get ; set ; }
+        public int BOMOrder { get ; set ; }
         public List<BomNode> Children { get ; set ; }
         public bool IsHighest { get; set; }
 

@@ -84,11 +84,21 @@ namespace ConsoleApp2.Services
 			if (ids == null)
 			{
 				_items = _helperMethod.GetAllItems(connection);
-				temp = (from item in _items
-						select item.Id).ToArray();
+				temp = (
+                    from item 
+                    in _items
+					select item.Id
+                    )
+                    .ToArray();
 			}
 			List<T> itemsToRet = new List<T>();
             var relations = connection.WebServiceManager.ItemService.GetItemBOMAssociationsByItemIds(temp, true);
+            foreach (var relation in relations) { 
+                Console.WriteLine(relation.ParItemID);
+                Console.WriteLine(relation.CldItemID);                
+                Console.WriteLine("Position number : " + relation.PositionNum);
+                Console.WriteLine("BOM order : " + relation.BOMOrder);
+            }
             return (T)new ItemDTO((new ItemDTO.ItemResponseDTO(relations)));
         }
 

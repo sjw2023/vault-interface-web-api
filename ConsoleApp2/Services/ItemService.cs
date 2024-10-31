@@ -9,6 +9,7 @@ using Autodesk.Connectivity.WebServices;
 using ConsoleApp2.Util;
 using ConsoleApp2.Model;
 using Connection = Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections.Connection;
+using DevExpress.Pdf.Native;
 
 
 [CustomExceptionFilter]
@@ -232,10 +233,14 @@ public class ItemService<T> : IItemService<T> where T : ItemDTO
 				MasterId = item.MasterId,
 				Name = item.ItemNum,
 				//add each files
-				PropInstDTOs = properties.Where(prop => prop.Id == item.Id).ToList()
+				PropInstDTOs = properties.Where(prop => prop.Id == item.Id ).ToList()
 			};
 			itemsToRet.Add(itemTmp);
 		}
+		itemsToRet.RemoveAll(item => item.PropInstDTOs.Any(prop => ( prop.PropDefId == 41 && prop.Value.Equals("프로젝트")) 
+		//|| (prop.PropDefId == 41 && prop.Value.Equals("일반"))
+		));
+
 		searchStatus = tempStatus;
 		return (T)new ItemDTO(new ItemDTO.ItemResponseDTO(itemsToRet.ToArray()));
 	}

@@ -9,10 +9,14 @@
   <component name="ChangeListManager">
     <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/App.config" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/App.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/ItremAssocDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemAssocDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Bom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Model/Bom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Util/HelperMethod.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemAssocDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/ItemAssocDTO.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +30,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0da8a94897c945419a9935a75f4e9b6a531020/5f/ff416e62/RealProxy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc4775c0ef484419a5c5e4041814e6dd5317b8/6d/07bce5c8/RealProxy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/43/bc697d3c/SrchCond.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/a0/8b719d0f/ItemAssoc.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -37,22 +44,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.ConsoleApp2.executor": "Run",
-    ".NET 프로젝트.ConsoleApp2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.language.and.region",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.ConsoleApp2.executor&quot;: &quot;Run&quot;,
+    &quot;.NET 프로젝트.ConsoleApp2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fix#10&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ConsoleApp2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -88,7 +95,16 @@
       <workItem from="1723597601003" duration="2156000" />
       <workItem from="1724397705846" duration="1310000" />
       <workItem from="1726787659893" duration="115000" />
-      <workItem from="1726787809844" duration="1706000" />
+      <workItem from="1726787809844" duration="3839000" />
+      <workItem from="1727140612045" duration="2041000" />
+      <workItem from="1727221946776" duration="6334000" />
+      <workItem from="1729126218986" duration="11509000" />
+      <workItem from="1729736637344" duration="2779000" />
+      <workItem from="1729812657814" duration="121000" />
+      <workItem from="1729812792451" duration="6874000" />
+      <workItem from="1730245563967" duration="6765000" />
+      <workItem from="1730341207029" duration="53000" />
+      <workItem from="1730341281189" duration="13254000" />
     </task>
     <servers />
   </component>

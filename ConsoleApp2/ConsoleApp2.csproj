@@ -63,43 +63,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autodesk.Connectivity.Explorer.Extensibility">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.Extensibility.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.Explorer.ExtensibilityTools">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.ExtensibilityTools.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Explorer.ExtensibilityTools.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.Extensibility.Framework">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Extensibility.Framework.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.Extensibility.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.IDServicesWrapper">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.IDServicesWrapper.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.IDServicesWrapper.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.JobProcessor.Extensibility">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.JobProcessor.Extensibility.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.JobProcessor.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.LicenseWrapper">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.LicenseWrapper.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.LicenseWrapper.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.WebServices">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.Connectivity.WebServices.WCF">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.WCF.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.Connectivity.WebServices.WCF.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Forms">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Forms.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Vault">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Client.Framework.Vault.Forms">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.Forms.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Client.Framework.Vault.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Autodesk.DataManagement.Server.Extensibility">
-      <HintPath>..\..\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Server.Extensibility.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\Autodesk.DataManagement.Server.Extensibility.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML, Version=0.102.2.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.102.2\lib\netstandard2.0\ClosedXML.dll</HintPath>
@@ -119,11 +119,8 @@
     <Reference Include="DevExpress.Printing.v21.1.Core">
       <HintPath>..\..\..\..\..\Downloads\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Printing.v21.1.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v21.1.Core">
-      <HintPath>..\..\..\..\..\Downloads\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.RichEdit.v21.1.Core.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.Sparkline.v21.1.Core">
-      <HintPath>..\..\..\..\..\Downloads\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Sparkline.v21.1.Core.dll</HintPath>
+      <HintPath>D:\research\Vault research\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Sparkline.v21.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Utils.v21.1">
       <HintPath>..\..\..\..\..\Downloads\Autodesk Vault 2024 SDK\Autodesk Vault 2024 SDK\bin\x64\DevExpress.Utils.v21.1.dll</HintPath>
