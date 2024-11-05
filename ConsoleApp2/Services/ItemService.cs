@@ -6,8 +6,12 @@ using MyItem = ConsoleApp2.Model.Item;
 using VaultItem = Autodesk.Connectivity.WebServices.Item;
 using VDF = Autodesk.DataManagement.Client.Framework;
 using Autodesk.Connectivity.WebServices;
+using Autodesk.DataManagement.Client.Framework.Currency;
+using Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities;
+using Autodesk.DataManagement.Client.Framework.Vault.Settings;
 using ConsoleApp2.Util;
 using ConsoleApp2.Model;
+using Microsoft.Extensions.Options;
 using Connection = Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections.Connection;
 
 
@@ -264,5 +268,115 @@ public class ItemService<T> : IItemService<T> where T : ItemDTO
 		}
 		string bookmark = null;
 		return GetBySchCond(srchConds.ToArray(), null, true, ref bookmark, out SrchStatus searchStatus, connection);
+	}
+
+	public T UpdateItemName(long id, string name, Connection connection)
+	{
+		var item = connection.WebServiceManager.ItemService.GetItemsByIds(new[] { id }).FirstOrDefault();
+		var EditableItems = connection.WebServiceManager.ItemService.EditItems( new long[] { item.RevId } );
+
+
+		Console.WriteLine("EditableItems : " + name);
+
+		string [] newItemNum = new string[] { name };
+		StringArray [] temp = new StringArray[1];
+		StringArray tempArr = new StringArray();
+		tempArr.Items = newItemNum;
+		temp[0] = tempArr;
+
+		ProductRestric [] productRestrics = new ProductRestric[100];
+
+		ItemNum[] newNumbers = connection.WebServiceManager.ItemService.AddItemNumbers(
+			new long[] { EditableItems[0].MasterId },
+			new long[] { EditableItems[0].NumSchmId },
+			temp,
+			out productRestrics
+			);
+
+		EditableItems[0].ItemNum = newNumbers[0].ItemNum1;
+		connection.WebServiceManager.ItemService.UpdateAndCommitItems(EditableItems);
+
+
+
+
+		var fileAssocs = connection.WebServiceManager.ItemService.GetItemFileAssociationsByItemIds(
+			new[] { id },
+			ItemFileLnkTypOpt.Primary
+			);
+		foreach( var fileAssoc in fileAssocs)
+		{
+			var file = connection.WebServiceManager.DocumentService.GetFileById( fileAssoc.CldFileId );
+
+
+
+
+			var chckoutfolder = connection.WebServiceManager.DocumentService.GetFolderById(file.FolderId);
+            		string checkoutlocalPath = connection.WorkingFoldersManager.GetWorkingFolder(chckoutfolder.FullName).FullPath;
+            		if (!System.IO.Directory.Exists(checkoutlocalPath))
+            			System.IO.Directory.CreateDirectory(checkoutlocalPath);
+
+            		var filesSettings = new VDF.Vault.Settings.AcquireFilesSettings(connection);
+            		filesSettings.OptionsRelationshipGathering.FileRelationshipSettings.VersionGatheringOption = Autodesk.DataManagement.Client.Framework.Vault.Currency.VersionGatheringOption.Latest;
+            		filesSettings.LocalPath = new VDF.Currency.FolderPathAbsolute(checkoutlocalPath);
+
+            		filesSettings.AddFileToAcquire(
+            			new VDF.Vault.Currency.Entities.FileIteration(connection, file),
+            			VDF.Vault.Settings.AcquireFilesSettings.AcquisitionOption.Download | VDF.Vault.Settings.AcquireFilesSettings.AcquisitionOption.Checkout
+            			);
+            		var result = connection.FileManager.AcquireFiles(filesSettings);
+            		// foreach (var r in result.FileResults)
+            		// {
+              //
+            		// 	return m_serviceManager.DocumentService.GetFileById(r.File.EntityIterationId);
+              //
+            		// }
+
+
+
+
+			var folder = connection.WebServiceManager.DocumentService.GetFolderById(file.FolderId);
+			string localPath = connection.WorkingFoldersManager.GetWorkingFolder(folder.FullName).FullPath;
+			string filePath = System.IO.Path.Combine(localPath, file.Name);
+
+			FileAssocParam[] assparamarr = null;
+            FileRelationshipGatheringSettings settings = new FileRelationshipGatheringSettings();
+               settings.IncludeChildren = true;
+               var fassoc = connection.FileManager.GetFileAssociationLites(new long[] { file.Id }, settings);
+
+               List<FileAssocParam> assparams = new List<FileAssocParam>();
+               foreach (var _ in fassoc)
+               {
+                   FileAssocParam param = new FileAssocParam();
+                   param.CldFileId = _.CldFileId;
+                   param.RefId = _.RefId;
+                   param.Source = _.Source;
+                   param.Typ = _.Typ;
+                   param.ExpectedVaultPath = _.ExpectedVaultPath;
+                   assparams.Add(param);
+               }
+               assparamarr = assparams.ToArray();
+
+
+
+
+			// var settings = new  Autodesk.DataManagement.Client.Framework.Vault.Settings.AcquireFilesSettings(connection);
+
+			// var acqFile = connection.FileManager.AcquireFiles(settings);
+
+			connection.FileManager.CheckinFile(
+				new FileIteration(connection, file),
+				"checkin file",
+				false,
+				assparamarr,
+				null,
+				true,
+				name,
+				file.FileClass,
+				false,
+				new VDF.Currency.FilePathAbsolute( filePath )
+				);
+			Console.WriteLine("File assoc name : " + fileAssoc.FileName);
+		}
+		return GetById(id, connection);
 	}
 }

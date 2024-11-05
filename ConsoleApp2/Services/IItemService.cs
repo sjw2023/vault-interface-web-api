@@ -15,5 +15,6 @@ namespace ConsoleApp2.Services
             out SrchStatus searchstatus,
             VDF.Vault.Currency.Connections.Connection connection);
         T GetByDate(string date, Connection connection);
+        T UpdateItemName(long id, string name, Connection connection);
     }
 }

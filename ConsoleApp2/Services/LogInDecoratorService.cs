@@ -36,8 +36,8 @@ namespace ConsoleApp2.Services
             try
             {
                 _result = VDF.Vault.Library.ConnectionManager.LogIn(
-                        "192.168.10.250", "WSA", "DTcenter", "1234"
-                        //"192.168.10.250", "DTcenter", "DTcenter", "1234"
+                        // "192.168.10.250", "WSA", "DTcenter", "1234"
+                        "192.168.10.250", "DTcenter", "DTcenter", "1234"
                         //"192.168.10.250", "WSA", "joowon.suh@woosungautocon.com", "R-6qEbT#*nrJLZp"
                         , VDF.Vault.Currency.Connections.AuthenticationFlags.Standard, null);
                 if (!_result.Success)
@@ -122,5 +122,14 @@ namespace ConsoleApp2.Services
             LogOut();
             return entity;
         }
-	}
+
+        public T UpdateItemName(long id, string name, Connection connection)
+        {
+            LogIn();
+            var entity = _decoratedItem.UpdateItemName(id, name, _connection);
+            LogOut();
+            return entity;
+
+        }
+    }
 }

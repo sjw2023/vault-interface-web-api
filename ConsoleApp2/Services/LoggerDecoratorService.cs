@@ -80,5 +80,13 @@ namespace ConsoleApp2.Results
             Log("Entity found : {0}", entity);
             return entity;
         }
-	}
+
+        public T UpdateItemName(long id, string name, Connection connection)
+        {
+            Log("Updating entity name: {0}", name);
+            var entity = _decoratedItem.UpdateItemName(id, name, connection);
+            Log("Entity name updated: {0}", entity);
+            return entity;
+        }
+    }
 }
