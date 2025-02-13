@@ -201,9 +201,11 @@ public class ItemService<T> : IItemService<T> where T : ItemDTO
 		return (T)new ItemDTO(new ItemDTO.ItemResponseDTO(itemsToRet.ToArray()));
 	}
 
+	//TODO : devide into two methods
 	public T GetByName(string name, Connection connection)
 	{
 		var latestItem = connection.WebServiceManager.ItemService.GetLatestItemByItemNumber(name);
+		// should go to property service
 		var properties = _helperMethod.GetPropInst(connection, new[] { latestItem.MasterId }, _entityClassId);
 		var toRet = new ConsoleApp2.Model.Item
 		{
@@ -306,7 +308,6 @@ public class ItemService<T> : IItemService<T> where T : ItemDTO
 		foreach( var fileAssoc in fileAssocs)
 		{
 			var file = connection.WebServiceManager.DocumentService.GetFileById( fileAssoc.CldFileId );
-
 
 
 
