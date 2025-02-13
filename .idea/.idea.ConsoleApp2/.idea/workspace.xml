@@ -7,18 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ConsoleApp2/.idea/.idea.ConsoleApp2.dir/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ConsoleApp2/.idea/.idea.ConsoleApp2.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ConsoleApp2/.idea/.idea.ConsoleApp2.dir/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ConsoleApp2/.idea/.idea.ConsoleApp2.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/App.config" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/App.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp2/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/packages.config" afterDir="false" />
-    </list>
+    <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,7 +116,7 @@
       <workItem from="1737501843185" duration="1068000" />
       <workItem from="1737503518496" duration="38667000" />
       <workItem from="1739148267302" duration="1131000" />
-      <workItem from="1739149410963" duration="14498000" />
+      <workItem from="1739149410963" duration="15223000" />
     </task>
     <servers />
   </component>

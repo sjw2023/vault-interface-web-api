@@ -112,6 +112,9 @@ ipch/
 *.VC.db
 *.VC.VC.opendb
 
+#Rider build results
+.idea/
+
 # Visual Studio profiler
 *.psess
 *.vsp
