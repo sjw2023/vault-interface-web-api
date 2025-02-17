@@ -30,7 +30,7 @@ namespace ConsoleApp2
 			config.MapHttpAttributeRoutes();
 
 			config.Routes.MapHttpRoute(
-				"API Default", "api/{controller}/{action}/{id}",
+				"API Default", "api/{controller}/*",
 				new { id = RouteParameter.Optional, action=RouteParameter.Optional});
 
 			// Enable CORS for all origins, headers, and methods

@@ -5,6 +5,7 @@ using ConsoleApp2.Model;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using DevExpress.Utils.Extensions;
 
 namespace ConsoleApp2.Services
 {
@@ -108,25 +109,38 @@ namespace ConsoleApp2.Services
 
 		public T GetAll(long[] ids, Connection connection)
 		{
-			//PropertyDTO toRet = new PropertyDTO();
-			//var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-			//foreach (var entity in conf.EntClassCfgArray)
-			//{
-			//	var temp = connection.PropertyManager.GetPropertyDefinitions(
-			//	entity.Id,
-			//	null,
-			//	PropertyDefinitionFilter.IncludeAll);
-			//	foreach (var property in temp)
-			//	{
-			//		Property property1 = new Property();
-			//		property1.Id = property.Value.Id;
-			//		property1.Name = property.Value.DisplayName;
-			//		property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
-			//		toRet.m_PropertyResponseDTO.m_Property.Add(property1);
-			//	}
-			//}
-			//return (T)toRet;
-			throw new NotImplementedException();
+			PropertyDTO toRet = new PropertyDTO();
+			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
+
+			foreach (var entity in conf.EntClassCfgArray)
+			{
+				// var temp = connection.PropertyManager.GetPropertyDefinitions(
+				// entity.Id,
+				// null,
+				// PropertyDefinitionFilter.IncludeAll);
+				var temp2 = connection.WebServiceManager.PropertyService.GetPropertyDefinitionsByEntityClassId(
+					entity.Id);
+				// foreach (var property in temp)
+				// {
+				// 	Property property1 = new Property();
+				// 	property1.Id = property.Value.Id;
+				// 	property1.Name = property.Value.DisplayName;
+				// 	property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
+				// 	toRet.m_PropertyResponseDTO.m_Property.Add(property1);
+				// }
+
+				foreach (var propDef in temp2)
+				{
+					Property property1 = new Property();
+					property1.Id = propDef.Id;
+					property1.Name = propDef.DispName;
+					var iterator = propDef.DfltVal.YieldArray();
+					iterator.ForEach(val =>
+						Console.WriteLine(object.ReferenceEquals(val, null) ? "null" : val.ToString()));
+				}
+			}
+
+			return (T)toRet;
 		}
 
 		public T GetById(long id, Connection connection)
@@ -141,6 +155,28 @@ namespace ConsoleApp2.Services
 			entity.AssociatedEntityClasses.ForEach(classes => entity1.AssociatedEntityName.Add(classes.EntityClass.Id));
 			result.m_PropertyResponseDTO.m_Property.Add(entity1);
 			return result;
+		}
+
+		public T GetPropertyValues( Connection connection )
+		{
+			PropertyDTO toRet = new PropertyDTO();
+			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
+			// connection.WebServiceManager.PropertyService.GetPropertiesByEntityIds("ITEM", new long[] {});
+			var properties = connection.WebServiceManager.PropertyService.GetAssociationPropertyDefinitionInfosByIds(new 
+				long[] 
+			{
+				41
+				
+			});
+			foreach (var property in properties)
+			{
+				foreach (var value in property.ListValArray)
+				{
+					Console.WriteLine(value);
+				}
+				
+			}
+			return (T)toRet;
 		}
 	}
 }

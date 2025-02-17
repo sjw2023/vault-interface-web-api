@@ -38,13 +38,12 @@ namespace ConsoleApp2.Util
             //Get property definition infos by entity class id
             var propDefInfos = connection.WebServiceManager.PropertyService.GetPropertyDefinitionInfosByEntityClassId(entityClassId, null);
             //Extract property definition ids
-            var propDefIds = from info in propDefInfos
-                             select info.PropDef.Id;
+            var propDefIds = from info in propDefInfos select info.PropDef.Id;
             //Get latest items by item master ids
+            //TODO: Refactor this method, this is related to ItemService
             var latestItems = connection.WebServiceManager.ItemService.GetLatestItemsByItemMasterIds(ids);
             //Extract item ids
-            var idsParameter = from item in latestItems
-                               select item.Id;
+            var idsParameter = from item in latestItems select item.Id;
             //Get properties by item ids
             var properties = connection.WebServiceManager.PropertyService.GetProperties(entityClassId, idsParameter.ToArray(), propDefIds.ToArray());
             List<PropInstDTO> ret = new List<PropInstDTO>();
@@ -53,9 +52,7 @@ namespace ConsoleApp2.Util
                 PropInstDTO instance = new PropInstDTO();
                 instance.Id = _.EntityId;
                 instance.PropDefId = _.PropDefId;
-                var propDef = from propDefInfo in propDefInfos
-                              where propDefInfo.PropDef.Id == _.PropDefId
-                              select propDefInfo;
+                var propDef = from propDefInfo in propDefInfos where propDefInfo.PropDef.Id == _.PropDefId select propDefInfo;
                 instance.Name = propDef.First().PropDef.SysName;
                 if (_.Val == null)
                 {

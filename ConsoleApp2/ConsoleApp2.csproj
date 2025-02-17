@@ -421,7 +421,8 @@
   <ItemGroup>
     <Compile Include="app_start\SwaggerConfig.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
-    <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="Controllers\PropertiesController.cs" />
+    <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="dtos\ItemAssocDTO.cs" />
     <Compile Include="Exceptions\InterfaceException.cs" />
     <Compile Include="Exceptions\CustomApiControllerActionInvoker.cs" />
@@ -449,8 +450,10 @@
     <Compile Include="Services\LoggerDecoratorService.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\OchestrationService.cs" />
     <Compile Include="Services\PropertyService.cs" />
     <Compile Include="Services\LogInDecoratorService.cs" />
+    <Compile Include="Services\VaultRecommendationService.cs" />
     <Compile Include="Util\ExcelService.cs" />
     <Compile Include="Util\HelperMethod.cs" />
   </ItemGroup>
