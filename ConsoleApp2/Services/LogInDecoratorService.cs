@@ -6,7 +6,7 @@ using VDF = Autodesk.DataManagement.Client.Framework;
 
 namespace ConsoleApp2.Services
 {
-    public class LogInDecoratorService<T> : IBaseService<T>, IItemService<T>
+    public class LogInDecoratorService<T> : IBaseService<T>, IItemService<T>, IPropertyService<T>
     {
         private VDF.Vault.Currency.Connections.Connection _connection;
         public VDF.Vault.Currency.Connections.Connection Connection
@@ -26,10 +26,12 @@ namespace ConsoleApp2.Services
         //TODO: Add ConnectionOptions
         private readonly IItemService<T> _decoratedItem;
         private readonly IBaseService<T> _decorated;
+        private readonly IPropertyService<T> _propertyService;
         public LogInDecoratorService(IBaseService<T> decorated)
         {
             _decorated = decorated;
             _decoratedItem = decorated as IItemService<T>;
+            _propertyService = decorated as IPropertyService<T>;
         }
         public void LogIn()
         {
@@ -130,6 +132,30 @@ namespace ConsoleApp2.Services
             LogOut();
             return entity;
 
+        }
+
+        public T GetPropertyValues(Connection connection)
+        {
+            LogIn();
+            var entity = _propertyService.GetPropertyValues(_connection);
+            LogOut();
+            return entity;
+        }
+
+        public T GetPropertiesOfItem(Connection connection)
+        {
+            LogIn();
+            var entity = _propertyService.GetPropertiesOfItem(_connection);
+            LogOut();
+            return entity;
+        }
+
+        public T CheckUserPermission(Connection connection)
+        {
+            LogIn();
+            var entity = _propertyService.CheckUserPermission(_connection);
+            LogOut();
+            return entity;
         }
     }
 }

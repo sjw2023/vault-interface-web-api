@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using ConsoleApp2.Model;
 using ConsoleApp2.Results;
 using ConsoleApp2.Services;
@@ -6,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using Microsoft.Extensions.Logging;
 
 namespace ConsoleApp2.Controllers
 {
@@ -13,15 +15,18 @@ namespace ConsoleApp2.Controllers
     public class PropertiesController : ApiController, IBaseController<PropertyDTO>
     {
         private readonly IBaseService<PropertyDTO> _service;
+        private readonly IPropertyService<PropertyDTO> _propertyService;
 
         public PropertiesController(IBaseService<PropertyDTO> service)
         {
             _service = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(service));
+            _propertyService = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(service));
         }
 
         public PropertiesController()
         {
             _service = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(new PropertyService<PropertyDTO>()));
+            _propertyService = new LogInDecoratorService<PropertyDTO>(new LoggerDecoratorService<PropertyDTO>(new PropertyService<PropertyDTO>()));
         }
 
         [HttpPost]
@@ -64,23 +69,40 @@ namespace ConsoleApp2.Controllers
                 StatusCode = HttpStatusCode.OK
             };
         }
+
         [HttpGet]
-        [Route("property-values")]
-        public HttpResponseMessage GetPropertyValues([FromBody] PropertyDTO dto)
+        public HttpResponseMessage GetPropertiesOfItem()
         {
-            var propertyService = _service as PropertyService<PropertyDTO>;
-            if(propertyService == null)
-            {
-                return new HttpResponseMessage
-                {
-                    Content = new StringContent("Service is not of type PropertyService<PropertyDTO>", Encoding.UTF8, "application/json"),
-                    StatusCode = HttpStatusCode.InternalServerError
-                };
-            }
-            var json = JToken.FromObject(propertyService.GetPropertyValues(null));
+            var json = JToken.FromObject(_propertyService.GetPropertiesOfItem(null));
             return new HttpResponseMessage
             {
                 Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json"),
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
+        //TODO : Remove this method
+        [HttpGet]
+        [Route("property-values")]
+        public HttpResponseMessage GetPropertyValues()
+        {
+            Console.WriteLine("Getting property values");
+            _propertyService.GetPropertyValues(null);
+            return new HttpResponseMessage
+            {
+                // Content = new StringContent(json.ToString(), Encoding.UTF8, "application/json"),
+                StatusCode = HttpStatusCode.OK
+            };
+        }
+
+        [HttpGet]
+        [Route("check")]
+        public HttpResponseMessage Check()
+        {
+            _propertyService.CheckUserPermission(null);
+            return new HttpResponseMessage
+            {
+                Content = new StringContent("User has permission", Encoding.UTF8, "application/json"),
                 StatusCode = HttpStatusCode.OK
             };
         }

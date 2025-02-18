@@ -1,16 +1,17 @@
 ﻿using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
-using Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties;
-using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
 using System;
-using System.CodeDom;
-using System.Collections.Generic;
+using System.Linq;
+using Autodesk.Connectivity.WebServices;
+using Autodesk.DataManagement.Client.Framework.Vault.Currency.Entities;
+using Autodesk.DataManagement.Client.Framework.Vault.Currency.Properties;
+using ConsoleApp2.Exceptions;
 using DevExpress.Utils.Extensions;
 
 namespace ConsoleApp2.Services
 {
 	[CustomExceptionFilter]
-	public class PropertyService<T> : IBaseService<T> where T : PropertyDTO
+	public class PropertyService<T> : IPropertyService<T> where T : PropertyDTO
 	{
 		public void Add(T entity, Connection connection)
 		{
@@ -107,39 +108,30 @@ namespace ConsoleApp2.Services
 			//	);
 		}
 
+		//TODO: Deprecate this better to use GetPropertiesOfItem
 		public T GetAll(long[] ids, Connection connection)
 		{
 			PropertyDTO toRet = new PropertyDTO();
 			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-
 			foreach (var entity in conf.EntClassCfgArray)
 			{
-				// var temp = connection.PropertyManager.GetPropertyDefinitions(
-				// entity.Id,
-				// null,
-				// PropertyDefinitionFilter.IncludeAll);
-				var temp2 = connection.WebServiceManager.PropertyService.GetPropertyDefinitionsByEntityClassId(
-					entity.Id);
-				// foreach (var property in temp)
-				// {
-				// 	Property property1 = new Property();
-				// 	property1.Id = property.Value.Id;
-				// 	property1.Name = property.Value.DisplayName;
-				// 	property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
-				// 	toRet.m_PropertyResponseDTO.m_Property.Add(property1);
-				// }
-
-				foreach (var propDef in temp2)
+				var temp = connection.PropertyManager.GetPropertyDefinitions(
+				entity.Id,
+				null,
+				PropertyDefinitionFilter.IncludeAll);
+				foreach (var property in temp)
 				{
+					//TODO: Generate mapper method
 					Property property1 = new Property();
-					property1.Id = propDef.Id;
-					property1.Name = propDef.DispName;
-					var iterator = propDef.DfltVal.YieldArray();
-					iterator.ForEach(val =>
-						Console.WriteLine(object.ReferenceEquals(val, null) ? "null" : val.ToString()));
+					property1.Id = property.Value.Id;
+					if(property.Value.ValueList != null)
+						property.Value.ValueList.ForEach( val => Console.WriteLine(val));
+					property1.Values = property.Value.ValueList;
+					property1.Name = property.Value.DisplayName;
+					property.Value.AssociatedEntityClasses.ForEach(entityClass => property1.AssociatedEntityName.Add(entityClass.EntityClass.Id));
+					toRet.m_PropertyResponseDTO.m_Property.Add(property1);
 				}
 			}
-
 			return (T)toRet;
 		}
 
@@ -160,23 +152,85 @@ namespace ConsoleApp2.Services
 		public T GetPropertyValues( Connection connection )
 		{
 			PropertyDTO toRet = new PropertyDTO();
-			var conf = connection.WebServiceManager.AdminService.GetServerConfiguration();
-			// connection.WebServiceManager.PropertyService.GetPropertiesByEntityIds("ITEM", new long[] {});
-			var properties = connection.WebServiceManager.PropertyService.GetAssociationPropertyDefinitionInfosByIds(new 
-				long[] 
+			AssocPropDefInfo[] properties = null;
+			try
 			{
-				41
-				
-			});
+				properties = connection.WebServiceManager.PropertyService.GetAssociationPropertyDefinitionInfosByIds(new long[] { 34 });
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+			if(properties == null)
+			{
+				Console.WriteLine("Properties is null");
+				throw new InterfaceException( (int)InterfaceErrorCodes.ITEM_NOT_EXIST, InterfaceErrorCodes.ITEM_NOT_EXIST.ToString());
+				return (T)toRet;
+			}
 			foreach (var property in properties)
 			{
 				foreach (var value in property.ListValArray)
 				{
 					Console.WriteLine(value);
 				}
-				
 			}
 			return (T)toRet;
+		}
+
+		public T GetPropertiesOfItem( Connection connection )
+		{
+			PropertyDTO toRet = new PropertyDTO();
+			PropDef[] propDefs = null;
+			try
+			{
+				propDefs = connection.WebServiceManager.PropertyService.GetPropertyDefinitionsByEntityClassId("ITEM");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+			if(propDefs == null)
+			{
+				Console.WriteLine("Property definitions is null");
+				throw new InterfaceException( (int)InterfaceErrorCodes.ITEM_NOT_EXIST, InterfaceErrorCodes.ITEM_NOT_EXIST.ToString());
+			}
+			foreach( var propDef in propDefs )
+			{
+				if( propDef.EntClassAssocArray.Any( assoc => assoc.EntClassId.Equals(EntityClassIds.Items) ) )
+				{
+					//TODO: Generate mapper method
+					Property property1 = new Property();
+					property1.Id = propDef.Id;
+					property1.Name = propDef.DispName;
+					propDef.EntClassAssocArray.ForEach( assoc => property1.AssociatedEntityName.Add(assoc.EntClassId));
+					toRet.m_PropertyResponseDTO.m_Property.Add(property1);
+				}
+			}
+			return (T)toRet;
+		}
+
+		public T CheckUserPermission(Connection connection)
+		{
+			bool[] checkResults = null;
+			try
+			{
+				checkResults = connection.WebServiceManager.PropertyService.CheckRolePermissions(new string[] { "AcquireFiles" },"ITEM");
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.StackTrace);
+				Console.WriteLine(ex.Message);
+			}
+			if ( checkResults.All( result => result == true ) )
+			{
+				Console.WriteLine("User has permission to acquire files");
+				return (T)Activator.CreateInstance(typeof(T));
+			}
+			else
+			{
+				Console.WriteLine("User does not have permission to acquire files");
+				throw new InterfaceException( (int)InterfaceErrorCodes.PERMISSION_DENIED, InterfaceErrorCodes.PERMISSION_DENIED.ToString());
+			}
 		}
 	}
 }

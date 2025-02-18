@@ -10,7 +10,7 @@ namespace ConsoleApp2.Controllers
         private VaultRecommendationService _recommendationService = new VaultRecommendationService();
 
         [HttpGet]
-        public IHttpActionResult GetItemRecommendations([FromUri] string searchQuery)
+        public IHttpActionResult GetItemRecommendations([FromUri] string searchQuery, [FromUri] uint searchPropertyType)
         {
             if (string.IsNullOrEmpty(searchQuery))
             {
@@ -22,7 +22,8 @@ namespace ConsoleApp2.Controllers
 
             // Get recommendations
             Console.WriteLine(searchQuery);
-            var recommendations = _recommendationService.GetRecommendations(searchQuery);
+
+            var recommendations = _recommendationService.GetRecommendations(searchQuery, searchPropertyType);
 
             // Return recommendations in structured JSON format
             return Ok(recommendations);

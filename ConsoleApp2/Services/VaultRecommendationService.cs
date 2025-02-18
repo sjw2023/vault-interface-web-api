@@ -22,7 +22,7 @@ namespace ConsoleApp2.Services
         }
 
         // Search items with advanced recommendation logic
-        public List<ItemRecommendation> GetRecommendations(string query)
+        public List<ItemRecommendation> GetRecommendations( string query, uint propertyType = 56)
         {
             List<ItemRecommendation> recommendations = new List<ItemRecommendation>();
 
@@ -33,7 +33,7 @@ namespace ConsoleApp2.Services
                 // Define fuzzy and partial match criteria
                 SrchCond searchCondition = new SrchCond
                 {
-                    PropDefId = 56, // Vault Item Name Property
+                    PropDefId = propertyType, // Vault Item Name Property
                     PropTyp = PropertySearchType.SingleProperty,
                     SrchOper = 7, // Use Wildcard for partial matches
                     SrchTxt = $"{query}*"

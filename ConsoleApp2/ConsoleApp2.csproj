@@ -420,10 +420,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="app_start\SwaggerConfig.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\PropertiesController.cs" />
     <Compile Include="Controllers\RecommendationController.cs" />
+    <Compile Include="dtos\FileRequestDto.cs" />
+    <Compile Include="dtos\FileResponseDto.cs" />
     <Compile Include="dtos\ItemAssocDTO.cs" />
+    <Compile Include="dtos\PermissionDTO.cs" />
     <Compile Include="Exceptions\InterfaceException.cs" />
     <Compile Include="Exceptions\CustomApiControllerActionInvoker.cs" />
     <Compile Include="Exceptions\CustomException.cs" />
@@ -447,6 +451,7 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Services\BomService.cs" />
     <Compile Include="Services\IItemService.cs" />
+    <Compile Include="Services\IPropertyService.cs" />
     <Compile Include="Services\LoggerDecoratorService.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\ItemService.cs" />
