@@ -7,6 +7,5 @@ namespace ConsoleApp2.Services
     {
         T GetPropertyValues(Connection connection);
         T GetPropertiesOfItem(Connection connection);
-        T CheckUserPermission(Connection connection);
     }
 }

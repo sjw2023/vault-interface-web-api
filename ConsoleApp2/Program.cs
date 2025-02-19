@@ -25,7 +25,7 @@ namespace ConsoleApp2
 
 			config.EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API")).EnableSwaggerUi();
 
-			//config.Services.Replace(typeof(IHttpActionInvoker), new CustomApiControllerActionInvoker());
+			//config.services.Replace(typeof(IHttpActionInvoker), new CustomApiControllerActionInvoker());
 
 			config.MapHttpAttributeRoutes();
 

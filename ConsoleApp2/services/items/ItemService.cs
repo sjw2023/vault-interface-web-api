@@ -366,7 +366,7 @@ public class ItemService<T> : IItemService<T> where T : ItemDTO
 
 			connection.FileManager.CheckinFile(
 				new FileIteration(connection, file),
-				"checkin file",
+				"checkin files",
 				false,
 				assparamarr,
 				null,

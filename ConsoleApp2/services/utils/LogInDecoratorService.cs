@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using Autodesk.Connectivity.WebServices;
 using Autodesk.DataManagement.Client.Framework.Vault.Currency.Connections;
 using VDF = Autodesk.DataManagement.Client.Framework;
 
 namespace ConsoleApp2.Services
 {
-    public class LogInDecoratorService<T> : IBaseService<T>, IItemService<T>, IPropertyService<T>
+    public class LogInDecoratorService<T> : IItemService<T>, IPropertyService<T>, IFileService<T>
     {
-        private VDF.Vault.Currency.Connections.Connection _connection;
-        public VDF.Vault.Currency.Connections.Connection Connection
-        {
-            get
-            {
-                return _connection;
-            }
-        }
+        private Connection _connection;
         private VDF.Vault.Results.LogInResult _result;
         private string _server;
         private string _vault;
@@ -27,12 +19,16 @@ namespace ConsoleApp2.Services
         private readonly IItemService<T> _decoratedItem;
         private readonly IBaseService<T> _decorated;
         private readonly IPropertyService<T> _propertyService;
+        private readonly IFileService<T> _fileService;
+
         public LogInDecoratorService(IBaseService<T> decorated)
         {
             _decorated = decorated;
             _decoratedItem = decorated as IItemService<T>;
             _propertyService = decorated as IPropertyService<T>;
+            _fileService = decorated as IFileService<T>;
         }
+
         public void LogIn()
         {
             try
@@ -61,6 +57,7 @@ namespace ConsoleApp2.Services
                 Console.WriteLine(ex.Message);
             }
         }
+
         private void LogOut()
         {
             VDF.Vault.Library.ConnectionManager.LogOut(_connection);
@@ -103,13 +100,14 @@ namespace ConsoleApp2.Services
             return entities;
         }
 
-        public T GetByName(string nam1e, Connection connection)
+        public T GetByName(string name, Connection connection)
         {
             LogIn();
-            var entity = _decoratedItem.GetByName(nam1e, _connection);
+            var entity = _decoratedItem.GetByName(name, _connection);
             LogOut();
             return entity;
         }
+
         public T GetBySchCond(SrchCond[] srchCond, SrchSort[] sortConditions, bool bRequestLatestOnly, ref string bookmark, out SrchStatus searchstatus, Connection connection)
         {
             LogIn();
@@ -117,6 +115,7 @@ namespace ConsoleApp2.Services
             LogOut();
             return entity;
         }
+
         public T GetByDate(string date, VDF.Vault.Currency.Connections.Connection connection)
         {
             LogIn();
@@ -150,10 +149,10 @@ namespace ConsoleApp2.Services
             return entity;
         }
 
-        public T CheckUserPermission(Connection connection)
+        public T CheckUserPermissions(Connection connection)
         {
             LogIn();
-            var entity = _propertyService.CheckUserPermission(_connection);
+            var entity = _fileService.CheckUserPermissions(_connection);
             LogOut();
             return entity;
         }

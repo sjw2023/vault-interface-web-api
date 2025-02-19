@@ -94,17 +94,5 @@ namespace ConsoleApp2.Controllers
                 StatusCode = HttpStatusCode.OK
             };
         }
-
-        [HttpGet]
-        [Route("check")]
-        public HttpResponseMessage Check()
-        {
-            _propertyService.CheckUserPermission(null);
-            return new HttpResponseMessage
-            {
-                Content = new StringContent("User has permission", Encoding.UTF8, "application/json"),
-                StatusCode = HttpStatusCode.OK
-            };
-        }
     }
 }

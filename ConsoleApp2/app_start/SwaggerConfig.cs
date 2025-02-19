@@ -96,7 +96,7 @@ namespace ConsoleApp2
                         //
                         //c.OrderActionGroupsBy(new DescendingAlphabeticComparer());
 
-                        // If you annotate Controllers and API Types with
+                        // If you annotate controllers and API Types with
                         // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
@@ -185,13 +185,13 @@ namespace ConsoleApp2
                         //c.DocumentTitle("My Swagger UI");
 
                         // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
-                        // The file must be included in your project as an "Embedded Resource", and then the resource's
+                        // The files must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown below.
                         //
                         //c.InjectStylesheet(containingAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testStyles1.css");
 
                         // Use the "InjectJavaScript" option to invoke one or more custom JavaScripts after the swagger-ui
-                        // has loaded. The file must be included in your project as an "Embedded Resource", and then the resource's
+                        // has loaded. The files must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown above.
                         //
                         //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
@@ -221,7 +221,7 @@ namespace ConsoleApp2
 
                         // Use the CustomAsset option to provide your own version of assets used in the swagger-ui.
                         // It's typically used to instruct Swashbuckle to return your version instead of the default
-                        // when a request is made for "index.html". As with all custom content, the file must be included
+                        // when a request is made for "index.html". As with all custom content, the files must be included
                         // in your project as an "Embedded Resource", and then the resource's "Logical Name" is passed to
                         // the method as shown below.
                         //
