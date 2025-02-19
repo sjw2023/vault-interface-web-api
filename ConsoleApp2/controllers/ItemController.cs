@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using MyItem = ConsoleApp2.Model.Item;
 using ConsoleApp2.Services;
 using System.Web.Http;
@@ -128,6 +129,7 @@ namespace ConsoleApp2.Controllers
             var json = JToken.FromObject(_itemService.GetByDate(itemDto.m_ItemRequestDTO.Date, null));
             return Ok(json);
         }
+
         [HttpPost]
         [Route("getBomAfterDate")]
         public IHttpActionResult GetBomAfterDate([FromBody] ItemDTO itemDTO)
@@ -139,5 +141,14 @@ namespace ConsoleApp2.Controllers
             var json = JToken.FromObject(items);
 			return Ok(json);
 		}
+
+        [HttpPut]
+        [Route("update/{itemId}/{newName}")]
+        public IHttpActionResult UpdateItemName(long itemId, string newName)
+        {
+            Console.WriteLine(newName);
+            _itemService.UpdateItemName(itemId, newName,null);
+            return Ok();
+        }
     }
 }

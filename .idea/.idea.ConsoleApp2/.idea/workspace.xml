@@ -7,7 +7,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="" />
+    <list default="true" id="8596bf1d-b52a-4fe7-83e6-e29b76b79bb0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ConsoleApp2/controllers/FilesController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ConsoleApp2/controllers/IFileController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/file/IFileResponseDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ConsoleApp2/services/files/FileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ConsoleApp2/services/files/IFileService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/ConsoleApp2.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/FileController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/IBaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/controllers/IBaseController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/ItemController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/controllers/ItemController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/PropertiesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/controllers/PropertiesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Controllers/RecommendationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/controllers/RecommendationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomApiControllerActionInvoker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/exceptions/CustomApiControllerActionInvoker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/exceptions/CustomException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/exceptions/CustomExceptionFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/InterfaceErrorCodes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/exceptions/InterfaceErrorCodes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Exceptions/InterfaceException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/exceptions/InterfaceException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Bom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/models/Bom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/ExcelErrorData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/models/ExcelErrorData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/IBaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/models/IBaseEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/models/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Model/Property.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/models/Property.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/BomService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/items/BomService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/IBaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/IBaseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/IItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/items/IItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/IPropertyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/IPropertyService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/ItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/items/ItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LogInDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/utils/LogInDecoratorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/LoggerDecoratorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/utils/LoggerDecoratorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/OchestrationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/OchestrationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/PropertyService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/PropertyService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/Services/VaultRecommendationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/services/utils/VaultRecommendationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/app_start/SwaggerConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/app_start/SwaggerConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/FileRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/file/IFileDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/FileResponseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/file/IFileRequestDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/PermissionDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/property/PermissionDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/PropInstDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/property/PropInstDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/PropertyDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/property/PropertyDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp2/dtos/PropertyRequestDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp2/dtos/property/PropertyRequestDTO.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,11 +61,47 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///AIAssistantSnippet." root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0da8a94897c945419a9935a75f4e9b6a531020/5f/ff416e62/RealProxy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1e9eda733cd44fc894689c0ee003727617a848/ce/a22368e6/Enumerable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a26704d10e145e2890fa38a6cc0df67531820/65/4f03855f/RealProxy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6622e66dce6c4dc389a41d76214e4e5d1bdd20/53/59640c42/PropertyDefinition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6622e66dce6c4dc389a41d76214e4e5d1bdd20/88/c02e1e13/SearchCondition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6622e66dce6c4dc389a41d76214e4e5d1bdd20/a9/300394d2/IFileManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6622e66dce6c4dc389a41d76214e4e5d1bdd20/bf/55a16745/CopyDesignModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6622e66dce6c4dc389a41d76214e4e5d1bdd20/e7/a44d12f7/SearchType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc4775c0ef484419a5c5e4041814e6dd5317b8/6d/07bce5c8/RealProxy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/21/fa67525c/SrchCond.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/2d/6f9437dc/DocumentServiceBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/2e/97055d28/IWebService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/43/bc697d3c/SrchCond.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/4f/781d1ee2/AdminServiceBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/55/3fcc3f80/ServiceBase`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/6b/8fb57978/IWebServiceSubClassExtensionMethods.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/91/d4836449/PropDef.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/a0/8b719d0f/ItemAssoc.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/a3/26d6d160/ServerCfg.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/a6/768615da/ItemServiceBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/c9/d1d532ca/WebServiceManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/ce/05dc3ea4/Item.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f7a8edb085774e40a17e7828995597fd76320/d7/02d8c9f1/IAdminService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ConsoleApp2/Controllers/RecommendationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ConsoleApp2/Exceptions/CustomExceptionFilter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ConsoleApp2/Services/VaultRecommendationService.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -36,17 +113,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.ConsoleApp2.executor": "Run",
+    ".NET Project.ConsoleApp2.executor": "Debug",
     ".NET 프로젝트.ConsoleApp2.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feat12",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -85,23 +162,64 @@
       <workItem from="1723597601003" duration="2156000" />
       <workItem from="1724397705846" duration="1310000" />
       <workItem from="1726787659893" duration="115000" />
-      <workItem from="1726787809844" duration="3839000" />
-      <workItem from="1727140612045" duration="2041000" />
-      <workItem from="1727221946776" duration="6334000" />
-      <workItem from="1729126218986" duration="11509000" />
-      <workItem from="1729736637344" duration="2779000" />
-      <workItem from="1729812657814" duration="121000" />
-      <workItem from="1729812792451" duration="6874000" />
-      <workItem from="1730245563967" duration="6765000" />
-      <workItem from="1730341207029" duration="53000" />
-      <workItem from="1730341281189" duration="13690000" />
+      <workItem from="1726787809844" duration="1706000" />
+      <workItem from="1730761242586" duration="4803000" />
+      <workItem from="1730770223905" duration="3885000" />
+      <workItem from="1730848645359" duration="852000" />
+      <workItem from="1733893097945" duration="3890000" />
+      <workItem from="1734658099456" duration="793000" />
+      <workItem from="1734678327281" duration="10000" />
+      <workItem from="1734678344028" duration="676000" />
+      <workItem from="1735773390545" duration="6458000" />
+      <workItem from="1736204614748" duration="3412000" />
+      <workItem from="1736378308902" duration="1939000" />
+      <workItem from="1736410803162" duration="640000" />
+      <workItem from="1736463946310" duration="3920000" />
+      <workItem from="1736749667094" duration="5098000" />
+      <workItem from="1736995224972" duration="27000" />
+      <workItem from="1736995279187" duration="3522000" />
+      <workItem from="1737010228964" duration="6037000" />
+      <workItem from="1737330477983" duration="2440000" />
+      <workItem from="1737335251194" duration="8439000" />
+      <workItem from="1737422773852" duration="1241000" />
+      <workItem from="1737501843185" duration="1068000" />
+      <workItem from="1737503518496" duration="38667000" />
+      <workItem from="1739148267302" duration="1131000" />
+      <workItem from="1739149410963" duration="15223000" />
+      <workItem from="1739502428192" duration="10507000" />
+      <workItem from="1739747437455" duration="18631000" />
+      <workItem from="1739840645590" duration="27144000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat12" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

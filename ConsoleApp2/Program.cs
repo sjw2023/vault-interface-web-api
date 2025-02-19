@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http.SelfHost;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Swashbuckle.Application;
 using ConsoleApp2.Exceptions;
 using ConsoleApp2.Model;
@@ -17,19 +18,24 @@ namespace ConsoleApp2
 			ExcelService excelService = new ExcelService();
 			ErrorInfo = excelService.ReadExcelFile(excelFilePath);
 
-			var config = new HttpSelfHostConfiguration("http://192.168.20.31:8080");
+			var config = new HttpSelfHostConfiguration("http://192.168.20.31:8083");
 
 			config.Filters.Add(new CustomExceptionFilter());
 
+
 			config.EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API")).EnableSwaggerUi();
 
-			//config.Services.Replace(typeof(IHttpActionInvoker), new CustomApiControllerActionInvoker());
+			//config.services.Replace(typeof(IHttpActionInvoker), new CustomApiControllerActionInvoker());
 
 			config.MapHttpAttributeRoutes();
 
 			config.Routes.MapHttpRoute(
-				"API Default", "api/{controller}/{action}/{id}",
+				"API Default", "api/{controller}",
 				new { id = RouteParameter.Optional, action=RouteParameter.Optional});
+
+			// Enable CORS for all origins, headers, and methods
+			var cors = new EnableCorsAttribute("*", "*", "*");
+			config.EnableCors(cors);
 
 			using (HttpSelfHostServer server = new HttpSelfHostServer(config))
 			{

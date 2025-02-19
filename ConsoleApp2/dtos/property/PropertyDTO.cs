@@ -31,6 +31,7 @@ namespace ConsoleApp2.Model
 
 		private PropertyRequestDTO _propertyRequestDTO;
 		public PropertyRequestDTO m_PropertyRequestDTO { get { return _propertyRequestDTO; } set { _propertyRequestDTO = value; } }
+
 		public class PropertyRequestDTO { 
 			public PropertyRequestDTO(PropertyRequestDTO propertyRequestDTO) { 
 				Console.WriteLine("Creating PropertyRequest with copy ctor");

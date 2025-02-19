@@ -380,8 +380,14 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.3.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.3.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.3.0\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.SelfHost, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.SelfHost.5.3.0\lib\net45\System.Web.Http.SelfHost.dll</HintPath>
@@ -411,37 +417,49 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="app_start\SwaggerConfig.cs" />
-    <Compile Include="Controllers\IBaseController.cs" />
-    <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="controllers\FilesController.cs" />
+    <Compile Include="controllers\IFileController.cs" />
+    <Compile Include="controllers\IBaseController.cs" />
+    <Compile Include="controllers\PropertiesController.cs" />
+    <Compile Include="controllers\RecommendationController.cs" />
+    <Compile Include="dtos\file\IFileDto.cs" />
+    <Compile Include="dtos\file\IFileRequestDto.cs" />
+    <Compile Include="dtos\file\IFileResponseDto.cs" />
     <Compile Include="dtos\ItemAssocDTO.cs" />
-    <Compile Include="Exceptions\InterfaceException.cs" />
-    <Compile Include="Exceptions\CustomApiControllerActionInvoker.cs" />
-    <Compile Include="Exceptions\CustomException.cs" />
-    <Compile Include="Exceptions\CustomExceptionFilter.cs" />
-    <Compile Include="Exceptions\InterfaceErrorCodes.cs" />
-    <Compile Include="Model\Bom.cs" />
+    <Compile Include="dtos\property\PermissionDTO.cs" />
+    <Compile Include="dtos\property\PropertyDTO.cs" />
+    <Compile Include="dtos\property\PropertyRequestDTO.cs" />
+    <Compile Include="dtos\property\PropInstDTO.cs" />
+    <Compile Include="exceptions\InterfaceException.cs" />
+    <Compile Include="exceptions\CustomApiControllerActionInvoker.cs" />
+    <Compile Include="exceptions\CustomException.cs" />
+    <Compile Include="exceptions\CustomExceptionFilter.cs" />
+    <Compile Include="exceptions\InterfaceErrorCodes.cs" />
+    <Compile Include="models\Bom.cs" />
     <Compile Include="dtos\BomAfterDateDTO.cs" />
     <Compile Include="dtos\ItemSearchRequestDTO.cs" />
     <Compile Include="dtos\FileAssocDTO.cs" />
-    <Compile Include="Model\ExcelErrorData.cs" />
+    <Compile Include="models\ExcelErrorData.cs" />
     <Compile Include="dtos\IdDTO.cs" />
     <Compile Include="dtos\ItemDTO.cs" />
-    <Compile Include="Model\Property.cs" />
-    <Compile Include="Model\IBaseEntity.cs" />
-    <Compile Include="Model\Item.cs" />
-    <Compile Include="dtos\PropertyDTO.cs" />
-    <Compile Include="dtos\PropertyRequestDTO.cs" />
-    <Compile Include="dtos\PropInstDTO.cs" />
+    <Compile Include="models\Property.cs" />
+    <Compile Include="models\IBaseEntity.cs" />
+    <Compile Include="models\Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ItemController.cs" />
-    <Compile Include="Services\BomService.cs" />
-    <Compile Include="Services\IItemService.cs" />
-    <Compile Include="Services\LoggerDecoratorService.cs" />
-    <Compile Include="Services\IBaseService.cs" />
-    <Compile Include="Services\ItemService.cs" />
-    <Compile Include="Services\PropertyService.cs" />
-    <Compile Include="Services\LogInDecoratorService.cs" />
+    <Compile Include="controllers\ItemController.cs" />
+    <Compile Include="services\files\FileService.cs" />
+    <Compile Include="services\files\IFileService.cs" />
+    <Compile Include="services\IPropertyService.cs" />
+    <Compile Include="services\IBaseService.cs" />
+    <Compile Include="services\items\BomService.cs" />
+    <Compile Include="services\items\IItemService.cs" />
+    <Compile Include="services\items\ItemService.cs" />
+    <Compile Include="services\OchestrationService.cs" />
+    <Compile Include="services\PropertyService.cs" />
+    <Compile Include="services\utils\LoggerDecoratorService.cs" />
+    <Compile Include="services\utils\LogInDecoratorService.cs" />
+    <Compile Include="services\utils\VaultRecommendationService.cs" />
     <Compile Include="Util\ExcelService.cs" />
     <Compile Include="Util\HelperMethod.cs" />
   </ItemGroup>
@@ -462,7 +480,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
